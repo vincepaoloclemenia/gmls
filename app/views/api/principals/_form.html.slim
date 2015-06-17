@@ -1,0 +1,32 @@
+= form_for [:api, @principal], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-6
+      .input-group
+        label Principal Name
+        = f.text_field :name, class: 'form-control', required: "required"
+    .col-xs-6
+      .input-group
+        label Email
+        = f.text_field :email, class: 'form-control', required: "required"
+  br
+  .row  
+    .col-xs-6
+      .input-group
+        label Contact Number
+        = f.text_field :contact_number, class: 'form-control', required: "required"
+    .col-xs-6
+      .input-group
+        label Point of Contact
+        = f.text_field :point_of_contact, class: 'form-control', required: "required"
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Address
+        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

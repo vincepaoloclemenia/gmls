@@ -1,0 +1,66 @@
+.brand
+   = image_tag("gmls.png", :alt => "GMLS") 
+.menu-list
+  li
+    a href="#" 
+      | DASHBOARD
+      span.pull-right.glyphicon.glyphicon-chevron-right
+  li
+    = link_to "LOGISTICS REQUIREMENT", api_logreqs_path 
+  li
+    = link_to "REQUEST FOR QUOTATIONS", api_rfqs_path 
+  li
+    a href="#" 
+      | ACCOUNTING
+      span.pull-right.glyphicon.glyphicon-chevron-right
+  li
+    = link_to "INCIDENTAL QUOTES", api_incidental_quotes_path 
+  li
+    = link_to "CONTRACTS", api_contracts_path 
+  li.collapsed.active data-target="#administration" data-toggle="collapse" 
+    a
+      | ADMINISTRATION
+      span.pull-right.glyphicon.glyphicon-chevron-down
+  ul#administration.sub-menu.collapse
+    li
+      = link_to "PRINCIPALS", api_principals_path 
+    li
+      = link_to "VEHICLES", api_vehicles_path 
+    li
+      = link_to "EQUIPMENTS", api_tools_path 
+    li.collapsed data-target="#transportation" data-toggle="collapse" 
+      a
+        | VESSEL SETUP
+        span.pull-right.glyphicon.glyphicon-chevron-down/
+    ul#transportation.sub-menu.collapse
+      li
+        = link_to "VESSELS", api_vessels_path 
+      li
+        = link_to "VESSEL CLASSES", api_vessel_classes_path 
+      li
+        = link_to "VESSEL TYPES", api_vessel_types_path 
+      li
+        = link_to "NAVY TYPES", api_navy_types_path 
+    li.collapsed data-target="#items" data-toggle="collapse" 
+      a
+        | ITEM SETUP
+        span.pull-right.glyphicon.glyphicon-chevron-down/
+    ul#items.sub-menu.collapse
+      li
+        = link_to "ITEMS", api_items_path 
+      li
+        = link_to "CATEGORIES", api_categories_path 
+      li
+        = link_to "SUB CATEGORIES", api_sub_categories_path 
+    li
+      = link_to "LOCATIONS", api_locations_path 
+    li
+      = link_to "SUPPLIERS", api_suppliers_path 
+    li
+      = link_to "EMPLOYEES", api_users_path 
+    li
+      = link_to "ROLES", api_roles_path 
+    li
+      = link_to "GOVERNMENT AGENCIES", api_government_agencies_path 
+    li
+      = link_to "QUALITY QUESTIONNAIRE", api_quality_questionnaires_path 

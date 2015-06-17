@@ -1,0 +1,20 @@
+= form_for [:api, @tool], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Equipment Name
+        = f.text_field :name, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Quantity
+        = f.text_field :quantity, class: 'form-control', required: "required" 
+    .col-xs-4
+      .input-group
+        label Unit
+        = f.text_field :unit, class: 'form-control', required: "required"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

@@ -1,0 +1,20 @@
+= form_for [:api, @vehicle], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Vehicle Name
+        = f.text_field :name, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Contact Person
+        = f.text_field :contact_person, class: 'form-control', required: "required" 
+    .col-xs-4
+      .input-group
+        label Mobile Number
+        = f.text_field :mobile_number, class: 'form-control', required: "required"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

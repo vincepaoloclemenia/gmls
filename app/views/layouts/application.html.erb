@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maritime</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper row">
+	<div id="nav-side-bar">
+    <%= render "layouts/sidebar" %>
+  </div>
+  <div id="content-wrapper">
+    <%= render "layouts/topbar" %>
+  </div>
+  <div id="content-wrapper">
+    <div id="page-inner">
+      <div id="row">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+= form_for [:api, @location], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Location Name
+        = f.text_field :name, class: 'form-control', required: "required" 
+    .col-xs-4
+      .input-group
+        label Region
+        | &nbsp;
+        = f.select :region, ['NCR','CAR','Region 1','Region 2','Region 3','Region 4-A','Region 4-B','Region 5','Region 6','Region 7','Region 8','Region 9','Region 10','Region 11','Region 12','Region 13','ARMM'], {include_blank: true }, class: 'form-control '
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Address
+        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: gmls_development
+
+test:
+  <<: *default
+  database: gmls_test
+
+production:
+  <<: *default
+  database: gmls_production
+
+staging:
+  <<: *default
+  database: gmls_staging
+  username: gmlsdbuser
+  password: gmlsadmin2015
