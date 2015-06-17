@@ -1,0 +1,35 @@
+br
+.container
+  .row
+    .col-sm-6.col-md-4.col-md-offset-4
+      .center_area style=("height: 100px;") 
+      .center_area style=("width: 350px;") 
+        .panel.panel-primary
+          .panel-heading
+            img.img-rounded height="87" src="/gmls.png" width="243" /
+          .panel-body
+          	.container
+	          	= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+	  						.row
+							    .col-md-4
+							      .input-group
+							      	= f.label :email
+							      .input-group
+							        = f.email_field :email, autofocus: true, class: 'form-control'
+						  	br
+						  	.row
+							    .col-md-4
+							      .input-group
+							      	= f.label :password
+							      .input-group
+							        = f.email_field :password, autocomplete: "off", class: 'form-control'
+						  	/ - if devise_mapping.rememberable?
+						  	/ 	.row
+								 /    .col-xs-12
+								 /      .input-group
+								 /        = f.check_box :remember_me 
+								 /   			= f.label :remember_me
+								.actions
+							    input.btn.btn-primary type="submit" value="Submit"
+							  	= render "devise/shared/links"
+            

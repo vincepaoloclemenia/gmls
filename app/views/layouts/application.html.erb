@@ -7,24 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="wrapper row">
-	<div id="nav-side-bar">
-    <%= render "layouts/sidebar" %>
-  </div>
-  <div id="content-wrapper">
-    <%= render "layouts/topbar" %>
-  </div>
-  <div id="content-wrapper">
-    <div id="page-inner">
-      <div id="row">
-        <%= render 'layouts/messages' %>
-        <%= yield %>
+<% if user_signed_in? %>  
+  <div id="wrapper row">
+  	<div id="nav-side-bar">
+      <%= render "layouts/sidebar" %>
+    </div>
+    <div id="content-wrapper">
+      <%= render "layouts/topbar" %>
+    </div>
+    <div id="content-wrapper">
+      <div id="page-inner">
+        <div id="row">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
       </div>
     </div>
+
   </div>
-
-</div>
-
+<% else %>
+  <%= render "layouts/login" %>
+<% end %>
 
 </body>
 </html>
