@@ -1,17 +1,19 @@
 class Api::SupplierCategoriesController < ApplicationController
-  before_action :set_supplier_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_supplier_category, only: [:show, :edit, :update, :destroy, :edit]
 
   def index
     @supplier_categories = SupplierCategory.all
-    render json: @supplier_categories
+    # render json: @supplier_categories
   end
 
   def create
     @supplier_category = SupplierCategory.new(supplier_category_params)
     if @supplier_category.save
-      render json: @supplier_category, status: :created, supplier_category: [:api, @supplier_category]
+      # render json: @supplier_category, status: :created, supplier_category: [:api, @supplier_category]
+      redirect_to api_supplier_categories_path, notice: 'Entry created'
     else
-      render json: { errors: @supplier_category.errors }, status: :unprocessable_entity
+      redirect_to @supplier_category, alert: @supplier_category.errors.full_messages.first
+      # render json: { errors: @supplier_category.errors }, status: :unprocessable_entity
     end
   end
   
@@ -21,16 +23,21 @@ class Api::SupplierCategoriesController < ApplicationController
 
   def update
     if @supplier_category.update(supplier_category_params)
-      head :no_content
+      # head :no_content
+      redirect_to api_supplier_categories_path, notice: 'Entry updated'
     else
       render json: { errors: @supplier_category.errors }, status: :unprocessable_entity
     end
   end
   
+  def new
+    @supplier_category = SupplierCategory.new
+  end
+
   def destroy
     @supplier_category.destroy
-
-    head :no_content
+    redirect_to api_supplier_categories_path, notice: 'Entry successfully deleted'
+    # head :no_content
   end
 
   private

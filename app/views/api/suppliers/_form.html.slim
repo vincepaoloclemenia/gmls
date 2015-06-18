@@ -1,0 +1,49 @@
+= form_for [:api, @supplier], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Category
+        = f.select :supplier_category_id, SupplierCategory.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Supplier Name
+        = f.text_field :name, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Contact Person
+        = f.text_field :contact_person, class: 'form-control', required: "required"
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Mobile Number
+        = f.text_field :mobile_number, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Telephone Number
+        = f.text_field :telephone_number, class: 'form-control', required: "required"
+    
+    .col-xs-4
+      .input-group
+        label Fax Number
+        = f.text_field :fax_number, class: 'form-control', required: "required"
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Email
+        = f.text_field :email, class: 'form-control', required: "required"
+      br
+      .input-group
+        label Location
+        = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+    .col-xs-8
+      .input-group
+        label Address
+        = f.text_area :address, class: 'form-control', rows: 5, cols: 70, style:"resize: none;"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

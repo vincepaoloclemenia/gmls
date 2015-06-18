@@ -54,8 +54,15 @@
         = link_to "SUB CATEGORIES", api_sub_categories_path 
     li
       = link_to "LOCATIONS", api_locations_path 
-    li
-      = link_to "SUPPLIERS", api_suppliers_path 
+    li.collapsed data-target="#suppliers" data-toggle="collapse" 
+      a
+        | SUPPLIER SETUP
+        span.pull-right.glyphicon.glyphicon-chevron-down/
+    ul#suppliers.sub-menu.collapse
+      li
+        = link_to "SUPPLIERS", api_suppliers_path
+      li
+        = link_to "SUPPLIER CATEGORIES", api_supplier_categories_path  
     li
       = link_to "EMPLOYEES", api_users_path 
     li

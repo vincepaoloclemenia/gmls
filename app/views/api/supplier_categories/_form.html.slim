@@ -1,0 +1,12 @@
+= form_for [:api, @supplier_category], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Supplier Category Name
+        = f.text_field :name, class: 'form-control', required: "required"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

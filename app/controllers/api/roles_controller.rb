@@ -1,18 +1,20 @@
 class Api::RolesController < ApplicationController
-  before_filter :set_role, only: [:show, :update, :destroy, :manage]
+  before_filter :set_role, only: [:show, :update, :destroy, :manage, :edit]
 
   def index
     @roles = current_user.department.nil? ? Role.all : Role.where(department: current_user.department)
-    render json: @roles
+    # render json: @roles
   end
 
   def create
     @role = Role.new(role_params)
     @role.department = current_user.department
     if @role.save
-      render json: @role, status: :created, role: [:api, @role]
+      # render json: @role, status: :created, role: [:api, @role]
+      redirect_to api_roles_path, notice: 'Entry created'
     else
-      render json: { errors: @role.errors }, status: :unprocessable_entity
+      redirect_to @role, alert: @role.errors.full_messages.first
+      # render json: { errors: @role.errors }, status: :unprocessable_entity
     end
   end
   
@@ -24,9 +26,14 @@ class Api::RolesController < ApplicationController
     render json: @role
   end
 
+  def new
+    @role = Role.new
+  end
+
   def update
     if @role.update(role_params)
-      head :no_content
+      # head :no_content
+      redirect_to api_roles_path, notice: 'Entry updated'
     else
       render json: { errors: @role.errors }, status: :unprocessable_entity
     end
@@ -34,8 +41,7 @@ class Api::RolesController < ApplicationController
   
   def destroy
     @role.destroy
-
-    head :no_content
+    redirect_to api_roles_path, notice: 'Entry successfully deleted'
   end
   private
 
