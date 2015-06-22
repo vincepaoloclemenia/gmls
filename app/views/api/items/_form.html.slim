@@ -1,0 +1,86 @@
+= form_for [:api, @item], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Item Type
+        = f.select :item_type, ['Goods', 'Services'], {include_blank: true },  class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label#change_name Item Name
+        = f.text_field :name, class: 'form-control'
+    .col-xs-4#category
+      .input-group
+        label Category
+        = f.select :category_id, Category.all.map{ |e| [e.name, e.id] }, {include_blank: true },class: 'form-control'
+    .col-xs-4#service_type
+      .input-group
+        label Service Type
+        = f.select :service_type, Service.all.map{ |e| [e.name, e.name] }, {include_blank: true },class: 'form-control'
+  br
+  .row#other_info
+    .col-xs-4
+      .input-group
+        label Sub Category
+        = f.select :sub_category_id, SupplierCategory.all.map{ |e| [e.name, e.id] },  {include_blank: true }, class: 'form-control'
+    .col-xs-4
+      .input-group
+        label Package Size
+        = f.text_field :package_size, class: 'form-control'
+    
+    .col-xs-4
+      .input-group
+        label Unit Of Issue
+        = f.text_field :unit_of_issue, class: 'form-control'
+  br
+  .row
+    .col-xs-4#unit_price
+      .input-group
+        label Unit Price
+        = f.text_field :unit_price, class: 'form-control'
+    .col-xs-4#item_rate
+      .input-group
+        label Item Rate
+        = f.text_field :item_prices, value:"", class: 'form-control'
+    .col-xs-8
+      .input-group
+        label Description
+        = f.text_area :description, class: 'form-control', rows: 3, cols: 70, style:"resize: none;"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel  
+
+javascript:
+  $(function() {
+    $(document).ready(function() {
+      $("#category").show();
+      $("#other_info").show();
+      $("#unit_price").show();
+
+      $("#service_type").hide();
+      $("#item_rate").hide();
+
+
+
+      $('#item_item_type').change(function(){
+        var item_type = $('#item_item_type').val();
+        if (item_type == 'Goods'){
+          $("#change_name").text("Item Name");
+          $("#service_type").hide();
+          $("#category").show();
+          $("#other_info").show();
+          $("#unit_price").show();
+          $("#item_rate").hide();
+        }else{
+          $("#change_name").text("Service Name");
+          $("#category").hide();
+          $("#service_type").show();
+          $("#other_info").hide();
+          $("#unit_price").hide();
+          $("#item_rate").show();
+        }
+      });
+    });
+  });

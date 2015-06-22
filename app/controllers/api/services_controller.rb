@@ -1,33 +1,38 @@
 class Api::ServicesController < ApplicationController
-	before_filter :set_service, only: [:show, :update, :destroy]
+	before_filter :set_service, only: [:show, :update, :destroy, :edit]
 
   def index
     @services = current_user.department.nil? ? Service.all : Service.where(department: current_user.department)
-    render json: @services
+    # render json: @services
   end
 
   def create
     @service = Service.new(service_params)
     @service.department = current_user.department
     if @service.save
-      render json: @service, status: :created, service: [:api, @service]
+      # render json: @service, status: :created, service: [:api, @service]
+      redirect_to api_services_path, notice: 'Entry created'
     else
-      render json: { errors: @service.errors }, status: :unprocessable_entity
+      redirect_to @service, alert: @service.errors.full_messages.first
+      # render json: { errors: @service.errors }, status: :unprocessable_entity
     end
   end
 
   def update
     if @service.update(service_params)
-      head :no_content
+      redirect_to api_services_path, notice: 'Entry updated'
     else
       render json: { errors: @service.errors }, status: :unprocessable_entity
     end
   end
   
+  def new
+    @service = Service.new
+  end
+
   def destroy
     @service.destroy
-
-    head :no_content
+    redirect_to api_services_path, notice: 'Entry successfully deleted'
   end
 
   private

@@ -4,7 +4,8 @@ class Api::ItemsController < ApplicationController
 
   def index
     @items = current_user.department.nil? ? Item.all : Item.where(department: current_user.department)
-    render json: @items
+    # render json: @items
+
   end
 
   def show
@@ -16,15 +17,17 @@ class Api::ItemsController < ApplicationController
     @item.department = current_user.department
 
     if @item.save
-      render json: @item, status: :created, item: [:api, @item]
+      # render json: @item, status: :created, item: [:api, @item]
+      redirect_to api_items_path, notice: 'Entry created'
     else
-      render json: { errors: @item.errors }, status: :unprocessable_entity
+      # render json: { errors: @item.errors }, status: :unprocessable_entity
+      redirect_to @item, alert: @item.errors.full_messages.first
     end
   end
 
   def update
     if @item.update(item_params)
-      head :no_content
+      redirect_to api_items_path, notice: 'Entry updated'
     else
       render json: { errors: @item.errors }, status: :unprocessable_entity
     end
@@ -32,8 +35,11 @@ class Api::ItemsController < ApplicationController
   
   def destroy
     @item.destroy
+    redirect_to api_items_path, notice: 'Entry successfully deleted'
+  end
 
-    head :no_content
+  def new
+    @item = Item.new
   end
 
   private

@@ -3,16 +3,16 @@ class Api::LogreqsController < ApplicationController
 
   def index
     @logreqs = current_user.department.nil? ? Logreq.all : Logreq.where(department: current_user.department)
-    render json: @logreqs
+    # render json: @logreqs
   end
 
   def create
     @logreq = Logreq.new(logreq_params)
     @logreq.department = current_user.department
     if @logreq.save
-      render json: @logreq, status: :created, logreq: [:api, @logreq]
+      # render json: @logreq, status: :created, logreq: [:api, @logreq]
     else
-      render json: { errors: @logreq.errors }, status: :unprocessable_entity
+      # render json: { errors: @logreq.errors }, status: :unprocessable_entity
     end
   end
 
@@ -28,6 +28,10 @@ class Api::LogreqsController < ApplicationController
     @logreq.destroy
 
     head :no_content
+  end
+
+  def new
+    @logreq = Logreq.new
   end
 
   def show
