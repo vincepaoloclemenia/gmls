@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :ship_arrival, dependent: :destroy
+  has_many :logreqs
   
   validates :email, presence: true       
   # validates :first_name, presence: true

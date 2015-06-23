@@ -1,0 +1,45 @@
+.panel.panel-default
+  .panel-heading
+    h3
+      span.glyphicon.glyphicon-list
+      | Logistic Requirement Responses
+      .pull-right
+	      = link_to "Add Response", new_api_logreq_response_path(li: @logreq.id), class: "btn btn-primary"
+	      | &nbsp;
+	      = link_to "Export To PDF", api_logreq_responses_path(logreq_id: @logreq.id, format: 'pdf'), class: "btn btn-default"
+  .panel-body
+    br
+    table.table.table-hover.table-striped
+      tr
+        td.bold-text Encoded Number
+        td= "000"+"#{@logreq.id}"
+        td.bold-text Vessel Name
+        td= @logreq.vessel.name
+      tr
+        td.bold-text Date of Arrival
+        td= @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+        td.bold-text Date of Departure
+        td= @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+      tr
+        td.bold-text Pier
+        td= @logreq.pier
+        td.bold-text Assigned Employee
+        td= @logreq.user.full_name
+    br
+    br
+
+    h4 Logreq Responses
+    br
+    - @logreq_responses.each do |logreq_response|
+      .row
+        .col-xs-9
+          = logreq_response.question.html_safe
+        .col-xs-3
+          = link_to icon_text('pencil', ''), edit_api_logreq_response_path(logreq_response, li: @logreq.id), title: 'View', class: 'btn btn-xs btn-warning'
+          | &nbsp;
+          = link_to icon_text('trash', ''), api_logreq_response_path(logreq_response, li: @logreq.id), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+      .row    
+        .col-xs-9
+          = logreq_response.response.html_safe
+        .col-xs-3
+      br

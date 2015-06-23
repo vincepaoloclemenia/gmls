@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
   root to: 'api/locations#index'
   namespace :api do
@@ -32,7 +33,10 @@ Rails.application.routes.draw do
     resources :rfqs
     resources :rfq_items
     resources :rfq_supplier_items
-    resources :logreqs
+    resources :logreqs do
+      get :ship_listings, on: :collection
+      get :display_data, on: :collection
+    end
     resources :archives
     resources :navy_types
     resources :incidental_quotes do 

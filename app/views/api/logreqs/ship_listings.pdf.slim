@@ -1,0 +1,19 @@
+= wicked_pdf_stylesheet_link_tag "application"
+.div style="background-color: #FFF;"
+  h4.center_area Ship Listings Information
+  table.table.table-striped.small-text
+    thead
+      tr
+        th Vessel Name
+        th Date of Arrival
+        th Date of Departure
+        th Pier
+        th Assigned Employee
+    tbody
+      - @ship_listings.each do |ship_listing|
+        tr
+          td= ship_listing.vessel.name
+          td= ship_listing.date_of_arrival.present? ? ship_listing.date_of_arrival.strftime("%B %d, %Y") : ''
+          td= ship_listing.date_of_departure.present? ? ship_listing.date_of_departure.strftime("%B %d, %Y") : ''
+          td= ship_listing.pier
+          td= ship_listing.user.full_name

@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datepicker";
+@import "bootsy";
 
 html, body {
   margin: 0px;
@@ -827,4 +829,11 @@ End [Steps Wizard]
   text-align: right;
 }
   
+.small-text{
+  font-size: 10px !important;
+}
+
+.bold-text{
+  font-weight: bold;
+}
 

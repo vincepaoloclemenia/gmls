@@ -1,0 +1,19 @@
+= form_for [:api, @logreq_response], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Question
+        = f.bootsy_area :question, class: 'form-control', rows: 5, style:"resize: none;"
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Details
+        = f.bootsy_area :response, class: 'form-control', rows: 5, style:"resize: none;"
+  br
+  br
+  = f.hidden_field :logreq_id, value: params[:li]
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

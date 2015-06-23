@@ -1,0 +1,23 @@
+.row
+  .col-xs-12
+    = @logreq.vessel.name
+  .col-xs-12
+    = @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+    | &nbsp;-&nbsp;
+    = @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+  .col-xs-12
+    = @logreq.pier
+br
+h4.text-danger Logreq Responses
+br
+.row
+  .col-xs-12
+    = @logreq.information
+- @logreq_responses.each do |logreq_response|
+  .row
+    .col-xs-12
+      = logreq_response.question.html_safe
+  .row    
+    .col-xs-12
+      = logreq_response.response.html_safe
+  br

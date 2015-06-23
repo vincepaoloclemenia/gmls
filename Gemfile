@@ -17,6 +17,8 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'slim'
+gem 'bootstrap-datepicker-rails'
+gem 'bootsy'
 
 group :development do
   gem 'byebug'
