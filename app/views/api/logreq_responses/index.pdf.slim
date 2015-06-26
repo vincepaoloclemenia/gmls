@@ -8,11 +8,12 @@
   .col-xs-12
     = @logreq.pier
 br
-h4.text-danger Logreq Responses
+h4 style="color: red;" FP LOGREQ RESPONSES
 br
 .row
   .col-xs-12
-    = @logreq.information
+    = @logreq.information.html_safe
+  br  
 - @logreq_responses.each do |logreq_response|
   .row
     .col-xs-12
