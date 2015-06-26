@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :archives
     resources :navy_types
     resources :incidental_quotes do 
+      get :manage_services, on: :collection
       get :display_data, on: :collection 
     end
     resources :incidental_items

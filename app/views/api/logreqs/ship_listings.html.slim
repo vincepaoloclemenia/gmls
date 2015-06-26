@@ -1,10 +1,11 @@
+= render "layouts/upper_menu_logreq"
 .panel.panel-default
   .panel-heading
     h3
       span.glyphicon.glyphicon-list
       | Ship Listings Information
       .pull-right
-	      = link_to "Export To PDF", ship_listings_api_logreqs_path(format: 'pdf'), class: "btn btn-info"
+	      = link_to "Export To PDF", ship_listings_api_logreqs_path(format: 'pdf'), class: "btn btn-info", target: "_blank"
   .panel-body
     br
     table.table.table-hover.table-striped

@@ -1,0 +1,53 @@
+= form_for [:api, @incidental_quote], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Quotation No
+        = f.text_field :quotation_no, class: 'form-control'
+
+    .col-xs-4
+      .input-group
+        label Company
+        = f.text_field :company, class: 'form-control'
+  br
+  .row
+    .col-xs-12
+      .input-group
+        label Address
+        = f.text_area :address, class: 'form-control', rows: 3, cols: 70, style:"resize: none;"
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Subject
+        = f.text_field :subject, class: 'form-control'
+  br
+  .row
+    .col-xs-12
+      .input-group
+        label Subject Details
+        = f.bootsy_area :subject_detail, class: 'form-control', rows: 3, cols: 70, style:"resize: none;"
+  br
+  .row
+    .col-xs-12
+      .input-group
+        label Terms and Condition
+        = f.bootsy_area :terms_and_condition, class: 'form-control', rows: 3, cols: 70, style:"resize: none;"
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Validity
+        = f.text_field :validity, class: 'form-control'
+
+    .col-xs-4
+      .input-group
+        label Prepared By
+        = f.text_field :prepared_by, class: 'form-control'
+        = f.hidden_field :logreq_id, value: params[:li]
+  br      
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel 
+

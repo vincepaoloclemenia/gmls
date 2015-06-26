@@ -1,17 +1,31 @@
 class Api::IncidentalQuotesController < ApplicationController
-  before_filter :set_incidental_quote, only: [:update, :destroy, :show, :display_data]
+  before_filter :set_incidental_quote, only: [:update, :destroy, :show, :display_data, :edit]
 
   def index
     # @incidental_quotes = current_user.department.nil? ? IncidentalQuote.all : IncidentalQuote.where(department: current_user.department)
-    @incidental_quotes = IncidentalQuote.all
-    render json: @incidental_quotes
+    @logreqs = Logreq.all
+    # @logreq_responses = LogreqResponse.where(logreq_id: @logreq.id)
+    # @incidental_quotes = IncidentalQuote.where(logreq_id: @logreq.id)
+    # render json: @incidental_quotes
+  end
+
+  def manage_services
+    @incidental_quotes = IncidentalQuote.where(logreq_id: params[:li])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def new
+    @incidental_quote = IncidentalQuote.new
   end
 
   def create
     @incidental_quote = IncidentalQuote.new(incidental_quote_params)
     @incidental_quote.department = current_user.department
     if @incidental_quote.save
-      render json: @incidental_quote, status: :created, incidental_quote: [:api, @incidental_quote]
+      redirect_to manage_services_api_incidental_quotes_path(li: @incidental_quote.logreq_id, step: 2), notice: 'Entry created'
+      # render json: @incidental_quote, status: :created, incidental_quote: [:api, @incidental_quote]
     else
       render json: { errors: @incidental_quote.errors }, status: :unprocessable_entity
     end
@@ -19,7 +33,7 @@ class Api::IncidentalQuotesController < ApplicationController
 
   def update
     if @incidental_quote.update(incidental_quote_params)
-      head :no_content
+      redirect_to manage_services_api_incidental_quotes_path(li: @incidental_quote.logreq_id, step: 2), notice: 'Entry updated'
     else
       render json: { errors: @incidental_quote.errors }, status: :unprocessable_entity
     end
@@ -27,8 +41,7 @@ class Api::IncidentalQuotesController < ApplicationController
   
   def destroy
     @incidental_quote.destroy
-
-    head :no_content
+    redirect_to manage_services_api_incidental_quotes_path(li: params[:li], step: 2), notice: 'Entry successfully deleted'
   end
 
   def show
@@ -55,6 +68,6 @@ class Api::IncidentalQuotesController < ApplicationController
   end
 
   def incidental_quote_params
-    params.require(:incidental_quote).permit(:quotation_no, :company, :address, :subject, :subject_detail, :terms_and_condition, :validity, :prepared_by, :department)
+    params.require(:incidental_quote).permit(:quotation_no, :company, :address, :subject, :subject_detail, :terms_and_condition, :validity, :prepared_by, :department, :logreq_id)
   end
 end

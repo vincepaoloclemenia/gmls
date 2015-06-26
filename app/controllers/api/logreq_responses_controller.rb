@@ -21,7 +21,7 @@ class Api::LogreqResponsesController < ApplicationController
     @logreq_response = LogreqResponse.new(logreq_response_params)
     # @logreq_response.department = current_user.department
     if @logreq_response.save
-      redirect_to api_logreq_responses_path(logreq_id: @logreq_response.logreq_id), notice: 'Entry created'
+      redirect_to api_logreq_responses_path(logreq_id: @logreq_response.logreq_id, step: 1), notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
       redirect_to @logreq_response, alert: @logreq_response.errors.full_messages.first
@@ -30,7 +30,7 @@ class Api::LogreqResponsesController < ApplicationController
 
   def update
     if @logreq_response.update(logreq_response_params)
-      redirect_to api_logreq_responses_path(logreq_id: @logreq_response.logreq_id), notice: 'Entry updated'
+      redirect_to api_logreq_responses_path(logreq_id: @logreq_response.logreq_id, step: 1), notice: 'Entry updated'
     else
       render json: { errors: @logreq_response.errors }, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class Api::LogreqResponsesController < ApplicationController
 
   def destroy
     @logreq_response.destroy
-    redirect_to api_logreq_responses_path(logreq_id: @logreq_response), notice: 'Entry successfully deleted'
+    redirect_to api_logreq_responses_path(logreq_id: params[:li], step: 1), notice: 'Entry successfully deleted'
   end
   private
 

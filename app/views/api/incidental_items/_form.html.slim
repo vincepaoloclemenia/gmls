@@ -1,0 +1,27 @@
+= form_for [:api, @incidental_item], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Item Name
+        = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Area
+        = f.text_field :area, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Price
+        = f.text_field :price, class: 'form-control', required: "required"
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Remarks
+        = f.text_area :remarks, class: 'form-control', required: "required"
+        = f.hidden_field :incidental_quote_id, value: params[:incidental_quote_id]
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622063213) do
+ActiveRecord::Schema.define(version: 20150624071330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20150622063213) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "department"
+    t.integer  "logreq_id"
   end
 
   add_index "incidental_quotes", ["deleted_at"], name: "index_incidental_quotes_on_deleted_at", using: :btree
@@ -222,6 +223,21 @@ ActiveRecord::Schema.define(version: 20150622063213) do
   end
 
   add_index "locations", ["deleted_at"], name: "index_locations_on_deleted_at", using: :btree
+
+  create_table "logreq_items", force: :cascade do |t|
+    t.integer  "item_id"
+    t.text     "description"
+    t.integer  "quantity"
+    t.string   "unit"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "days"
+    t.decimal  "unit_price",  precision: 8, scale: 2
+    t.decimal  "total_price", precision: 8, scale: 2
+    t.integer  "logreq_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   create_table "logreq_responses", force: :cascade do |t|
     t.integer  "logreq_id"

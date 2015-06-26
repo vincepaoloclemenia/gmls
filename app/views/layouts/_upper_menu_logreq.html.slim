@@ -1,0 +1,58 @@
+.steps
+  ol
+    li#step1 class="#{current(1)}"
+      div 
+        span 1
+        | Logreq
+    li#step2 class="#{current(2)}"
+      div 
+        span 2
+        | Prep Services
+    li#step3.level3 class="#{current(3)}"
+      div
+        span 3
+        | Choosing Of Suppliers
+    li#step4.level4 class="#{current(4)}"
+      div
+        span 4
+        | P.O. Creation
+    li#step5.level5 class="#{current(5)}"
+      div
+        span 5
+        | Delivery Receipts
+    li#step6.level6 class="#{current(6)}"
+      div
+        span 6
+        | Accounting
+br
+
+javascript:
+  $(function() {
+    $(document).ready(function() {
+      $('#step1').css('cursor', 'pointer');
+      $('#step2').css('cursor', 'pointer');
+      $('#step3').css('cursor', 'pointer');
+      $('#step4').css('cursor', 'pointer');
+      $('#step5').css('cursor', 'pointer');
+      $('#step6').css('cursor', 'pointer');
+
+      $("#step1").click(function(){ 
+        window.location.href='/api/logreqs?step=1';
+      });
+      $("#step2").click(function(){ 
+        window.location.href='/api/incidental_quotes?step=2';
+      });
+      $("#step3").click(function(){ 
+        window.location.href='/api/logreqs?step=3';
+      });
+      $("#step4").click(function(){ 
+        window.location.href='/api/logreqs?step=4';
+      });
+      $("#step5").click(function(){ 
+        window.location.href='/api/logreqs?step=5';
+      });
+      $("#step6").click(function(){ 
+        window.location.href='/api/logreqs?step=6';
+      });
+    });
+  });

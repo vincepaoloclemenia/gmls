@@ -11,7 +11,7 @@ class Api::LogreqsController < ApplicationController
     @logreq.department = current_user.department
     if @logreq.save
       # render json: @logreq, status: :created, logreq: [:api, @logreq]
-      redirect_to api_logreqs_path, notice: 'Entry created'
+      redirect_to api_logreqs_path(step: 1), notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
       redirect_to @logreq, alert: @logreq.errors.full_messages.first  
@@ -20,7 +20,7 @@ class Api::LogreqsController < ApplicationController
 
   def update
     if @logreq.update(logreq_params)
-      redirect_to api_logreqs_path, notice: 'Entry updated'
+      redirect_to api_logreqs_path(step: 1), notice: 'Entry updated'
     else
       render json: { errors: @logreq.errors }, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::LogreqsController < ApplicationController
   
   def destroy
     @logreq.destroy
-    redirect_to api_logreqs_path, notice: 'Entry successfully deleted'
+    redirect_to api_logreqs_path(step: 1), notice: 'Entry successfully deleted'
   end
 
   def new
