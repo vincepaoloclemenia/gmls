@@ -4,7 +4,7 @@
     .col-xs-12
       .form-group
         label Question
-        = f.bootsy_area :question, class: 'form-control', rows: 5, style:"resize: none;"
+        = f.bootsy_area :question, editor_options: { image: false, link: false }, class: 'form-control', rows: 5, style:"resize: none;"
   br
   .row
     .col-xs-12

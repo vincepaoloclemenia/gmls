@@ -49,3 +49,5 @@ class Api::SupplierCategoriesController < ApplicationController
       params.require(:supplier_category).permit(:name)
     end
 end
+
+

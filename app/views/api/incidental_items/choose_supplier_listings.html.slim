@@ -1,0 +1,25 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3
+      span.glyphicon.glyphicon-list 
+      | Choosing Of Supplier Listings
+  .panel-body
+    br
+    table.table.table-hover.table-striped
+      thead
+        tr
+          th Quotation Number
+          th Date
+          th Company
+          th Action
+      tbody
+        - @incidental_quotes.each do |incidental_quote|
+          tr
+            td= incidental_quote.quotation_no
+            td= incidental_quote.created_at.present? ? incidental_quote.created_at.strftime("%B %d, %Y") : ''
+            td= incidental_quote.company
+            td
+              - if count_incidental_items(incidental_quote.id) != 0
+                = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs"
+              

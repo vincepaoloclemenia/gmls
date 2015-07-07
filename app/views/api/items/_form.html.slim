@@ -37,12 +37,12 @@
     .col-xs-4#unit_price
       .input-group
         label Unit Price
-        = f.text_field :unit_price, class: 'form-control'
-    .col-xs-4#item_rate
-      .input-group
-        label Item Rate
-        = f.text_field :item_prices, value:"", class: 'form-control'
-    .col-xs-8
+        = f.text_field :unit_price, class: 'form-control', value: 0
+    / .col-xs-4#item_rate
+    /   .input-group
+    /     label Item Rate
+    /     = f.text_field :item_prices, value:"", class: 'form-control'
+    .col-xs-12
       .input-group
         label Description
         = f.text_area :description, class: 'form-control', rows: 3, cols: 70, style:"resize: none;"
@@ -72,14 +72,14 @@ javascript:
           $("#category").show();
           $("#other_info").show();
           $("#unit_price").show();
-          $("#item_rate").hide();
+          
         }else{
           $("#change_name").text("Service Name");
           $("#category").hide();
           $("#service_type").show();
           $("#other_info").hide();
           $("#unit_price").hide();
-          $("#item_rate").show();
+          
         }
       });
     });

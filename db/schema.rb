@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624071330) do
+ActiveRecord::Schema.define(version: 20150706192307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,10 @@ ActiveRecord::Schema.define(version: 20150624071330) do
     t.text     "remarks"
     t.integer  "department"
     t.datetime "deleted_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "supplier_pricing_detail_id"
+    t.integer  "supplier_id"
   end
 
   add_index "incidental_items", ["deleted_at"], name: "index_incidental_items_on_deleted_at", using: :btree
@@ -264,6 +266,7 @@ ActiveRecord::Schema.define(version: 20150624071330) do
     t.datetime "date_of_departure"
     t.string   "pier"
     t.integer  "user_id"
+    t.text     "ending_text"
   end
 
   add_index "logreqs", ["deleted_at"], name: "index_logreqs_on_deleted_at", using: :btree
@@ -565,6 +568,20 @@ ActiveRecord::Schema.define(version: 20150624071330) do
   add_index "supplier_items", ["item_id"], name: "index_supplier_items_on_item_id", using: :btree
   add_index "supplier_items", ["supplier_id"], name: "index_supplier_items_on_supplier_id", using: :btree
 
+  create_table "supplier_pricing_details", force: :cascade do |t|
+    t.integer  "supplier_id"
+    t.integer  "service_id"
+    t.integer  "item_id"
+    t.integer  "tool_id"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.string   "unit"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "type_name"
+    t.string   "service_type"
+    t.integer  "quantity"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"
     t.string   "contact_person"
@@ -633,6 +650,7 @@ ActiveRecord::Schema.define(version: 20150624071330) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "department"
+    t.string   "plate_number"
   end
 
   create_table "vessel_classes", force: :cascade do |t|

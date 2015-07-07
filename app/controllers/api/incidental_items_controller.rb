@@ -1,5 +1,5 @@
 class Api::IncidentalItemsController < ApplicationController
-  before_filter :set_incidental_item, only: [:update, :destroy, :show, :edit]
+  before_filter :set_incidental_item, only: [:update, :destroy, :show, :edit, :update_supplier]
 
   def index
     # @incidental_items = current_user.department.nil? ? IncidentalItem.all : IncidentalItem.where(department: current_user.department)
@@ -45,6 +45,23 @@ class Api::IncidentalItemsController < ApplicationController
     redirect_to api_incidental_items_path(incidental_quote_id: params[:incidental_quote_id], step: 2), notice: 'Entry successfully deleted'
   end
 
+  def choose_supplier
+    @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])
+    @logreq_detail = Logreq.find @incidental_quote.logreq_id
+    @incidental_items = IncidentalItem.where(incidental_quote_id: params[:incidental_quote_id])
+
+  end
+
+  def update_supplier
+    @incidental_item.update_attributes(supplier_id: params[:supplier_id])
+    redirect_to request.referrer, notice: 'The supplier has already been selected for this item.'
+  end
+
+  def choose_supplier_listings
+    @incidental_quotes = IncidentalQuote.all
+    
+  end
+
   private
 
   def set_incidental_item
@@ -52,6 +69,6 @@ class Api::IncidentalItemsController < ApplicationController
   end
 
   def incidental_item_params
-    params.require(:incidental_item).permit(:incidental_quote_id, :item_id, :area, :price, :remarks, :department)
+    params.require(:incidental_item).permit(:incidental_quote_id, :item_id, :area, :price, :remarks, :department, :supplier_pricing_detail_id, :supplier_id)
   end
 end

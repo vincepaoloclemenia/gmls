@@ -21,7 +21,7 @@ class Api::ItemsController < ApplicationController
       redirect_to api_items_path, notice: 'Entry created'
     else
       # render json: { errors: @item.errors }, status: :unprocessable_entity
-      redirect_to @item, alert: @item.errors.full_messages.first
+      redirect_to api_items_path, alert: @item.errors.full_messages.first
     end
   end
 
@@ -53,7 +53,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category_id, :sub_category_id, :unit_price, :package_size, :unit_of_issue, :item_type, :category_name, :sub_category_name, :item_prices, :rate, :description,:service_type, :department)
+    params.require(:item).permit(:name, :category_id, :sub_category_id, :unit_price, :package_size, :unit_of_issue, :item_type, :category_name, :sub_category_name, :rate, :description,:service_type, :department)
   end
 
 end

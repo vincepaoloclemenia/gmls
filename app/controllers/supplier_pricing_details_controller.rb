@@ -1,0 +1,2 @@
+class SupplierPricingDetailsController < ApplicationController
+end

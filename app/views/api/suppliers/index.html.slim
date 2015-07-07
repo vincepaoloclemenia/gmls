@@ -10,7 +10,7 @@
       thead
         tr
           th Name
-          th Category
+          / th Category
           th Location
           th Mobile Number
           th Telephone Number
@@ -20,7 +20,7 @@
         - @suppliers.each do |supplier|
           tr
             td= supplier.name
-            td= supplier.supplier_category.name
+            / td= supplier.supplier_category.name
             td= supplier.location.name
             td= supplier.mobile_number
             td= supplier.telephone_number

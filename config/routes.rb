@@ -43,12 +43,18 @@ Rails.application.routes.draw do
       get :manage_services, on: :collection
       get :display_data, on: :collection 
     end
-    resources :incidental_items
+    resources :incidental_items do
+      get :choose_supplier, on: :collection
+      get :update_supplier, on: :collection
+      get :choose_supplier_listings, on: :collection
+    end
     resources :contracts
     resources :contract_items
     resources :role_managements
     resources :logreq_responses
     resources :purchase_orders
     resources :purchase_order_items
+    resources :supplier_pricing_details
+    resources :purchasing_orders
   end
 end

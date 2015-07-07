@@ -44,7 +44,7 @@ class Api::VehiclesController < ApplicationController
   end
     
   def vehicle_params
-    params.require(:vehicle).permit(:name, :contact_person, :mobile_number)
+    params.require(:vehicle).permit(:name, :contact_person, :mobile_number, :plate_number)
   end
  
 end

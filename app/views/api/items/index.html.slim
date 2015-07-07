@@ -19,12 +19,12 @@
       tbody
         - @items.each do |item|
           tr
-            td= item.type
+            td= item.item_type
             td= item.name
             td= item.service_type
-            td= item.category.name
-            td= item.sub_category.name
-            td= number_to_currency(item.price, unit:"P ")
+            td= item.category_id.nil? ? '' : item.category.name
+            td= item.sub_category_id.nil? ? '' : item.sub_category.name
+            td= item.unit_price.nil? ? '' : number_to_currency(item.unit_price, unit:"P ")
             td
               = link_to icon_text('pencil', ''), edit_api_item_path(item), title: 'View', class: 'btn btn-xs btn-warning'
               | &nbsp;

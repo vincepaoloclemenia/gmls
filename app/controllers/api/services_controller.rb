@@ -2,7 +2,8 @@ class Api::ServicesController < ApplicationController
 	before_filter :set_service, only: [:show, :update, :destroy, :edit]
 
   def index
-    @services = current_user.department.nil? ? Service.all : Service.where(department: current_user.department)
+    # @services = current_user.department.nil? ? Service.all : Service.where(department: current_user.department)
+    @services = Service.all
     # render json: @services
   end
 

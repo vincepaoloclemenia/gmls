@@ -5,6 +5,10 @@
       span.glyphicon.glyphicon-list
       | Incidental Quote Form
       .pull-right
+        - if !@incidental_items.empty?
+          = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: params[:incidental_quote_id], step: 3), class: "btn btn-info"
+          | &nbsp;
+          
         = link_to "Export To PDF", api_incidental_items_path(format: 'pdf', incidental_quote_id: params[:incidental_quote_id]), class: "btn btn-info", target: "_blank"
   .panel-body
     table.table.borderless width="100%" 
