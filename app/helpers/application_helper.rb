@@ -18,6 +18,19 @@ module ApplicationHelper
   	@incidental_items = IncidentalItem.where(incidental_quote_id: incidental_quote_id)
   	@incidental_items.count
   end
+
+  def show_supplier_info(supplier_id)
+    @supplier = Supplier.find supplier_id
+  end
+
+  def per_supplier_pricing_detail(item_id, supplier_id)
+    @pricing_detail = SupplierPricingDetail.where({item_id: item_id, supplier_id: supplier_id})
+  end
+
+  def full_name(user_id)
+    @user = User.find user_id
+    "#{@user.first_name} #{@user.last_name}"
+  end
 end
 
 

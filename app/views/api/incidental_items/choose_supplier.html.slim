@@ -32,7 +32,10 @@
           strong Company
         td = @incidental_quote.company
     br
-    h4 Supplier Item Listing
+    h4
+      | Supplier Item Listing
+      .pull-right
+        = link_to "Build Purchase Order", build_purchase_order_api_incidental_items_path(incidental_quote_id: @incidental_quote.id, step: 4), class: "btn btn-info btn-xs"
     table.table.table-hover
       tr
         th Item Name

@@ -1,17 +1,17 @@
 class Api::PurchaseOrdersController < ApplicationController
-  before_filter :set_purchase_order, only: [:show, :update, :destroy]
+  before_filter :set_purchase_order, only: [:show, :update, :destroy, :edit]
 
   def index
     @purchase_orders = current_user.department.nil? ? PurchaseOrder.all : PurchaseOrder.where(department: current_user.department)
-
-    render json: @purchase_orders
   end
 
   def create
     @purchase_order = PurchaseOrder.new(purchase_order_params)
     @purchase_order.department = current_user.department
+    
     if @purchase_order.save
-      render json: @purchase_order, status: :created, rfq_item: [:api, @purchase_order]
+      # render json: @purchase_order, status: :created, rfq_item: [:api, @purchase_order]
+      redirect_to api_purchase_orders_path(step: 4), notice: 'Entry created'
     else
       render json: { errors: @purchase_order.errors }, status: :unprocessable_entity
     end
@@ -19,7 +19,7 @@ class Api::PurchaseOrdersController < ApplicationController
 
   def update
     if @purchase_order.update(purchase_order_params)
-      head :no_content
+      redirect_to api_purchase_orders_path(step: 4), notice: 'Entry updated'
     else
       render json: { errors: @purchase_order.errors }, status: :unprocessable_entity
     end
@@ -27,8 +27,30 @@ class Api::PurchaseOrdersController < ApplicationController
   
   def destroy
     @purchase_order.destroy
+    redirect_to api_purchase_orders_path(step: 4), notice: 'Entry successfully deleted'
+  end
 
-    head :no_content
+  def new
+    @purchase_order = PurchaseOrder.new
+    @supplier = Supplier.find params[:supplier_id]
+  end
+
+  def show
+    @supplier = Supplier.find @purchase_order.supplier_id
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "Purchase Order Logreq",
+              :orientation  => 'Portrait',
+              :page_width   => '13in',
+              :margin => {:top       => 2,
+                           :bottom   => 4}
+      end
+    end
+  end
+
+  def edit
+    @supplier = Supplier.find params[:supplier_id]
   end
 
   private
@@ -38,6 +60,6 @@ class Api::PurchaseOrdersController < ApplicationController
   end
 
   def purchase_order_params
-    params.require(:purchase_order).permit(:rfq_id,:supplier_id, :attention, :date_created, :delivery_date, :payment_terms, :remarks, :deliver_to, :prepared_by, :payment_terms, :purchase_order_number)
+    params.require(:purchase_order).permit(:rfq_id,:supplier_id, :attention, :date_created, :delivery_date, :payment_terms, :remarks, :deliver_to, :prepared_by, :payment_terms, :purchase_order_number, :incidental_quote_id)
   end
 end

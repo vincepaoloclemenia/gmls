@@ -37,7 +37,11 @@ class Api::IncidentalItemsController < ApplicationController
   end
   
   def new
-    @incidental_item = IncidentalItem.new 
+    @incidental_item = IncidentalItem.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js 
+    end
   end
 
   def destroy
@@ -59,8 +63,17 @@ class Api::IncidentalItemsController < ApplicationController
 
   def choose_supplier_listings
     @incidental_quotes = IncidentalQuote.all
-    
   end
+
+  def list_supplier_per_items
+    @supplier_pricing_details = SupplierPricingDetail.where(item_id: params[:item_id])
+  end
+
+  def build_purchase_order
+    @supplier_ids = IncidentalItem.select("supplier_id").where(incidental_quote_id: params[:incidental_quote_id]).distinct("supplier_id").pluck(:supplier_id)
+    @incidental_items = IncidentalItem.where(incidental_quote_id: params[:incidental_quote_id])
+  end
+
 
   private
 

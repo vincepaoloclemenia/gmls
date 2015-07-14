@@ -1,0 +1,25 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3
+      span.glyphicon.glyphicon-list
+      | Build Purchase Order Per Supplier
+      .pull-right
+  .panel-body
+    - @supplier_ids.each  do |supplier_id|
+      - @show_supplier_info = show_supplier_info(supplier_id)
+      table.table.table-hover
+        tr
+          td = @show_supplier_info.name
+          td.text-right colspan='2'
+            = link_to "Generate P.O.", new_api_purchase_order_path(step: 4, incidental_quote_id: params[:incidental_quote_id], supplier_id: @show_supplier_info.id), class: "btn btn-info btn-xs" 
+        tr.info
+          td Item Name
+          td Service Type
+          td Price
+        - @incidental_items.where(supplier_id: supplier_id).each do |incidental_item|
+          - @pspd = per_supplier_pricing_detail(incidental_item.item_id, incidental_item.supplier_id).last
+          tr
+            td = incidental_item.item.name
+            td = @pspd.service.name
+            td = @pspd.price == 0 ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")

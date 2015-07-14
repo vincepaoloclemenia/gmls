@@ -1,0 +1,20 @@
+= wicked_pdf_stylesheet_link_tag "application"
+.div style="background-color: #FFF;"
+	table.borderless
+		tr
+			td.text-center colspan="4"
+				h3.center_area Purchase Order: #{@purchase_order.purchase_order_number}
+		tr.report_tbl
+			td width="35%"
+			td width="35%"
+			td.bold.small-text12 width="15%" Date:
+			td.bold.text-right.small-text12 width="15%" = @purchase_order.date_created
+		tr.report_tbl
+			td
+			td
+			td.bold.small-text12 Del.Date:
+			td.bold.text-right.small-text12 = @purchase_order.delivery_date
+		tr
+			td colspan="4"
+		tr
+			td To:

@@ -9,5 +9,5 @@ class PurchaseOrder < ActiveRecord::Base
   
   #validations
   
-  validates :rfq_id, :supplier_id, :purchase_order_number, :payment_terms, :prepared_by, :date_created, :delivery_date,  presence: true
+  # validates :rfq_id, :supplier_id, :purchase_order_number, :payment_terms, :prepared_by, :date_created, :delivery_date,  presence: true
 end

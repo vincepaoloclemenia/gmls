@@ -47,6 +47,8 @@ Rails.application.routes.draw do
       get :choose_supplier, on: :collection
       get :update_supplier, on: :collection
       get :choose_supplier_listings, on: :collection
+      get :build_purchase_order, on: :collection
+      # get :list_supplier_per_items, on: :collection
     end
     resources :contracts
     resources :contract_items
@@ -57,4 +59,5 @@ Rails.application.routes.draw do
     resources :supplier_pricing_details
     resources :purchasing_orders
   end
+  get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
 end
