@@ -7,14 +7,78 @@
 		tr.report_tbl
 			td width="35%"
 			td width="35%"
-			td.bold.small-text12 width="15%" Date:
-			td.bold.text-right.small-text12 width="15%" = @purchase_order.date_created
+			td.bold-text.small-text12 width="15%" Date:
+			td.bold-text.text-right.small-text12 width="15%" = @purchase_order.date_created
 		tr.report_tbl
 			td
 			td
-			td.bold.small-text12 Del.Date:
-			td.bold.text-right.small-text12 = @purchase_order.delivery_date
+			td.bold-text.small-text12 Del.Date:
+			td.bold-text.text-right.small-text12 = @purchase_order.delivery_date
+	br	
+	table.borderless	
 		tr
-			td colspan="4"
+			td width="20%" To:
+			td
+				span.bold-text = @supplier.name
 		tr
-			td To:
+			td Address:
+			td.small-text13 = @supplier.address
+		tr
+			td Tel:
+			td.small-text13 = @supplier.telephone_number
+		tr
+			td Fax:
+			td.small-text13 = @supplier.fax_number
+		tr
+			td Attn:
+			td.small-text13 
+				span.bold-text = @purchase_order.attention
+	br
+	table.small-text12 width="100%" border=1
+		tr
+			th.text-center width="10%" Item #
+			th.text-center width="30%" Item Description
+			th.text-center width="10%" Qty:
+			th.text-center width="10%" UoM
+			th.text-center width="15%" Unit Price
+			th.text-center width="10%" Discount
+			th.text-center width="15%" Amount
+		- @total = []
+		- @items.each do |item|
+			- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
+			tr
+				td.text-center = item.id
+				td.text-center = "#{item.item.name} / #{item.area}"
+				td 
+				td
+				td.text-center = @pspd.price == 0 ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+				td
+				td.text-center = @pspd.price == 0 ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+			- @total << @pspd.price
+	br
+	br
+	table.borderless.small-text12 width="100%"	
+		tr
+			td.bold-text width="20%" colspan="2" Payment Terms:
+			td
+				span.bold-text = @purchase_order.payment_terms
+			td.bold-text.text-right colspan="3" Total:
+			- @total_amount = @total.inject(:+)
+			td.text-right = number_to_currency(@total_amount, unit: "P ")
+			- @less = @total_amount * 0.12
+			- @grand_total = @total_amount - @less
+		tr
+			td.bold-text.text-right colspan="6" Less 12%	
+			td.text-right = number_to_currency(@less, unit: "P ")
+		tr
+			td.bold-text.text-right colspan="6" Grand Total:	
+			td.text-right = number_to_currency(@grand_total, unit: "P ")	
+		tr
+			td width="20%" Prepared By:
+			td colspan="6" = full_name(@purchase_order.prepared_by)
+				
+
+
+
+
+

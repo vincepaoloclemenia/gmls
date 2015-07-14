@@ -37,6 +37,7 @@ class Api::PurchaseOrdersController < ApplicationController
 
   def show
     @supplier = Supplier.find @purchase_order.supplier_id
+    @items = IncidentalItem.where({ incidental_quote_id: @purchase_order.incidental_quote_id, supplier_id: @purchase_order.supplier_id })
     respond_to do |format|
       format.html
       format.pdf do
