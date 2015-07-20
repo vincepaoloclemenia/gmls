@@ -22,7 +22,7 @@
     .col-xs-4
       .input-group
         label Sub Category
-        = f.select :sub_category_id, SupplierCategory.all.map{ |e| [e.name, e.id] },  {include_blank: true }, class: 'form-control'
+        = f.select :sub_category_id, SubCategory.all.map{ |e| [e.name, e.id] },  {include_blank: true }, class: 'form-control'
     .col-xs-4
       .input-group
         label Package Size
@@ -50,7 +50,8 @@
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  button class="btn btn-danger" Cancel  
+  / button class="btn btn-danger" Cancel  
+  = link_to 'Cancel', api_items_path, class: 'btn btn-warning'
 
 javascript:
   $(function() {
@@ -81,6 +82,16 @@ javascript:
           $("#unit_price").hide();
           
         }
+      });
+
+      $("#item_category_id").change(function(){
+        $.ajax({
+          url: "#{change_subcategory_path}",
+          data: {
+            category_id : $('#item_category_id').val()
+          },
+          dataType: "script"
+        });
       });
     });
   });

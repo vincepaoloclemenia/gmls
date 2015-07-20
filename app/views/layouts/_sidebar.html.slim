@@ -13,8 +13,8 @@
     a href="#" 
       | ACCOUNTING
       span.pull-right.glyphicon.glyphicon-chevron-right
-  li
-    = link_to "INCIDENTAL QUOTES", api_incidental_quotes_path 
+  / li
+  /   = link_to "INCIDENTAL QUOTES", api_incidental_quotes_path 
   li
     = link_to "CONTRACTS", api_contracts_path 
   li.collapsed.active data-target="#administration" data-toggle="collapse" 
@@ -24,8 +24,18 @@
   ul#administration.sub-menu.collapse
     li
       = link_to "PRINCIPALS", api_principals_path 
-    li
-      = link_to "VEHICLES", api_vehicles_path 
+    li.collapsed data-target="#vehicle" data-toggle="collapse" 
+      a
+        | VEHICLE SETUP
+        span.pull-right.glyphicon.glyphicon-chevron-down/
+    ul#vehicle.sub-menu.collapse
+      li
+        = link_to "VEHICLES", api_vehicles_path
+      li
+        = link_to "DRIVERS", api_drivers_path
+      li
+        = link_to "CONTACTS", api_employers_path 
+    
     li
       = link_to "EQUIPMENTS", api_tools_path 
     li.collapsed data-target="#transportation" data-toggle="collapse" 
@@ -71,7 +81,7 @@
       = link_to "EMPLOYEES", api_users_path 
     li
       = link_to "ROLES", api_roles_path 
-    li
-      = link_to "GOVERNMENT AGENCIES", api_government_agencies_path 
-    li
-      = link_to "QUALITY QUESTIONNAIRE", api_quality_questionnaires_path 
+    / li
+    /   = link_to "GOVERNMENT AGENCIES", api_government_agencies_path 
+    / li
+    /   = link_to "QUALITY QUESTIONNAIRE", api_quality_questionnaires_path 

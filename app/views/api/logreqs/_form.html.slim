@@ -17,7 +17,7 @@
   .row  
     .col-xs-4
       .input-group
-        label Pier
+        label Location
         = f.select :pier, Location.all.map{ |e| [e.name, e.name] }, {include_blank: true }, class: 'form-control', required: "required"
     .col-xs-4
       .input-group
@@ -39,8 +39,8 @@
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  button class="btn btn-danger" Cancel
-
+  / button class="btn btn-danger" Cancel
+  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
 javascript:
   $(document).ready(function(){
     $('.datepicker').datepicker({format: 'dd-mm-yyyy'});

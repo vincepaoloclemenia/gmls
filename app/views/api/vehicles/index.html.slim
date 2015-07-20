@@ -10,14 +10,18 @@
       thead
         tr
           th Name
+          th Plate Number
           th Contact Person
+          th Driver
           th Mobile Number
           th Action
       tbody
         - @vehicles.each do |vehicle|
           tr
             td= vehicle.name
-            td= vehicle.contact_person
+            td= vehicle.plate_number
+            td= vehicle.employer.owner_contact_person
+            td= vehicle.driver.name
             td= vehicle.mobile_number
             td
               = link_to icon_text('pencil', ''), edit_api_vehicle_path(vehicle), title: 'View', class: 'btn btn-xs btn-warning'

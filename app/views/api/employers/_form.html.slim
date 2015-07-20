@@ -1,0 +1,16 @@
+= form_for [:api, @employer], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Owner / Contact Person
+        = f.text_field :owner_contact_person, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Contact Number
+        = f.text_field :mobile_no, class: 'form-control', required: "required"
+  br      
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  button class="btn btn-danger" Cancel

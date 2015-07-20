@@ -53,18 +53,25 @@ class Api::LogreqsController < ApplicationController
     end
   end
 
-  # def display_data
-  #   respond_to do |format|
-  #     format.html
-  #     format.pdf do
-  #       render :pdf         => "Display_Data",
-  #             :orientation  => 'Portrait',
-  #             :page_width   => '13in',
-  #             :margin => {:top       => 2,
-  #                          :bottom   => 4}
-  #     end
-  #   end
-  # end
+  def delivery_reports
+    @logreqs = Logreq.all
+  end
+
+  def delivery_lists
+    @logreq = Logreq.find params[:logreq_id]
+    @delivery_lists = IncidentalQuote.where(logreq_id: params[:logreq_id]).pluck(:id)
+    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "Delivery Receipt",
+              :orientation  => 'Portrait',
+              :page_width   => '13in',
+              :margin => {:top       => 4,
+                           :bottom   => 2}
+      end
+    end
+  end
 
   private
 

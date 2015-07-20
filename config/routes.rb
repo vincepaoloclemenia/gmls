@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     resources :logreqs do
       get :ship_listings, on: :collection
       get :display_data, on: :collection
+      get :delivery_reports, on: :collection
+      get :delivery_lists, on: :collection
     end
     resources :archives
     resources :navy_types
@@ -58,6 +60,10 @@ Rails.application.routes.draw do
     resources :purchase_order_items
     resources :supplier_pricing_details
     resources :purchasing_orders
+    resources :drivers
+    resources :employers
   end
+  #ajax call
+  get 'pages/change_subcategory', :as => 'change_subcategory'
   get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
 end

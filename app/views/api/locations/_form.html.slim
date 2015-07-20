@@ -20,4 +20,5 @@
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  button class="btn btn-danger" Cancel
+  / button class="btn btn-danger" Cancel
+  = link_to 'Cancel', api_locations_path, class: 'btn btn-warning'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713073742) do
+ActiveRecord::Schema.define(version: 20150720013928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,14 @@ ActiveRecord::Schema.define(version: 20150713073742) do
 
   add_index "contracts", ["deleted_at"], name: "index_contracts_on_deleted_at", using: :btree
 
+  create_table "drivers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "contact_no"
+    t.string   "employer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.integer  "role_id"
     t.string   "first_name"
@@ -120,6 +128,13 @@ ActiveRecord::Schema.define(version: 20150713073742) do
   end
 
   add_index "employees", ["role_id"], name: "index_employees_on_role_id", using: :btree
+
+  create_table "employers", force: :cascade do |t|
+    t.string   "owner_contact_person"
+    t.string   "mobile_no"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "government_agencies", force: :cascade do |t|
     t.string   "department_or_division"
@@ -652,6 +667,9 @@ ActiveRecord::Schema.define(version: 20150713073742) do
     t.datetime "updated_at",     null: false
     t.integer  "department"
     t.string   "plate_number"
+    t.integer  "employer_id"
+    t.string   "vehicle_type"
+    t.integer  "driver_id"
   end
 
   create_table "vessel_classes", force: :cascade do |t|

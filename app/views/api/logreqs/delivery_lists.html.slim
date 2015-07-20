@@ -1,0 +1,36 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3
+      span.glyphicon.glyphicon-list
+      | Delivery Reports
+      .pull-right
+	      = link_to "Download (PDF)", delivery_lists_api_logreqs_path(logreq_id: @logreq.id, step: 5, format: 'pdf'), class: "btn btn-info", target: "_blank"
+  .panel-body
+    br
+    table.table.table-hover.table-striped
+      tr
+        td.bold-text Encoded Number
+        td = "000"+"#{@logreq.id}" 
+        td Vessel Name
+        td = @logreq.vessel.name
+      tr  
+        td Date of Arrival
+        td = @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+        td Date of Departure
+        td = @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+      tr  
+        td Pier
+        td = @logreq.pier
+        td colspan="2"
+    br
+    table.table.table-hover.table-striped
+      tr
+        th Quantity
+        th Unit
+        th Particulars
+      - @delivery_reports.each do |dl|
+        tr
+          td= 
+          td= dl.item.unit_of_issue
+          td= "#{dl.item.name} / #{dl.area} / #{dl.remarks}"  

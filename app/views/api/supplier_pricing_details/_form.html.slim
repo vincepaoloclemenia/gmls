@@ -11,7 +11,7 @@
         = f.select :supplier_id, Supplier.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
       .input-group
-        label Supplier Category Name
+        label Supplier Service Categories
         = f.select :service_id, Service.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
   br
   .row

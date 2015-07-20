@@ -1,0 +1,35 @@
+= wicked_pdf_stylesheet_link_tag "application"
+table.table.borderless width="100%"
+  tr
+    td.text-center colspan="4"
+      h3 DELIVERY RECEIPT
+  tr
+    td.bold-text Vessel Name
+    td = @logreq.vessel.name
+    td.bold-text Date
+    td = Date.today.strftime("%B %d, %Y")
+  tr
+    td colspan="2"
+    td.bold-text Department
+br
+table.table
+  tr
+    th Quantity
+    th Unit
+    th Particulars
+  - @delivery_reports.each do |dl|
+    tr
+      td= 
+      td= dl.item.unit_of_issue
+      td= "#{dl.item.name} / #{dl.area} / #{dl.remarks}"  
+br
+table.table
+  tr
+    td.bold-text width="25%" DELIVERED BY:
+    td width="25%"
+    td.bold-text width="25%" RECEIVED BY:
+    td width="25%"
+  tr
+    td colspan="2"
+    td.text-left colspan="2"
+      = 'Received above merchandise in good order and condition as to quantity and quality'
