@@ -13,7 +13,7 @@ class Api::VehiclesController < ApplicationController
       redirect_to api_vehicles_path, notice: 'Entry created'
     else
       # render json: { errors: @location.errors }, status: :unprocessable_entity
-      redirect_to @vehicle, alert: @vehicle.errors.full_messages.first
+      redirect_to api_vehicles_path, alert: @vehicle.errors.full_messages.first
     end
   end
   
@@ -44,7 +44,7 @@ class Api::VehiclesController < ApplicationController
   end
     
   def vehicle_params
-    params.require(:vehicle).permit(:name, :contact_person, :mobile_number, :plate_number, :employer_id, :driver_id, :vehicle_type)
+    params.require(:vehicle).permit(:name, :mobile_number, :plate_number, :employer_id, :driver_id, :vehicle_type)
   end
  
 end
