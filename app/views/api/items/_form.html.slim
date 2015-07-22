@@ -63,7 +63,13 @@ javascript:
       $("#service_type").hide();
       $("#item_rate").hide();
 
-
+      if ($('#item_item_type').val() == "Services"){
+        $("#change_name").text("Service Name");
+        $("#category").hide();
+        $("#service_type").show();
+        $("#other_info").hide();
+        $("#unit_price").hide();
+      }
 
       $('#item_item_type').change(function(){
         var item_type = $('#item_item_type').val();

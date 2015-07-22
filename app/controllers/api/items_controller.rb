@@ -1,5 +1,5 @@
 class Api::ItemsController < ApplicationController
-   before_filter :set_item, only: [ :update, :destroy]
+   before_filter :set_item, only: [ :update, :destroy, :edit]
    before_filter :set_item_with_eager_load, only: [:show]
 
   def index
