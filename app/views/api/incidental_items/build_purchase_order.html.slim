@@ -9,17 +9,19 @@
     - @supplier_ids.each  do |supplier_id|
       - @show_supplier_info = show_supplier_info(supplier_id)
       table.table.table-hover
-        tr
-          td = @show_supplier_info.name
+        tr.info
+          td.bold-text colspan='2' = @show_supplier_info.name
           td.text-right colspan='2'
             = link_to "Generate P.O.", new_api_purchase_order_path(step: 4, incidental_quote_id: params[:incidental_quote_id], supplier_id: @show_supplier_info.id), class: "btn btn-info btn-xs" 
-        tr.info
-          td Item Name
-          td Service Type
-          td Price
+        tr.warning
+          td width="10%"
+          th width="30%" Item Name
+          th width="30%" Service Type
+          th width="30%" Price
         - @incidental_items.where(supplier_id: supplier_id).each do |incidental_item|
           - @pspd = per_supplier_pricing_detail(incidental_item.item_id, incidental_item.supplier_id).last
           tr
+            td
             td = incidental_item.item.name
             td = @pspd.service.name
             td = @pspd.price == 0 ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
