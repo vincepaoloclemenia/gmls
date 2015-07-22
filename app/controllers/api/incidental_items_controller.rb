@@ -1,6 +1,6 @@
 class Api::IncidentalItemsController < ApplicationController
   before_filter :set_incidental_item, only: [:update, :destroy, :show, :edit, :update_supplier]
-
+  autocomplete :item, :name
   def index
     # @incidental_items = current_user.department.nil? ? IncidentalItem.all : IncidentalItem.where(department: current_user.department)
     @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])

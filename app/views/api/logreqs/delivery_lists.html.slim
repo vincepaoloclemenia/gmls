@@ -12,15 +12,15 @@
       tr
         td.bold-text Encoded Number
         td = "000"+"#{@logreq.id}" 
-        td Vessel Name
+        td.bold-text Vessel Name
         td = @logreq.vessel.name
       tr  
-        td Date of Arrival
+        td.bold-text Date of Arrival
         td = @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
-        td Date of Departure
+        td.bold-text Date of Departure
         td = @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
       tr  
-        td Pier
+        td.bold-text Pier
         td = @logreq.pier
         td colspan="2"
     br

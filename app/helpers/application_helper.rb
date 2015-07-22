@@ -31,6 +31,10 @@ module ApplicationHelper
     @user = User.find user_id
     "#{@user.first_name} #{@user.last_name}"
   end
+
+  def list_quotes(logreq_id)
+    IncidentalQuote.where(logreq_id: logreq_id)
+  end
 end
 
 

@@ -73,6 +73,14 @@ class Api::LogreqsController < ApplicationController
     end
   end
 
+  def disbursement_account
+    @logreqs = Logreq.all
+  end
+
+  def anchorage_billings
+    @logreq = Logreq.find params[:logreq_id]
+  end
+
   private
 
   def set_logreq

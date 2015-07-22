@@ -38,6 +38,8 @@ Rails.application.routes.draw do
       get :display_data, on: :collection
       get :delivery_reports, on: :collection
       get :delivery_lists, on: :collection
+      get :disbursement_account, on: :collection
+      get :anchorage_billings, on: :collection
     end
     resources :archives
     resources :navy_types
@@ -50,6 +52,7 @@ Rails.application.routes.draw do
       get :update_supplier, on: :collection
       get :choose_supplier_listings, on: :collection
       get :build_purchase_order, on: :collection
+      get :autocomplete_item_name, :on => :collection
       # get :list_supplier_per_items, on: :collection
     end
     resources :contracts

@@ -26,5 +26,5 @@
             td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
             td= logreq.pier
             td
-              = link_to "View Disbursement Breakdown", delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Disbursement Breakdown"
+              = link_to "View Delivery Breakdown", delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Delivery Breakdown"
               

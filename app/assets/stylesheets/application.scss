@@ -850,4 +850,7 @@ End [Steps Wizard]
 .fixed-height{
   min-height: 300px;
 }
-
+.pre-scrollable{
+  width: 1350px;
+  overflow-x:auto;
+}
