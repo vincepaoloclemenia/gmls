@@ -20,7 +20,7 @@
           tr
             td= vehicle.name
             td= vehicle.plate_number
-            td= vehicle.employer.owner_contact_person
+            td= vehicle.employer_id.nil? ? '' : vehicle.employer.owner_contact_person
             td= vehicle.driver.name
             td= vehicle.mobile_number
             td
