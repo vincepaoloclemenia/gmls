@@ -36,7 +36,7 @@
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  button class="btn btn-danger" Cancel
+  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
 
 
 / :supplier_id, :service_id, :item_id, :tool_id, :type, :price, :unit

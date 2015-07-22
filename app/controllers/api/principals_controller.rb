@@ -14,7 +14,7 @@ class Api::PrincipalsController < ApplicationController
       redirect_to api_principals_path, notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
-      redirect_to @principal, alert: @principal.errors.full_messages.first
+      redirect_to api_principals_path, alert: @principal.errors.full_messages.first
     end
   end
 
