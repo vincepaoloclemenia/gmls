@@ -1,6 +1,8 @@
 = form_for [:api, @incidental_item], html: { class: '' } do |f| 
   br
   .row
+    .pull-right#item_id_here
+  .row
     .col-xs-5
       .input-group
         label Item Name
@@ -12,7 +14,7 @@
     .col-xs-3
       .input-group
         label Area
-        = f.text_field :area, class: 'form-control', required: "required"
+        = f.text_field :area, class: 'form-control'
     .col-xs-4
       .input-group
         label Price
@@ -40,12 +42,13 @@ javascript:
       $('#incidental_item_item_id').change(function(){
         $("#supplier_pricing_detail").show();
         $.ajax({
-          url: "#{list_supplier_per_items_path}",
+          url: "#{list_supplier_items_per_price_path}",
           data: {
             item_id : $('#incidental_item_item_id').val()
           },
           dataType: "script"
         });
       });
+      
     });
   });

@@ -9,20 +9,20 @@
     table.table.table-hover.table-striped
       thead
         tr
-          th Name
+          th width="35%" Name
           / th Category
-          th Location
-          th Mobile Number
-          th Telephone Number
-          th Email
-          th Action
+          th width="20%" Location
+          / th Mobile Number
+          th width="15%" Telephone Number
+          th width="20%" Email
+          th width="10%" Action
       tbody
         - @suppliers.each do |supplier|
           tr
             td= supplier.name
             / td= supplier.supplier_category.name
             td= supplier.location.name
-            td= supplier.mobile_number
+            / td= supplier.mobile_number
             td= supplier.telephone_number
             td= supplier.email
             td

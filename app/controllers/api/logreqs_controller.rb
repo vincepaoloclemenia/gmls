@@ -79,6 +79,8 @@ class Api::LogreqsController < ApplicationController
 
   def anchorage_billings
     @logreq = Logreq.find params[:logreq_id]
+    @delivery_lists = IncidentalQuote.where(logreq_id: params[:logreq_id]).pluck(:id)
+    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists)
   end
 
   private

@@ -35,6 +35,11 @@ module ApplicationHelper
   def list_quotes(logreq_id)
     IncidentalQuote.where(logreq_id: logreq_id)
   end
+
+  def per_supplier_pricing_detail_price(supplier_id, item_id)
+    @price = SupplierPricingDetail.select("price").where({item_id: item_id, supplier_id: supplier_id}).last
+    @price.nil? ? 0 : @price
+  end
 end
 
 

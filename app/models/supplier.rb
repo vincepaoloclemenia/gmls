@@ -10,5 +10,5 @@ class Supplier < ActiveRecord::Base
 
 
   #validations
-  validates :name, :email, :address, :telephone_number, presence: true
+  validates :name, presence: true
 end
