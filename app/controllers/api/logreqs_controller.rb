@@ -47,8 +47,12 @@ class Api::LogreqsController < ApplicationController
         render :pdf         => "Display_Data",
               :orientation  => 'Portrait',
               :page_width   => '13in',
-              :margin => {:top       => 2,
-                           :bottom   => 4}
+              :margin => {:top       => 35,
+                          :bottom   => 30,
+                          :left => 0,
+                          :right => 0},
+              :header => { :html => { :template => 'api/logreqs/header.pdf.slim' }},
+              :footer => { :html => { :template => 'api/logreqs/footer.pdf.slim' }}
       end
     end
   end
@@ -67,8 +71,12 @@ class Api::LogreqsController < ApplicationController
         render :pdf         => "Delivery Receipt",
               :orientation  => 'Portrait',
               :page_width   => '13in',
-              :margin => {:top       => 4,
-                           :bottom   => 2}
+              :margin => {:top       => 35,
+                          :bottom   => 30,
+                          :left => 0,
+                          :right => 0},
+              :header => { :html => { :template => 'api/logreqs/header.pdf.slim' }},
+              :footer => { :html => { :template => 'api/logreqs/footer.pdf.slim' }}
       end
     end
   end
@@ -81,6 +89,16 @@ class Api::LogreqsController < ApplicationController
     @logreq = Logreq.find params[:logreq_id]
     @delivery_lists = IncidentalQuote.where(logreq_id: params[:logreq_id]).pluck(:id)
     @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "Anchorage Billing",
+              :orientation  => 'Landscape',
+              :page_width   => '13in',
+              :margin => {:top       => 2,
+                           :bottom   => 2}
+      end
+    end
   end
 
   private

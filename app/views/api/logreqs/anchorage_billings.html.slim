@@ -35,24 +35,42 @@
       th.text-center.small-text11 width="5%" DELTA TO AGENT
       th.text-center.small-text11 width="5%" DELTA TO MLS
     - @num = 1
+    - @amount_to_supplier_invoice_arr = []
+    - @amount_to_agent_invoice_arr = []
+    - @total_delta_arr = []
+    - @total_delta_to_both_arr = []
     - @delivery_reports.each do |dr|
       tr
         td = @num
         td
         td = dr.item.name
-        td = @amount_to_supplier_invoice = dr.price.nil? ? '' : number_to_currency(dr.price, unit: 'P ')
+        td.text-right = @amount_to_supplier_invoice = dr.price.nil? ? 0.00 : number_to_currency(dr.price, unit: 'P ')
+        - @amount_to_supplier_invoice_arr << dr.price.to_f
         - @amount_to_agent_invoice = per_supplier_pricing_detail_price(dr.supplier_id, dr.item_id)
-        td = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
-        td = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
-        td = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
-        td = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+        - @amount_to_agent_invoice_arr << @amount_to_agent_invoice.price.to_f
+        td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+        td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+        td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+        td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
         - @x = @amount_to_agent_invoice == 0 ?  @amount_to_agent_invoice.to_f : @amount_to_agent_invoice.price.to_f
         - @total_delta = dr.price.to_f - @x
-        td = number_to_currency(@total_delta, unit: "P ")
-        - @total_delta_to_both = @total_delta.to_f / 2  
-        td = number_to_currency(@total_delta_to_both, unit: "P ")
-        td = number_to_currency(@total_delta_to_both, unit: "P ")
+        - @total_delta_arr << @total_delta
+        td.text-right = number_to_currency(@total_delta, unit: "P ")
+        - @total_delta_to_both = @total_delta.to_f / 2
+        - @total_delta_to_both_arr << @total_delta_to_both
+        td.text-right = number_to_currency(@total_delta_to_both, unit: "P ")
+        td.text-right = number_to_currency(@total_delta_to_both, unit: "P ")
       - @num = @num + 1
+    tr
+      td.bold-text.text-center colspan="3" TOTAL:
+      td.bold-text.text-right = number_to_currency(@amount_to_supplier_invoice_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@total_delta_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@total_delta_to_both_arr.inject(:+).to_f, unit: "P ")
+      td.bold-text.text-right = number_to_currency(@total_delta_to_both_arr.inject(:+).to_f, unit: "P ")
     tr.small-text11
       td colspan="11"  
     

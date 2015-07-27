@@ -55,8 +55,12 @@ class Api::IncidentalQuotesController < ApplicationController
         render :pdf         => "Display_Data",
               :orientation  => 'Portrait',
               :page_width   => '13in',
-              :margin => {:top       => 2,
-                           :bottom   => 4}
+              :margin => {:top       => 35,
+                          :bottom   => 30,
+                          :left => 0,
+                          :right => 0},
+              :header => { :html => { :template => 'api/logreqs/header.pdf.slim' }},
+              :footer => { :html => { :template => 'api/logreqs/footer.pdf.slim' }}
       end
     end
   end

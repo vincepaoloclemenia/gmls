@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720013928) do
+ActiveRecord::Schema.define(version: 20150724070754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,10 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.datetime "updated_at",                 null: false
     t.integer  "supplier_pricing_detail_id"
     t.integer  "supplier_id"
+    t.integer  "location_id"
+    t.string   "quantity"
+    t.string   "unit"
+    t.string   "tariff_code"
   end
 
   add_index "incidental_items", ["deleted_at"], name: "index_incidental_items_on_deleted_at", using: :btree
@@ -282,6 +286,7 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.string   "pier"
     t.integer  "user_id"
     t.text     "ending_text"
+    t.integer  "principal_id"
   end
 
   add_index "logreqs", ["deleted_at"], name: "index_logreqs_on_deleted_at", using: :btree
@@ -378,11 +383,13 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.string   "deliver_to"
     t.integer  "prepared_by"
     t.string   "purchase_order_number"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "rfq_id"
     t.integer  "department"
     t.integer  "incidental_quote_id"
+    t.string   "status",                default: "Ordered"
+    t.integer  "tag_by_assigned_user"
   end
 
   add_index "purchase_orders", ["rfq_id"], name: "index_purchase_orders_on_rfq_id", using: :btree
