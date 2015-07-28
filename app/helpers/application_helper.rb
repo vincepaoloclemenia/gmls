@@ -40,6 +40,27 @@ module ApplicationHelper
     @price = SupplierPricingDetail.select("price").where({item_id: item_id, supplier_id: supplier_id}).last
     @price.nil? ? 0 : @price
   end
+
+  def quotation_format(logreq_id)
+    @logreq = Logreq.find logreq_id
+    @logreq_id = IncidentalQuote.select(:id).last
+
+    @year = @logreq.date_of_arrival.strftime("%y")
+    @month = @logreq.date_of_arrival.strftime("%m")
+    @day_1 = @logreq.date_of_arrival.strftime("%d")
+    @day_2 = @logreq.date_of_departure.strftime("%d")
+    @id = @logreq_id.id.to_i
+    @id = @id + 1
+    @n = "%07d" % @id
+    return @year.to_s+'-'+@month.to_s+'-'+@day_1.to_s+'-'+@day_2.to_s+'-'+@n.to_s
+    
+  end
+
+  def principal_name(logreq_id)
+    @logreq = Logreq.find logreq_id
+    @logreq.principal.name
+  end
 end
 
+# :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id
 

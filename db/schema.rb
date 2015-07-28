@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724070754) do
+ActiveRecord::Schema.define(version: 20150728013145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,10 +182,11 @@ ActiveRecord::Schema.define(version: 20150724070754) do
     t.text     "validity"
     t.string   "prepared_by"
     t.datetime "deleted_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "department"
     t.integer  "logreq_id"
+    t.string   "status",              default: "Pending"
   end
 
   add_index "incidental_quotes", ["deleted_at"], name: "index_incidental_quotes_on_deleted_at", using: :btree

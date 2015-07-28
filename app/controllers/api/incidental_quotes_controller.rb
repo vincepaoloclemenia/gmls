@@ -1,5 +1,5 @@
 class Api::IncidentalQuotesController < ApplicationController
-  before_filter :set_incidental_quote, only: [:update, :destroy, :show, :display_data, :edit]
+  before_filter :set_incidental_quote, only: [:update, :destroy, :display_data, :edit]
 
   def index
     # @incidental_quotes = current_user.department.nil? ? IncidentalQuote.all : IncidentalQuote.where(department: current_user.department)
@@ -45,9 +45,16 @@ class Api::IncidentalQuotesController < ApplicationController
   end
 
   def show
-    render json: @incidental_quote
+    @incidental_quote = IncidentalQuote.find(params[:id])
+    @incidental_items = IncidentalItem.where(incidental_quote_id: params[:id])
   end
 
+  def approved
+    @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])
+    @incidental_quote.update_attributes(:status => 'Approved')
+    redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
+  end
+  
   def display_data
     respond_to do |format|
       format.html

@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     resources :incidental_quotes do 
       get :manage_services, on: :collection
       get :display_data, on: :collection 
+      get :approved, on: :collection 
     end
     resources :incidental_items do
       get :choose_supplier, on: :collection

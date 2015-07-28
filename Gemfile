@@ -20,6 +20,7 @@ gem 'slim'
 gem 'bootstrap-datepicker-rails'
 gem 'bootsy'
 gem 'rails4-autocomplete'
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'byebug'
