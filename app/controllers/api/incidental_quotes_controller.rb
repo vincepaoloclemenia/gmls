@@ -52,6 +52,7 @@ class Api::IncidentalQuotesController < ApplicationController
   def approved
     @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])
     @incidental_quote.update_attributes(:status => 'Approved')
+    GmlsMailer.send_mail_notification_status_change.deliver
     redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
   end
   

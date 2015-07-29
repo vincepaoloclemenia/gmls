@@ -9,14 +9,14 @@
     = link_to "LOGISTICS REQUIREMENT", api_logreqs_path(step: 1) 
   li
     = link_to "REQUEST FOR QUOTATIONS", api_rfqs_path 
-  li
-    a href="#" 
-      | ACCOUNTING
-      span.pull-right.glyphicon.glyphicon-chevron-right
+  / li
+  /   a href="#" 
+  /     | ACCOUNTING
+  /     span.pull-right.glyphicon.glyphicon-chevron-right
   / li
   /   = link_to "INCIDENTAL QUOTES", api_incidental_quotes_path 
-  li
-    = link_to "CONTRACTS", api_contracts_path 
+  / li
+  /   = link_to "CONTRACTS", api_contracts_path 
   li.collapsed.active data-target="#administration" data-toggle="collapse" 
     a
       | ADMINISTRATION

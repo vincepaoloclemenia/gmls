@@ -5,4 +5,9 @@ class GmlsMailer < ApplicationMailer
   	@my_email = 'reynan.albaredo@gmail.com'
   	mail(to: @my_email, subject: 'Creation of Logistic Requirements')	
   end
+
+  def send_mail_notification_status_change
+  	@my_email = 'reynan.albaredo@gmail.com'
+  	mail(to: @my_email, subject: 'Quotation Approval')
+  end
 end
