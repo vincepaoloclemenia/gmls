@@ -34,10 +34,10 @@
       .input-group
         label Email
         = f.text_field :email, class: 'form-control'
-      br
-      .input-group
-        label Location
-        = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
+      / br
+      / .input-group
+      /   label Location
+      /   = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-8
       .input-group
         label Address
