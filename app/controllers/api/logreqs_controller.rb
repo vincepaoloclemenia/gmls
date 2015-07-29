@@ -11,6 +11,7 @@ class Api::LogreqsController < ApplicationController
     @logreq.department = current_user.department
     if @logreq.save
       # render json: @logreq, status: :created, logreq: [:api, @logreq]
+      GmlsMailer.send_gmls_mailer.deliver
       redirect_to api_logreqs_path(step: 1), notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
