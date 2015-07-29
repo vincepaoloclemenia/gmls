@@ -5,4 +5,6 @@ class ApplicationMailer < ActionMailer::Base
   	@my_email = 'reynan.albaredo@gmail.com'
   	mail(to: @my_email, subject: 'Creation of Logistic Requirements')	
   end
+
+  
 end
