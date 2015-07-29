@@ -37,5 +37,5 @@ group :development do
 end
 
 gem 'unicorn', group: :production
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 

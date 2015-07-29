@@ -1,9 +1,9 @@
 = wicked_pdf_stylesheet_link_tag "application"
-.div style="background-color: #FFF;"
+.full_body_pdf
 	table.borderless
 		tr
 			td.text-center colspan="4"
-				h3.center_area Purchase Order: #{@purchase_order.purchase_order_number}
+				h4.bold-text.center_area Purchase Order: #{@purchase_order.purchase_order_number}
 		tr.report_tbl
 			td width="35%"
 			td width="35%"
