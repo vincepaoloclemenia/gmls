@@ -12,32 +12,32 @@
     .col-xs-6
       .input-group
         label Contact Person
-        = f.text_field :contact_person, class: 'form-control', required: "required"
+        = f.text_field :contact_person, class: 'form-control'
   br
   .row
     .col-xs-4
       .input-group
         label Mobile Number
-        = f.text_field :mobile_number, class: 'form-control', required: "required"
+        = f.text_field :mobile_number, class: 'form-control'
     .col-xs-4
       .input-group
         label Telephone Number
-        = f.text_field :telephone_number, class: 'form-control', required: "required"
+        = f.text_field :telephone_number, class: 'form-control'
     
     .col-xs-4
       .input-group
         label Fax Number
-        = f.text_field :fax_number, class: 'form-control', required: "required"
+        = f.text_field :fax_number, class: 'form-control'
   br
   .row
     .col-xs-4
       .input-group
         label Email
-        = f.text_field :email, class: 'form-control', required: "required"
+        = f.text_field :email, class: 'form-control'
       br
       .input-group
         label Location
-        = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+        = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-8
       .input-group
         label Address

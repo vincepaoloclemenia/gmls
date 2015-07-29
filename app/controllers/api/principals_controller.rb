@@ -2,7 +2,7 @@ class Api::PrincipalsController < ApplicationController
   before_filter :set_principal, only: [:show, :update, :destroy, :edit]
 
   def index
-    @principals = current_user.department.nil? ? Principal.all : Principal.where(department: current_user.department)
+    @principals = Principal.paginate(:page => params[:page], :per_page => 10)
     # render json: @principals
   end
 
