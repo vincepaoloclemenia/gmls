@@ -5,10 +5,11 @@
       span.glyphicon.glyphicon-list
       | Incidental Quote Form
       .pull-right
-        = link_to "Back", manage_services_api_incidental_quotes_path(li: params[:li], step: 2), class: "btn btn-warning"
-        | &nbsp;
-        = link_to "Approve Quotation", approved_api_incidental_quotes_path(incidental_quote_id: params[:id], li: params[:li], step: 2), class: "btn btn-info"
-
+        - if !@incidental_items.empty?
+          = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: params[:incidental_quote_id], step: 3), class: "btn btn-info"
+          | &nbsp;
+          
+        = link_to "Export To PDF", api_incidental_items_path(format: 'pdf', incidental_quote_id: params[:incidental_quote_id]), class: "btn btn-info", target: "_blank"
   .panel-body
     table.table.borderless width="100%" 
       tr
@@ -36,7 +37,9 @@
           strong = @incidental_quote.subject
       tr
         td.text-left colspan="3" = @incidental_quote.subject_detail.html_safe
-    br
+    .pull-right
+      p
+        = link_to "Add Item", new_api_incidental_item_path(incidental_quote_id: params[:incidental_quote_id], step: 2), class: "btn btn-primary"
     table.table.table-bordered
       thead
         tr
@@ -44,6 +47,7 @@
           th.text-center width="20%"  AREA
           th.text-center width="20%"  PRICE
           th.text-center width="25%"  REMARKS
+          th.text-center width="15%"  ACTION
       tbody
         - @incidental_items.each do |incidental_item|
           tr
@@ -51,6 +55,10 @@
             td = incidental_item.area
             td = incidental_item.price
             td = incidental_item.remarks
+            td
+              = link_to icon_text('pencil', ''), edit_api_incidental_item_path(incidental_item,  incidental_quote_id: incidental_item.incidental_quote_id, step: 2), title: 'View', class: 'btn btn-xs btn-warning'
+              | &nbsp;
+              = link_to icon_text('trash', ''), api_incidental_item_path(incidental_item, incidental_quote_id: incidental_item.incidental_quote_id, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
 
     table.table.borderless width="100%" 
       tr

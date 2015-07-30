@@ -60,6 +60,11 @@ module ApplicationHelper
     @logreq = Logreq.find logreq_id
     @logreq.principal.name
   end
+
+  def service_name(service_id)
+    @x = Service.select('name').find service_id
+    @x.name
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

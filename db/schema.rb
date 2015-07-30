@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728013145) do
+ActiveRecord::Schema.define(version: 20150730015659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(version: 20150728013145) do
     t.string   "quantity"
     t.string   "unit"
     t.string   "tariff_code"
+    t.integer  "logreq_id"
+    t.integer  "service_id"
   end
 
   add_index "incidental_items", ["deleted_at"], name: "index_incidental_items_on_deleted_at", using: :btree

@@ -24,5 +24,7 @@
             td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
             td= logreq.pier
             td
-              = link_to "Manage Services", manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Create Quotation', class: 'btn btn-xs btn-success'
+              = link_to "View Logreq Quotation", manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Create Quotation', class: 'btn btn-xs btn-success'
+              | &nbsp;
+              = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Services Breakdown', class: 'btn btn-xs btn-info'
               

@@ -46,7 +46,8 @@ Rails.application.routes.draw do
     resources :incidental_quotes do 
       get :manage_services, on: :collection
       get :display_data, on: :collection 
-      get :approved, on: :collection 
+      get :approved, on: :collection
+      get :services_breakdown, on: :collection 
     end
     resources :incidental_items do
       get :choose_supplier, on: :collection
@@ -54,6 +55,9 @@ Rails.application.routes.draw do
       get :choose_supplier_listings, on: :collection
       get :build_purchase_order, on: :collection
       get :autocomplete_item_name, :on => :collection
+      get :select_incidental_items, :on => :collection
+      get :include_incidental_item, :on => :collection
+      get :exclude_incidental_item, :on => :collection
       # get :list_supplier_per_items, on: :collection
     end
     resources :contracts

@@ -16,6 +16,12 @@ class Api::IncidentalQuotesController < ApplicationController
     end
   end
 
+  def services_breakdown
+    @logreq = Logreq.find params[:li]
+    @incidental_items = IncidentalItem.where(logreq_id: params[:li])
+    @service_ids = IncidentalItem.where(logreq_id: params[:li]).distinct.pluck(:service_id)
+  end
+
   def new
     @incidental_quote = IncidentalQuote.new
   end
