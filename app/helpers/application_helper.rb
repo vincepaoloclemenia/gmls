@@ -43,19 +43,19 @@ module ApplicationHelper
 
   def quotation_format(logreq_id)
     @logreq = Logreq.find logreq_id
-    @logreq_id = IncidentalQuote.select(:id).last
+    @logreq_id = IncidentalQuote.select(:id).order("id ASC").last
 
-    if @logreq_id.nil? || 0 
-      @logreq_id = 1
+    if @logreq_id.nil? 
+      @my_id = 1
     else
-      @logreq_id = @logreq_id
+      @my_id = @logreq_id.id.to_i
     end
 
     @year = @logreq.date_of_arrival.strftime("%y")
     @month = @logreq.date_of_arrival.strftime("%m")
     @day_1 = @logreq.date_of_arrival.strftime("%d")
     @day_2 = @logreq.date_of_departure.strftime("%d")
-    @id = @logreq_id.id.to_i
+    @id = @my_id
     @id = @id + 1
     @n = "%07d" % @id
     return @year.to_s+'-'+@month.to_s+'-'+@day_1.to_s+'-'+@day_2.to_s+'-'+@n.to_s
