@@ -45,6 +45,12 @@ module ApplicationHelper
     @logreq = Logreq.find logreq_id
     @logreq_id = IncidentalQuote.select(:id).last
 
+    if @logreq_id.nil? || 0 
+      @logreq_id = 1
+    else
+      @logreq_id = @logreq_id
+    end
+
     @year = @logreq.date_of_arrival.strftime("%y")
     @month = @logreq.date_of_arrival.strftime("%m")
     @day_1 = @logreq.date_of_arrival.strftime("%d")
