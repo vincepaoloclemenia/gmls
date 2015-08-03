@@ -5,10 +5,12 @@
     a href="#" 
       | DASHBOARD
       span.pull-right.glyphicon.glyphicon-chevron-right
-  li
-    = link_to "LOGISTICS REQUIREMENT", api_logreqs_path(step: 1) 
-  li
-    = link_to "REQUEST FOR QUOTATIONS", api_rfqs_path 
+  - if current_user.department == 1
+    li
+      = link_to "LOGISTICS REQUIREMENT", api_logreqs_path(step: 1) 
+  - if current_user.department == 0
+    li
+      = link_to "REQUEST FOR QUOTATIONS", api_rfqs_path 
   / li
   /   a href="#" 
   /     | ACCOUNTING
