@@ -8,7 +8,7 @@ class RfqItem < ActiveRecord::Base
   belongs_to :item_location_price
 
   #validations
-  validates :rfq_id, :item_id, :unit_price, :ui, :quantity, :description, :start_date, :end_date, presence: true
+  validates :rfq_id, :item_id, :unit_price, :ui, :quantity, presence: true
   validates :rfq_id, :uniqueness => {scope: [:item_id], message: "already existing in this rfq."}
   
   before_destroy :delete_rfq_supplier_item

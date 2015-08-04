@@ -12,5 +12,5 @@ class Rfq < ActiveRecord::Base
   has_many :purchase_orders
   
   #validations
-  validates :title, :principal_id, :step, :sub_step, presence: true
+  validates :title, :principal_id, presence: true
 end

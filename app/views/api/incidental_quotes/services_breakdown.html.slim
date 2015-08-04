@@ -5,7 +5,7 @@
       span.glyphicon.glyphicon-list
       | &nbsp;Breakdown of Services
       .pull-right
-	      / = link_to "Create", new_api_incidental_quote_path, class: "btn btn-primary"
+	      = link_to "Export To PDF", services_breakdown_api_incidental_quotes_path(li: @logreq.id, format: 'pdf'), title: 'Services Breakdown', class: 'btn btn-info', target: "_blank"
   .panel-body
     br
     table.table

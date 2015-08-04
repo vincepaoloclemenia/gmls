@@ -1,1 +1,1 @@
-$('#supplier_pricing_tbl').html("<table class='table table-striped'><tr><th>Supplier Name</th><th>Price</th></tr> <% @supplier_pricing_details.each do |spd| %> <tr> <td><%= spd.supplier.name %></td><td><%= number_to_currency(spd.price, unit: 'P ') %></td></tr> <% end %></table>")
+$('#supplier_pricing_tbl').html("<table class='table table-striped'><tr><th>Supplier Name</th><th>Price</th></tr> <% @supplier_pricing_details.each do |spd| %> <tr> <td><%= spd.supplier.name %></td><td><%= spd.price %></td></tr> <% end %></table>")

@@ -9,20 +9,20 @@
     table.table.table-hover.table-striped
       thead
         tr
-          th Supplier
-          th Service Type
-          th Service Offered
-          th Price
-          th Unit
-          th Quantity
-          th Action
+          th width="25%" Supplier
+          th width="15%" Service Type
+          th width="20%" Service Offered
+          th width="10%" Price (P)
+          th width="10%" Unit
+          th width="10%" Quantity
+          th width="10%" Action
       tbody
         - @supplier_pricing_details.each do |supplier_pricing_detail|
           tr
             td= supplier_pricing_detail.supplier.name
             td= supplier_pricing_detail.service.name
             td= supplier_pricing_detail.item_id.nil? ? '---' : supplier_pricing_detail.item.name
-            td= supplier_pricing_detail.price
+            td= number_to_currency(supplier_pricing_detail.price, unit: " ")
             td= supplier_pricing_detail.unit
             td= supplier_pricing_detail.quantity
             td

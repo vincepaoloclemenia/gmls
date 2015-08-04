@@ -1,21 +1,22 @@
 class Api::RfqItemsController < ApplicationController
-   before_filter :set_rfq_item, only: [:show, :update, :destroy]
+   before_filter :set_rfq_item, only: [:show, :update, :destroy, :edit]
 
   def index
-    @rfq_items = RfqItem.all
-    
+    @rfq = Rfq.find params[:rfq_id]
+    @add_rfq_item = RfqItem.new
     if params[:rfq_id]
-      @rfq_items = @rfq_items.where(rfq_id: params[:rfq_id])
+      @rfq_items = RfqItem.where(rfq_id: params[:rfq_id])
     end
 
-    render json: @rfq_items
+    # render json: @rfq_items
   end
 
   def create
     @rfq_item = RfqItem.new(rfq_item_params)
     @rfq_item.department = current_user.department
     if @rfq_item.save
-      render json: @rfq_item, status: :created, rfq_item: [:api, @rfq_item]
+      # render json: @rfq_item, status: :created, rfq_item: [:api, @rfq_item]
+      redirect_to api_rfq_items_path(step: 1, rfq_id: params[:rfq_item][:rfq_id]), notice: 'Entry created'
     else
       render json: { errors: @rfq_item.errors }, status: :unprocessable_entity
     end
@@ -23,7 +24,8 @@ class Api::RfqItemsController < ApplicationController
 
   def update
     if @rfq_item.update(rfq_item_params)
-      head :no_content
+      # head :no_content
+      redirect_to api_rfq_items_path(step: 1, rfq_id: params[:rfq_item][:rfq_id]), notice: 'Entry updated'
     else
       render json: { errors: @rfq_item.errors }, status: :unprocessable_entity
     end
@@ -31,8 +33,7 @@ class Api::RfqItemsController < ApplicationController
   
   def destroy
     @rfq_item.destroy
-
-    head :no_content
+    redirect_to api_rfq_items_path(step: 1, rfq_id: params[:rfq_id]), notice: 'Entry successfully deleted.'
   end
 
   private

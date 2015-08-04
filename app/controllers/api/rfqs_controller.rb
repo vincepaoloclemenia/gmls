@@ -1,30 +1,35 @@
 class Api::RfqsController < ApplicationController
-  before_filter :set_rfq, only: [:update, :destroy]
+  before_filter :set_rfq, only: [:update, :destroy, :edit]
   before_filter :set_rfq_eager_load, only: [:show]
   
 
   def index
     @rfqs = current_user.department.nil? ? Rfq.all : Rfq.where(department: current_user.department)
-    render json: @rfqs
+    # render json: @rfqs
   end
 
   def create
     @rfq = Rfq.new(rfq_params)
     @rfq.department = current_user.department
     if @rfq.save
-      render json: @rfq, status: :created, rfq: [:api, @rfq]
+      # render json: @rfq, status: :created, rfq: [:api, @rfq]
+      redirect_to api_rfqs_path(step: 1), notice: 'Entry created'
     else
       render json: { errors: @rfq.errors }, status: :unprocessable_entity
     end
   end
   
   def show
-    render json: @rfq
+    # render json: @rfq
+  end
+
+  def new
+    @rfq = Rfq.new
   end
 
   def update
     if @rfq.update(rfq_params)
-      head :no_content
+      redirect_to api_rfqs_path(step: 1), notice: 'Entry updated'
     else
       render json: { errors: @rfq.errors }, status: :unprocessable_entity
     end
@@ -32,8 +37,7 @@ class Api::RfqsController < ApplicationController
   
   def destroy
     @rfq.destroy
-
-    head :no_content
+    redirect_to api_rfqs_path(step: 1), notice: 'Entry successfully deleted'
   end
 
   private

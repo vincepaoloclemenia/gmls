@@ -1,0 +1,33 @@
+= wicked_pdf_stylesheet_link_tag "application"
+.full_body_pdf
+  table.table.borderless.small-text width="100%"
+    thead
+      tr
+        td Vessel Name
+        td= @logreq.vessel.name
+        td Principal (Company)
+        td= @logreq.principal.name
+      tr  
+        td Date of Arrival
+        td= @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+        td Date of Departure
+        td= @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+      tr  
+        td Pier
+        td= @logreq.pier
+        td colspan="2" &nbsp;
+  br
+  table.table.borderless.small-text width="100%"
+    thead
+      - @service_ids.each do |serv|
+        tr
+          td.bold-text.info colspan="5" = service_name(serv)
+        - @incidental_items.each do |incidental_item|
+          - if serv == incidental_item.service_id
+            tr
+              td
+              td = incidental_item.item.name
+              td = incidental_item.quantity
+              td = incidental_item.unit
+              td = incidental_item.tariff_code
+        

@@ -20,6 +20,16 @@ class Api::IncidentalQuotesController < ApplicationController
     @logreq = Logreq.find params[:li]
     @incidental_items = IncidentalItem.where(logreq_id: params[:li])
     @service_ids = IncidentalItem.where(logreq_id: params[:li]).distinct.pluck(:service_id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "Breakdown Of Services",
+              :orientation  => 'Portrait',
+              :page_width   => '13in',
+              :margin => {:top       => 4,
+                          :bottom   => 2}
+      end
+    end
   end
 
   def new

@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   end
   #ajax call
   get 'pages/change_subcategory', :as => 'change_subcategory'
+  get 'pages/change_item', :as => 'change_item'
   get 'pages/list_supplier_items_per_price', :as => 'list_supplier_items_per_price'
   get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
 end

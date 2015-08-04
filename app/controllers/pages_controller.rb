@@ -8,4 +8,10 @@ class PagesController < ApplicationController
   	@subcategories = SubCategory.where(category_id: params[:category_id])
 		return @subcategories
   end
+
+  def change_item
+  	@item = Item.find params[:item_id]
+		return @item
+
+  end
 end
