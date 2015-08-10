@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730015659) do
+ActiveRecord::Schema.define(version: 20150807023805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -441,11 +441,15 @@ ActiveRecord::Schema.define(version: 20150730015659) do
     t.decimal  "unit_price",             precision: 8, scale: 2
     t.decimal  "total_price",            precision: 8, scale: 2
     t.integer  "rfq_id"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
     t.datetime "deleted_at"
     t.integer  "department"
     t.integer  "item_location_price_id"
+    t.integer  "supplier_id"
+    t.string   "is_approved",                                    default: "f"
+    t.string   "is_rejected",                                    default: "f"
+    t.decimal  "supplier_pricing",       precision: 8, scale: 2
   end
 
   add_index "rfq_items", ["deleted_at"], name: "index_rfq_items_on_deleted_at", using: :btree

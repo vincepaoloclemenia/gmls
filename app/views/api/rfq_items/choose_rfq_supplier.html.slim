@@ -1,0 +1,47 @@
+= render "layouts/upper_menu_rfq"
+.panel.panel-default
+  .panel-heading
+    h3.title-gray-heading
+      span.glyphicon.glyphicon-list
+      | &nbsp; Choosing of Supplier (RFQ Item)
+      .pull-right
+        = link_to icon_text('arrow-left','Back'), api_rfq_items_path(rfq_id: @rfq_item.rfq_id, step: 1), title: 'Back', class: 'btn btn-warning'
+        | &nbsp;
+        = link_to "Approved", new_api_logreq_path(step: 1), class: "btn btn-primary"
+
+  .panel-body
+    br
+    table.table.table-hover.table-striped
+      tr.info
+        td.bold-text Item
+        td = @rfq_item.item.name
+        td.bold-text Type
+        td = @rfq_item.item.item_type
+        td.bold-text U/I
+        td = @rfq_item.ui
+      tr.info
+        td.bold-text Quantity
+        td = @rfq_item.quantity
+        td.bold-text Unit Price
+        td = number_to_currency(@rfq_item.unit_price, unit: "P ")
+        td.bold-text Total Price
+        td = number_to_currency(@rfq_item.total_price, unit: "P ")
+    br
+    table.table.table-hover
+      tr
+        th Item Name
+        th Supplier Name
+        th Pricing
+        th Action
+      tr
+        td.success.bold-text colspan="4" = @rfq_item.item.name
+        - item_per_supplier(@rfq_item.item.id).each do |spd|
+          tr
+            td 
+            td = spd.supplier.name
+            td = spd.price.nil? ? '' : number_to_currency(spd.price, unit: 'P ')
+            td
+              - if @rfq_item.supplier_id == spd.supplier_id
+                = link_to "Selected", update_selected_supplier_api_rfq_items_path(supplier_id: spd.supplier_id, rfq_item_id: @rfq_item.id, step: 1), class: "btn btn-info btn-xs"
+              - else
+                = link_to "Select", update_selected_supplier_api_rfq_items_path(supplier_id: spd.supplier_id, rfq_item_id: @rfq_item.id, step: 1), class: "btn btn-success btn-xs"

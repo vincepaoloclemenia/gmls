@@ -36,6 +36,17 @@ class Api::RfqItemsController < ApplicationController
     redirect_to api_rfq_items_path(step: 1, rfq_id: params[:rfq_id]), notice: 'Entry successfully deleted.'
   end
 
+  def choose_rfq_supplier
+    @rfq_item = RfqItem.find params[:rfq_item_id]
+    @supplier_items = SupplierPricingDetail.where(item_id: @rfq_item.item_id)
+  end
+
+  def update_selected_supplier
+    @incidental_item = RfqItem.find(params[:rfq_item_id])
+    @incidental_item.update_attributes(:supplier_id => params[:supplier_id])
+    redirect_to request.referrer, notice: 'The supplier has been selected.'
+  end
+
   private
 
   def set_rfq_item

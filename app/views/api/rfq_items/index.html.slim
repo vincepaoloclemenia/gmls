@@ -34,6 +34,7 @@
         th Qty
         th Unit Price
         th Total Price
+        th Action
       tbody
         - @rfq_items.each do |rfq_item|
           tr
@@ -41,7 +42,7 @@
             td = rfq_item.item.item_type
             td = rfq_item.ui
             td = rfq_item.quantity
-            td = rfq_item.unit_price
-            td = rfq_item.total_price  
-
+            td = number_to_currency(rfq_item.unit_price, unit: "P ")
+            td = number_to_currency(rfq_item.total_price, unit: "P ")  
+            td = link_to icon_text('log-in','Choose Supplier'), choose_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.item_id, step: 1), title: 'Choose Supplier', class: 'btn btn-xs btn-success'
 = render 'add_rfq_item'
