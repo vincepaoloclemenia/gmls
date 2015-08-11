@@ -444,7 +444,7 @@ input:required:valid {
 .menu-list li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    /*background: rgba(255,255,255,0.2);*/
 }
 
 .menu-list li a:active,
@@ -823,4 +823,7 @@ End [Steps Wizard]
   width: 150px;
   text-align: right;
 }
-  
+
+.pangwasak{
+  float: left;
+}
