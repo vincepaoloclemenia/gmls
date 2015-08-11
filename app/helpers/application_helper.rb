@@ -71,6 +71,12 @@ module ApplicationHelper
     @x = Service.select('name').find service_id
     @x.name
   end
+
+  def is_approver?
+    if current_user.role.access_level == 'Approver'
+      return true
+    end
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

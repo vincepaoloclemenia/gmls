@@ -1,0 +1,20 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3.title-gray-heading
+    	span.glyphicon.glyphicon-check
+			| &nbsp;Assigning of Employee For Services Breakdown
+  .panel-body
+    = form_for [:api, @logreq], :url => { :action => :assigned_user_breakdown_services}, html: { class: '' } do |f| 
+	  	br
+  		.row
+		  	.col-xs-12
+		      .input-group
+		        label Assigned Employee
+		        = f.select :assigned_user_breakdown_services, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control' 
+	    br
+	    .row
+		  	.col-xs-12
+				  input.btn.btn-primary type="submit" value="Save"
+				  | &nbsp;  
+				  = link_to 'Cancel', request.referer, class: 'btn btn-warning'

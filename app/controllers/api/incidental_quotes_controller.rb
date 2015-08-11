@@ -3,7 +3,7 @@ class Api::IncidentalQuotesController < ApplicationController
 
   def index
     # @incidental_quotes = current_user.department.nil? ? IncidentalQuote.all : IncidentalQuote.where(department: current_user.department)
-    @logreqs = Logreq.all
+    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.all : Logreq.where(user_id: current_user.id)
     # @logreq_responses = LogreqResponse.where(logreq_id: @logreq.id)
     # @incidental_quotes = IncidentalQuote.where(logreq_id: @logreq.id)
     # render json: @incidental_quotes
@@ -88,7 +88,8 @@ class Api::IncidentalQuotesController < ApplicationController
       end
     end
   end
-  
+
+
   private
 
   def set_incidental_quote

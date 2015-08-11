@@ -50,6 +50,6 @@ class Api::RolesController < ApplicationController
   end
     
   def role_params
-    params.require(:role).permit(:id, :role_name, :description, :department)
+    params.require(:role).permit(:id, :role_name, :description, :department, :access_level)
   end
 end

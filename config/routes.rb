@@ -43,6 +43,10 @@ Rails.application.routes.draw do
       get :delivery_lists, on: :collection
       get :disbursement_account, on: :collection
       get :anchorage_billings, on: :collection
+      get :approved_logreq, on: :collection
+      get :view_logreq, on: :collection
+      # get :assigned_user_breakdown_services, on: :collection
+      # get :assigned_user_breakdown_service_form, on: :collection
     end
     resources :archives
     resources :navy_types
@@ -50,7 +54,7 @@ Rails.application.routes.draw do
       get :manage_services, on: :collection
       get :display_data, on: :collection 
       get :approved, on: :collection
-      get :services_breakdown, on: :collection 
+      get :services_breakdown, on: :collection
     end
     resources :incidental_items do
       get :choose_supplier, on: :collection
