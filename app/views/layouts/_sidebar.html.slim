@@ -5,7 +5,7 @@
     a href="#" 
       | DASHBOARD
       span.pull-right.glyphicon.glyphicon-chevron-right
-  li class='#{ "active" if params[:controller] == 'api/logreqs' }'
+  li class='#{ "active" if params[:controller] == 'api/logreqs' || params[:controller] == 'api/incidental_quotes' || params[:controller] == 'api/incidental_items' || params[:controller] == 'api/purchase_orders' }'
     = link_to "LOGISTICS REQUIREMENT", api_logreqs_path(step: 1) 
   li class='#{ "active" if params[:controller] == 'api/rfqs' }'
     = link_to "REQUEST FOR QUOTATIONS", api_rfqs_path(step: 1)
