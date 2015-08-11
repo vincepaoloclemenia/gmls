@@ -3,7 +3,7 @@ class Api::LogreqsController < ApplicationController
 
   def index
     
-    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.all : Logreq.where(user_id: current_user.id)
+    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
     # render json: @logreqs
   end
 
@@ -12,7 +12,7 @@ class Api::LogreqsController < ApplicationController
     @logreq.department = current_user.department
     if @logreq.save
       # render json: @logreq, status: :created, logreq: [:api, @logreq]
-      GmlsMailer.send_gmls_mailer.deliver
+      GmlsMailer.send_gmls_mailer(@logreq.id, request.url).deliver
       redirect_to api_logreqs_path(step: 1), notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
@@ -42,7 +42,7 @@ class Api::LogreqsController < ApplicationController
   end
   
   def ship_listings
-    @ship_listings = Logreq.where("user_id is not ?", nil)
+    @ship_listings = Logreq.where("user_id is not ?", nil).order('id DESC')
     respond_to do |format|
       format.html
       format.pdf do
@@ -90,7 +90,7 @@ class Api::LogreqsController < ApplicationController
   def anchorage_billings
     @logreq = Logreq.find params[:logreq_id]
     @delivery_lists = IncidentalQuote.where(logreq_id: params[:logreq_id]).pluck(:id)
-    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists)
+    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists).order('id DESC')
     respond_to do |format|
       format.html
       format.pdf do
@@ -122,7 +122,7 @@ class Api::LogreqsController < ApplicationController
     raise
     @logreq = Logreq.find params[:li]
     @logreq.update_attributes(:assigned_user_breakdown_services => params[:logreq][:assigned_user_breakdown_services])
-    GmlsMailer.send_mail_notification_status_change.deliver
+    # GmlsMailer.send_mail_notification_status_change(params[]).deliver
     redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
   end
   

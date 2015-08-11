@@ -77,6 +77,12 @@ module ApplicationHelper
       return true
     end
   end
+
+  def is_encoder?
+    if current_user.role.access_level == 'Data Encoder'
+      return true
+    end
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

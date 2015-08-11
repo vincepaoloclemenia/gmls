@@ -3,14 +3,14 @@ class Api::IncidentalQuotesController < ApplicationController
 
   def index
     # @incidental_quotes = current_user.department.nil? ? IncidentalQuote.all : IncidentalQuote.where(department: current_user.department)
-    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.all : Logreq.where(user_id: current_user.id)
+    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
     # @logreq_responses = LogreqResponse.where(logreq_id: @logreq.id)
     # @incidental_quotes = IncidentalQuote.where(logreq_id: @logreq.id)
     # render json: @incidental_quotes
   end
 
   def manage_services
-    @incidental_quotes = IncidentalQuote.where(logreq_id: params[:li])
+    @incidental_quotes = IncidentalQuote.where(logreq_id: params[:li]).order('id DESC')
     respond_to do |format|
       format.html
     end
@@ -18,7 +18,7 @@ class Api::IncidentalQuotesController < ApplicationController
 
   def services_breakdown
     @logreq = Logreq.find params[:li]
-    @incidental_items = IncidentalItem.where(logreq_id: params[:li])
+    @incidental_items = IncidentalItem.where(logreq_id: params[:li]).order('id DESC')
     @service_ids = IncidentalItem.where(logreq_id: params[:li]).distinct.pluck(:service_id)
     respond_to do |format|
       format.html
@@ -62,7 +62,7 @@ class Api::IncidentalQuotesController < ApplicationController
 
   def show
     @incidental_quote = IncidentalQuote.find(params[:id])
-    @incidental_items = IncidentalItem.where(incidental_quote_id: params[:id])
+    @incidental_items = IncidentalItem.where(incidental_quote_id: params[:id]).order('id DESC')
   end
 
   def approved

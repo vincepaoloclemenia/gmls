@@ -3,11 +3,12 @@
   .panel-heading
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
-      | &nbsp; Logistic Requirement List
+      | &nbsp; Logistic Requirements List
       .pull-right
-	      = link_to "Create", new_api_logreq_path(step: 1), class: "btn btn-primary"
-	      | &nbsp;
-	      = link_to "View Ship Listings", ship_listings_api_logreqs_path(step: 1), class: "btn btn-default"
+        - if is_encoder?
+          = link_to "Create", new_api_logreq_path(step: 1), class: "btn btn-primary"
+        | &nbsp;
+        = link_to "View Ship Listings", ship_listings_api_logreqs_path(step: 1), class: "btn btn-default"
   .panel-body
     br
     table.table.table-hover.table-striped
@@ -28,9 +29,10 @@
             td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
             td= logreq.approved_logreq
             td
-              = link_to icon_text('pencil', ''), edit_api_logreq_path(logreq, step: 1), title: 'View', class: 'btn btn-xs btn-warning'
-              | &nbsp;
-              = link_to icon_text('trash', ''), api_logreq_path(logreq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+              - if is_encoder?
+                = link_to icon_text('pencil', ''), edit_api_logreq_path(logreq, step: 1), title: 'View', class: 'btn btn-xs btn-warning'
+                | &nbsp;
+                = link_to icon_text('trash', ''), api_logreq_path(logreq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
               / | &nbsp;
               / = link_to icon_text('th-list', ''), edit_api_logreq_path(logreq, step: 1), title: 'View Summary', class: 'btn btn-xs btn-info'
               - if is_approver?
