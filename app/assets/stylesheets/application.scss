@@ -9,6 +9,12 @@ html, body {
   color: #676a6c;
 }
 
+body{
+  //background-image: url(http://static.wixstatic.com/media/4291b3_931b19d3d887488cb5fbb9ac619d2caa.jpg_srz_p_1920_1200_85_22_0.50_1.20_0.00_jpg_srz);
+  //background-repeat: no-repeat;
+  //background-size: cover;
+}
+
 .blank_check{
   height: 20px;
   width: 20px;
@@ -335,11 +341,23 @@ input:required:valid {
   height: 60px;
 }
 
+#top-right{
+  float: right;
+  height: 100%;
+}
+
+#top-right .btn{
+  background-color: #3A89C9;
+  border: none;
+}
+
 #setting{
   color: #fff !important;
-  margin-top: 10px;
   margin-right: 20px;
   z-index: 1200 !important;  
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);
 }
 
 #setting ul{
@@ -430,15 +448,21 @@ input:required:valid {
 .menu-list li {
   text-indent: 10px;
   line-height: 40px;
-  border: 1px solid #fff;
+  //border: 1px solid #fff;
   margin: 10px;
+  /**/background-color: #3A89C9;
 }
 
 .menu-list li.active{
-  background-color: #fff;
+ //background-color: #fff;
+  /**/background-color: #B6A754;
 }
 .menu-list li.active a{
-  color: #242424;  
+  //color: #242424;  
+  /**/color:#666;
+}
+.menu-list li a:active {
+    color: #666;
 }
 .menu-list li a {
     display: block;
@@ -652,6 +676,7 @@ Begin [Steps Wizard]
 */
 .steps {
 	border-top: 1px solid #F3F3F3;
+  border-bottom: 1px solid #F3F3F3;
 }
 .steps ol {
 	background-color: #f2f2f2;
