@@ -3,13 +3,14 @@
   .row
     .col-xs-4
       .input-group
-        label Quotation No
-        = f.text_field :quotation_no, class: 'form-control'
+        - @quotation_number = @incidental_quote.quotation_no.nil? ? quotation_format(params[:li]) : @incidental_quote.quotation_no
+        label Quotation No.
+        = f.text_field :quotation_no, class: 'form-control', value: @quotation_number, readonly: true
 
     .col-xs-4
       .input-group
-        label Company
-        = f.text_field :company, class: 'form-control'
+        label Principal (Company)
+        = f.text_field :company, class: 'form-control', value: principal_name(params[:li]), readonly: true
   br
   .row
     .col-xs-12
@@ -44,7 +45,7 @@
     .col-xs-4
       .input-group
         label Prepared By
-        = f.text_field :prepared_by, class: 'form-control'
+        = f.text_field :prepared_by, class: 'form-control', value: current_user.full_name, readonly: true
         = f.hidden_field :logreq_id, value: params[:li]
   br      
   input.btn.btn-primary type="submit" value="Save"

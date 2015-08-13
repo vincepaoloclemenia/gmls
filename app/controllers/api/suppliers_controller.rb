@@ -3,7 +3,8 @@ class Api::SuppliersController < ApplicationController
 
   def index
     #@suppliers = current_user.department.nil? ? Supplier.all : Supplier.where(department: current_user.department)
-    @suppliers = Supplier.includes(:supplier_category, :location).all
+    # @suppliers = Supplier.includes(:supplier_category, :location).all
+    @suppliers = Supplier.paginate(:page => params[:page], :per_page => 10)
     # render json: @suppliers
   end
 

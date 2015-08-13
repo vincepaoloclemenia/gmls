@@ -3,7 +3,7 @@ class Api::LocationsController < ApplicationController
 
   def index
     # @locations = current_user.department.nil? ? Location.all : Location.where(department: current_user.department)
-    @locations = Location.all
+    @locations = Location.paginate(:page => params[:page], :per_page => 10)
     # render json: @locations
     
   end

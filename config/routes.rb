@@ -31,7 +31,10 @@ Rails.application.routes.draw do
     resources :government_agencies
     resources :prepservices
     resources :rfqs
-    resources :rfq_items
+    resources :rfq_items do
+      get :choose_rfq_supplier, on: :collection
+      get :update_selected_supplier, on: :collection
+    end
     resources :rfq_supplier_items
     resources :logreqs do
       get :ship_listings, on: :collection
@@ -40,12 +43,18 @@ Rails.application.routes.draw do
       get :delivery_lists, on: :collection
       get :disbursement_account, on: :collection
       get :anchorage_billings, on: :collection
+      get :approved_logreq, on: :collection
+      get :view_logreq, on: :collection
+      # get :assigned_user_breakdown_services, on: :collection
+      # get :assigned_user_breakdown_service_form, on: :collection
     end
     resources :archives
     resources :navy_types
     resources :incidental_quotes do 
       get :manage_services, on: :collection
       get :display_data, on: :collection 
+      get :approved, on: :collection
+      get :services_breakdown, on: :collection
     end
     resources :incidental_items do
       get :choose_supplier, on: :collection
@@ -53,6 +62,9 @@ Rails.application.routes.draw do
       get :choose_supplier_listings, on: :collection
       get :build_purchase_order, on: :collection
       get :autocomplete_item_name, :on => :collection
+      get :select_incidental_items, :on => :collection
+      get :include_incidental_item, :on => :collection
+      get :exclude_incidental_item, :on => :collection
       # get :list_supplier_per_items, on: :collection
     end
     resources :contracts
@@ -68,6 +80,7 @@ Rails.application.routes.draw do
   end
   #ajax call
   get 'pages/change_subcategory', :as => 'change_subcategory'
+  get 'pages/change_item', :as => 'change_item'
   get 'pages/list_supplier_items_per_price', :as => 'list_supplier_items_per_price'
   get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
 end

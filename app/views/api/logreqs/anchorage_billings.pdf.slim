@@ -1,0 +1,68 @@
+= wicked_pdf_stylesheet_link_tag "application"
+table.table.borderless
+  tr
+    td.bold-text VESSEL:
+    td = @logreq.vessel.name.upcase
+    td.bold-text PORT
+    td = @logreq.pier.upcase
+  tr  
+    td.bold-text ARRIVAL DATE:
+    td = @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+    td.bold-text SAILED DATE:
+    td = @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+br
+
+table.table.pre-scrollable
+  tr.text-center
+    th.text-center.small-text11 width="5%" VOUCHER NO.
+    th.text-center.small-text11 width="5%" TARIFF CODES
+    th.text-center.small-text11 width="15%" SERVICE PROVIDED
+    th.text-center.small-text11 width="5%" AMOUNT AS PER MLS INVOICE TO SHIP
+    th.text-center.small-text11 width="5%" AMOUNT AS PER AGENTS INVOICE
+    th.text-center.small-text11 width="5%" GROSS AMOUNT FROM SUPPLIER (EXCL VAT)
+    th.text-center.small-text11 width="5%" ACTUAL PPD
+    th.text-center.small-text11 width="5%" NET AMOUNT FROM SUPPLIER (EXCL VAT) (EXCL DELTA)
+    th.text-center.small-text11 width="5%" TOTAL DELTA (CONTRACTUAL & BUDGET)
+    th.text-center.small-text11 width="5%" DELTA TO AGENT
+    th.text-center.small-text11 width="5%" DELTA TO MLS
+  - @num = 1
+  - @amount_to_supplier_invoice_arr = []
+  - @amount_to_agent_invoice_arr = []
+  - @total_delta_arr = []
+  - @total_delta_to_both_arr = []
+  - @delivery_reports.each do |dr|
+    tr
+      td = @num
+      td
+      td = dr.item.name
+      td.text-right = @amount_to_supplier_invoice = dr.price.nil? ? 0.00 : number_to_currency(dr.price, unit: 'P ')
+      - @amount_to_supplier_invoice_arr << dr.price.to_f
+      - @amount_to_agent_invoice = per_supplier_pricing_detail_price(dr.supplier_id, dr.item_id)
+      - @amount_to_agent_invoice_arr << @amount_to_agent_invoice.price.to_f
+      td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+      td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+      td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+      td.text-right = @amount_to_agent_invoice == 0 ?  'P 0.00' : number_to_currency(@amount_to_agent_invoice.price, unit: "P ")
+      - @x = @amount_to_agent_invoice == 0 ?  @amount_to_agent_invoice.to_f : @amount_to_agent_invoice.price.to_f
+      - @total_delta = dr.price.to_f - @x
+      - @total_delta_arr << @total_delta
+      td.text-right = number_to_currency(@total_delta, unit: "P ")
+      - @total_delta_to_both = @total_delta.to_f / 2
+      - @total_delta_to_both_arr << @total_delta_to_both
+      td.text-right = number_to_currency(@total_delta_to_both, unit: "P ")
+      td.text-right = number_to_currency(@total_delta_to_both, unit: "P ")
+    - @num = @num + 1
+  tr
+    td.bold-text.text-center colspan="3" TOTAL:
+    td.bold-text.text-right = number_to_currency(@amount_to_supplier_invoice_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@amount_to_agent_invoice_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@total_delta_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@total_delta_to_both_arr.inject(:+).to_f, unit: "P ")
+    td.bold-text.text-right = number_to_currency(@total_delta_to_both_arr.inject(:+).to_f, unit: "P ")
+  tr.small-text11
+    td colspan="11"  
+    
+    

@@ -1,0 +1,45 @@
+= form_for [:api, @rfq], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-6
+      .form-group
+        label RFQ Title
+        = f.text_field :title, class: 'form-control datepicker', required: "required"
+    .col-xs-6
+      .form-group
+        label Company Name
+        = f.select :principal_id, Principal.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+  br
+  .row  
+    .col-xs-4
+      .input-group
+        label Point Of Contact
+        
+    .col-xs-4
+      .input-group
+        label Phone Number
+        
+    .col-xs-4
+      .input-group
+        label Email Address 
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Address
+  br
+  .row
+    .col-xs-6
+      .form-group
+        label Duns
+        = f.text_field :duns, class: 'form-control'
+    .col-xs-6
+      .form-group
+        label Cage Code
+        = f.text_field :cage_code, class: 'form-control'
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  / button class="btn btn-danger" Cancel
+  = link_to 'Cancel', request.referer, class: 'btn btn-warning'

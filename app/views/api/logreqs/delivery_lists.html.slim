@@ -3,7 +3,7 @@
   .panel-heading
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
-      | &nbsp; Delivery Reports
+      | &nbsp; Delivery Report
       .pull-right
 	      = link_to "Download (PDF)", delivery_lists_api_logreqs_path(logreq_id: @logreq.id, step: 5, format: 'pdf'), class: "btn btn-info", target: "_blank"
   .panel-body

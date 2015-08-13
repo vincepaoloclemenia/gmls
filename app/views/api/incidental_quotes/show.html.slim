@@ -1,0 +1,90 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3.title-gray-heading
+      span.glyphicon.glyphicon-list
+      | &nbsp; Incidental Quote Form
+      .pull-right
+        = link_to "Back", manage_services_api_incidental_quotes_path(li: params[:li], step: 2), class: "btn btn-warning"
+        | &nbsp;
+        = link_to "Approve Quotation", approved_api_incidental_quotes_path(incidental_quote_id: params[:id], li: params[:li], step: 2), class: "btn btn-info"
+
+  .panel-body
+    table.table.borderless width="100%" 
+      tr
+        td.text-right colspan="3" 
+          strong Quotation No.
+          | &nbsp;&nbsp;
+          = @incidental_quote.quotation_no
+      tr
+        td.text-left colspan="3" 
+          strong 
+            = @incidental_quote.created_at.present? ? @incidental_quote.created_at.strftime("%B %d, %Y") : ''
+      tr
+        td.text-left width="15%" COMPANY
+        td.text-center width="10%" = ":"
+        td.text-left width="75%"
+          strong = @incidental_quote.company
+      tr
+        td.text-left width="15%"  ADDRESS
+        td.text-center width="10%" = ":"
+        td.text-left width="75%" = @incidental_quote.address
+      tr
+        td.text-left width="15%"  SUBJECT
+        td.text-center width="10%" = ":"
+        td.text-left width="75%" 
+          strong = @incidental_quote.subject
+      tr
+        td.text-left colspan="3" = @incidental_quote.subject_detail.html_safe
+    br
+    table.table.table-bordered
+      thead
+        tr
+          th.text-center width="20%"  ITEM
+          th.text-center width="20%"  AREA
+          th.text-center width="20%"  PRICE
+          th.text-center width="25%"  REMARKS
+      tbody
+        - @incidental_items.each do |incidental_item|
+          tr
+            td = incidental_item.item.name
+            td = incidental_item.area
+            td = incidental_item.price
+            td = incidental_item.remarks
+
+    table.table.borderless width="100%" 
+      tr
+        td.text-left colspan="4" 
+          strong TERMS & CONDITIONS:
+      tr
+        td.text-left colspan="4" = @incidental_quote.terms_and_condition.html_safe
+      tr
+        td.text-left width="10%"  VALIDITY:
+        td.text-left colspan="3" width="90%" 
+          strong = @incidental_quote.validity
+      tr
+        td.text-left colspan="4"  &nbsp;&nbsp;&nbsp; Should you find this quotation in order and acceptable, please indicate your conformity by signing the space provided below. Kindly send a copy to us which will serve as our Perliminary Contract. If there are any clarifications please contact our office at the above-mentioned address and telephone numbers.
+      tr
+        td.text-left colspan="4"  Prepared by:
+      tr
+        td.text-left
+          p _____________________________
+          p.text-center = @incidental_quote.prepared_by
+        td colspan="3"  &nbsp;
+      tr
+        td colspan="4"  &nbsp;
+      tr
+        td colspan="4"  Conforme:
+      tr
+        td.text-center
+          p _____________________________
+          p.text-center Printed Name
+        td.text-center
+          p _____________________________
+          p.text-center Position / Designation
+        td.text-center
+          p _____________________________
+          p.text-center Date
+        td.text-center
+          p _____________________________
+          p.text-center Signature

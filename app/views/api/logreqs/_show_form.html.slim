@@ -1,0 +1,54 @@
+br
+.row
+  .col-xs-3
+    .input-group
+      label Vessel Name
+      |&nbsp;&nbsp;
+      = @logreq.vessel.name
+  .col-xs-3
+    .input-group
+      label Arrival Date
+      |&nbsp;&nbsp;
+      = @logreq.date_of_arrival.present? ? @logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+  .col-xs-3
+    .input-group
+      label Departure Date
+      |&nbsp;&nbsp;
+      = @logreq.date_of_departure.present? ? @logreq.date_of_departure.strftime("%B %d, %Y") : ''
+  .col-xs-3
+    .input-group
+      label Logreq Status
+      |&nbsp;&nbsp;
+      = @logreq.approved_logreq
+br
+.row  
+  .col-xs-4
+    .input-group
+      label Location
+      |&nbsp;&nbsp;
+      = @logreq.pier
+  .col-xs-4
+    .input-group
+      label Assigned Employee
+      |&nbsp;&nbsp;
+      = @logreq.user.full_name
+  .col-xs-4
+    .input-group
+      label Principal
+      |&nbsp;&nbsp;
+      = @logreq.principal_id.nil? ? 'No Selected Principal' : principal_name(@logreq.id)
+br
+.row
+  .col-xs-12
+    .form-group
+      label Details
+      br
+      = @logreq.information.nil? ? '' : @logreq.information.html_safe
+br
+.row
+  .col-xs-12
+    .form-group
+      label Ending Text / Code
+      br
+      = @logreq.ending_text.nil? ? '' : @logreq.ending_text.html_safe
+br

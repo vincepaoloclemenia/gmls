@@ -3,29 +3,49 @@
   .row
     .pull-right#item_id_here
   .row
-    .col-xs-5
+    .col-xs-4
       .input-group
         label Item Name
         / = f.autocomplete_field :item_id, autocomplete_item_name_api_incidental_items_path, class: 'form-control', required: "required"
         = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
-      .pull-right#supplier_pricing_detail style="margin-top: -35px; margin-right: 125px;"
+    .col-xs-1  
+      #supplier_pricing_detail style="margin-top: 25px;"
         button data-toggle='modal' data-target='#supplier_pricing' class=" btn btn-primary btn-sm form-control" title="Supplier Pricing Detail"
           = icon_text('menu-up', '')
     .col-xs-3
       .input-group
         label Area
-        = f.text_field :area, class: 'form-control'
+        = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-4
       .input-group
         label Price
-        = f.text_field :price, class: 'form-control', required: "required"
+        = f.text_field :price, class: 'form-control'
   br
   .row
-    .col-xs-12
+    .col-xs-4
+      .input-group
+        label Quantity
+        = f.text_field :quantity, class: 'form-control'
+    .col-xs-4
+      .input-group
+        label Unit
+        = f.text_field :unit, class: 'form-control'
+    .col-xs-4
+      .input-group
+        label Tariff Code
+        = f.text_field :tariff_code, class: 'form-control'
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Type Of Service
+        = f.select :service_id, Service.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
+    .col-xs-8
       .form-group
         label Remarks
-        = f.text_area :remarks, class: 'form-control', required: "required"
-        = f.hidden_field :incidental_quote_id, value: params[:incidental_quote_id]
+        = f.text_area :remarks, class: 'form-control'
+        / = f.hidden_field :incidental_quote_id, value: params[:incidental_quote_id]
+        = f.hidden_field :logreq_id, value: params[:li]
   br
   br
   input.btn.btn-primary type="submit" value="Save"
@@ -52,3 +72,4 @@ javascript:
       
     });
   });
+/ :incidental_quote_id, :item_id, :area, :price, :remarks, :department, :supplier_pricing_detail_id, :supplier_id, :location_id, :quantity, :unit, :tariff_code, :logreq_id, :service_id

@@ -23,6 +23,16 @@
       .input-group
         label Assigned Employee
         = f.select :user_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+    .col-xs-4
+      .input-group
+        label Principal
+        = f.select :principal_id, Principal.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+  br
+  .row
+    .col-xs-5
+      .input-group
+        label Assigned Employee For Breakdown Of Services
+        = f.select :assigned_user_breakdown_services, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
   br
   .row
     .col-xs-12

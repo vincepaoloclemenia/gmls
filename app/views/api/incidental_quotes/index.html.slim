@@ -3,7 +3,7 @@
   .panel-heading
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
-      | &nbsp; Preparation of Services
+      | &nbsp; Breakdown of Services List
       .pull-right
 	      / = link_to "Create", new_api_incidental_quote_path, class: "btn btn-primary"
   .panel-body
@@ -24,4 +24,12 @@
             td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
             td= logreq.pier
             td
-              = link_to "Manage Services", manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Create Quotation', class: 'btn btn-xs btn-success'
+              - if logreq.approved_logreq == 'Approved'
+                = link_to "View Logreq Quotation", manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Create Quotation', class: 'btn btn-xs btn-success'
+              - if logreq.assigned_user_breakdown_services == current_user.id
+                | &nbsp;
+                = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Services Breakdown', class: 'btn btn-xs btn-info'
+              
+
+
+              

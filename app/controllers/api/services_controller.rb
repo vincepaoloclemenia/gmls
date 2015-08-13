@@ -3,7 +3,7 @@ class Api::ServicesController < ApplicationController
 
   def index
     # @services = current_user.department.nil? ? Service.all : Service.where(department: current_user.department)
-    @services = Service.all
+    @services = Service.paginate(:page => params[:page], :per_page => 10)
     # render json: @services
   end
 

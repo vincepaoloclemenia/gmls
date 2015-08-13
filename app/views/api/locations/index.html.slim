@@ -10,17 +10,20 @@
       thead
         tr
           th Name
-          th Region
-          th Address
+          / th Region
+          / th Address
           th Action
       tbody
         - @locations.each do |location|
           tr
             td= location.name
-            td= location.region
-            td= location.address
+            / td= location.region
+            / td= location.address
             td
               = link_to icon_text('pencil', ''), edit_api_location_path(location), title: 'View', class: 'btn btn-xs btn-warning'
               | &nbsp;
               = link_to icon_text('trash', ''), api_location_path(location), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+      tfoot
+        tr.text-center.small-text11.bold-text
+          td colspan="2" = will_paginate @locations, renderer: BootstrapPagination::Rails
 

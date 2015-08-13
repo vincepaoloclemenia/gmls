@@ -1,0 +1,50 @@
+.steps
+  ol
+    li#step1 class="#{current(1)}"
+      div 
+        span 1
+        | Request For Quotation Details
+    li#step2 class="#{current(2)}"
+      div 
+        span 2
+        | Delegation Summary
+    li#step3.level3 class="#{current(3)}"
+      div
+        span 3
+        | P.O. Creation
+    li#step5.level5 class="#{current(5)}"
+      div
+        span 4
+        | Monitoring Of Deliveries
+    li#step6.level6 class="#{current(6)}"
+      div
+        span 5
+        | Accounting
+br
+
+javascript:
+  $(function() {
+    $(document).ready(function() {
+      $('#step1').css('cursor', 'pointer');
+      $('#step2').css('cursor', 'pointer');
+      $('#step3').css('cursor', 'pointer');
+      $('#step4').css('cursor', 'pointer');
+      $('#step5').css('cursor', 'pointer');
+
+      $("#step1").click(function(){ 
+        window.location.href='/api/rfqs?step=1';
+      });
+      $("#step2").click(function(){ 
+        window.location.href='/api/incidental_quotes?step=2';
+      });
+      $("#step3").click(function(){ 
+        window.location.href='/api/incidental_items/choose_supplier_listings?step=3';
+      });
+      $("#step4").click(function(){ 
+        window.location.href='/api/purchase_orders?step=4';
+      });
+      $("#step5").click(function(){ 
+        window.location.href='/api/logreqs/delivery_reports?step=5';
+      });
+    });
+  });

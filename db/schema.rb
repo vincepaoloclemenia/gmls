@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720013928) do
+ActiveRecord::Schema.define(version: 20150810082732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,12 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.datetime "updated_at",                 null: false
     t.integer  "supplier_pricing_detail_id"
     t.integer  "supplier_id"
+    t.integer  "location_id"
+    t.string   "quantity"
+    t.string   "unit"
+    t.string   "tariff_code"
+    t.integer  "logreq_id"
+    t.integer  "service_id"
   end
 
   add_index "incidental_items", ["deleted_at"], name: "index_incidental_items_on_deleted_at", using: :btree
@@ -178,10 +184,13 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.text     "validity"
     t.string   "prepared_by"
     t.datetime "deleted_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "department"
     t.integer  "logreq_id"
+    t.string   "status",                          default: "Pending"
+    t.string   "approved_incidental_quotes",      default: "Pending"
+    t.string   "approved_incidental_quote_items", default: "Pending"
   end
 
   add_index "incidental_quotes", ["deleted_at"], name: "index_incidental_quotes_on_deleted_at", using: :btree
@@ -268,8 +277,8 @@ ActiveRecord::Schema.define(version: 20150720013928) do
   create_table "logreqs", force: :cascade do |t|
     t.date     "entry_date"
     t.text     "information"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.string   "logreq_responses"
     t.string   "shipname"
     t.datetime "deleted_at"
@@ -282,6 +291,10 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.string   "pier"
     t.integer  "user_id"
     t.text     "ending_text"
+    t.integer  "principal_id"
+    t.string   "approved_logreq",                  default: "Pending"
+    t.string   "approved_logreq_response",         default: "Pending"
+    t.integer  "assigned_user_breakdown_services"
   end
 
   add_index "logreqs", ["deleted_at"], name: "index_logreqs_on_deleted_at", using: :btree
@@ -378,11 +391,13 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.string   "deliver_to"
     t.integer  "prepared_by"
     t.string   "purchase_order_number"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "rfq_id"
     t.integer  "department"
     t.integer  "incidental_quote_id"
+    t.string   "status",                default: "Ordered"
+    t.integer  "tag_by_assigned_user"
   end
 
   add_index "purchase_orders", ["rfq_id"], name: "index_purchase_orders_on_rfq_id", using: :btree
@@ -431,11 +446,15 @@ ActiveRecord::Schema.define(version: 20150720013928) do
     t.decimal  "unit_price",             precision: 8, scale: 2
     t.decimal  "total_price",            precision: 8, scale: 2
     t.integer  "rfq_id"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
     t.datetime "deleted_at"
     t.integer  "department"
     t.integer  "item_location_price_id"
+    t.integer  "supplier_id"
+    t.string   "is_approved",                                    default: "f"
+    t.string   "is_rejected",                                    default: "f"
+    t.decimal  "supplier_pricing",       precision: 8, scale: 2
   end
 
   add_index "rfq_items", ["deleted_at"], name: "index_rfq_items_on_deleted_at", using: :btree
@@ -495,10 +514,11 @@ ActiveRecord::Schema.define(version: 20150720013928) do
   create_table "roles", force: :cascade do |t|
     t.string   "role_name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.datetime "deleted_at"
     t.integer  "department"
+    t.string   "access_level"
   end
 
   add_index "roles", ["deleted_at"], name: "index_roles_on_deleted_at", using: :btree

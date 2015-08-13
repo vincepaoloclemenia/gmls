@@ -3,9 +3,10 @@
   .panel-heading
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
-      | &nbsp; Preparation of Services List
+      | &nbsp; Incidental Quotations List
       .pull-right
-	      = link_to "Create", new_api_incidental_quote_path(li: params[:li], step: 2), class: "btn btn-primary"
+        - if is_encoder?
+	        = link_to "Create", new_api_incidental_quote_path(li: params[:li], step: 2), class: "btn btn-primary"
   .panel-body
     br
     table.table.table-hover.table-striped
@@ -14,6 +15,7 @@
           th Quotation Number
           th Date
           th Company
+          th Status
           th Action
       tbody
         - @incidental_quotes.each do |incidental_quote|
@@ -21,10 +23,15 @@
             td= incidental_quote.quotation_no
             td= incidental_quote.created_at.present? ? incidental_quote.created_at.strftime("%B %d, %Y") : ''
             td= incidental_quote.company
+            td= incidental_quote.status
             td
-              = link_to icon_text('pencil', ''), edit_api_incidental_quote_path(incidental_quote, step: 2, li: params[:li]), title: 'View', class: 'btn btn-xs btn-warning'
-              | &nbsp;
-              = link_to icon_text('trash', ''), api_incidental_quote_path(incidental_quote, step: 2, li: params[:li]), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
-              | &nbsp;
-              = link_to icon_text('plus', ''), api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 2), title: 'Create Item', class: 'btn btn-xs btn-success'
-              
+              - if is_encoder?
+                = link_to icon_text('pencil', ''), edit_api_incidental_quote_path(incidental_quote, step: 2, li: params[:li]), title: 'View', class: 'btn btn-xs btn-warning'
+                | &nbsp;
+                = link_to icon_text('trash', ''), api_incidental_quote_path(incidental_quote, step: 2, li: params[:li]), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+                - if incidental_quote.status == 'Approved'
+                  | &nbsp;
+                  = link_to icon_text('plus', 'Add Item'), api_incidental_items_path(li: params[:li], incidental_quote_id: incidental_quote.id, step: 2), title: 'Create Item', class: 'btn btn-xs btn-success'
+              - if is_approver?  
+                | &nbsp;
+                = link_to "View and Approved Status", api_incidental_quote_path(incidental_quote, incidental_quote_id: incidental_quote.id, li: params[:li], step: 2), title: 'View Created Quotation', class: 'btn btn-xs btn-info'
