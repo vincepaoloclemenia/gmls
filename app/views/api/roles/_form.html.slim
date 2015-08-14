@@ -1,13 +1,13 @@
 = form_for [:api, @role], html: { class: '' } do |f| 
   br
   .row
-    .col-xs-4
-      .input-group
-        label Role Name
-        = f.text_field :role_name, class: 'form-control', required: "required" 
+    .col-xs-5
+      //.input-group
+      label Role Name
+      = f.text_field :role_name, class: 'form-control', required: "required" 
   .row
     br    
-    .col-xs-12
+    .col-xs-8
       .form-group
         label Description
         = f.text_area :description, class: 'form-control', rows: 5, style:"resize: none;"

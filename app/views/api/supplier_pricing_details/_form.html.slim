@@ -2,36 +2,38 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Supplier Service Type Offered
-        = f.select :service_type, ["Goods","Services","Equipments","Vehicle"], {include_blank: true },  class: 'form-control', required: "required"
+      //input-group
+      label Supplier Service Type Offered
+      = f.select :service_type, ["Goods","Services","Equipments","Vehicle"], {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Supplier
-        = f.select :supplier_id, Supplier.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      //input-group
+      label Supplier
+      = f.select :supplier_id, Supplier.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Supplier Service Categories
-        = f.select :service_id, Service.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      //input-group
+      label Supplier Service Categories
+      = f.select :service_id, Service.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
   br
   .row
-    .col-xs-3
-      .input-group
-        label Name
-        = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+    .col-xs-4
+      //input-group
+      label Name
+      = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
         / = f.text_field :type_name, class: 'form-control'
-    .col-xs-3
-      .input-group
-        label Quantity
-        = f.text_field :quantity, class: 'form-control'
-    .col-xs-3
-      .input-group
-        label Unit
-        = f.text_field :unit, class: 'form-control'
-    .col-xs-3
-      .input-group
-        label Price
-        = f.text_field :price, class: 'form-control'
+    .col-xs-4
+      //input-group
+      label Quantity
+      = f.text_field :quantity, class: 'form-control'
+    .col-xs-4
+      //input-group
+      label Unit
+      = f.text_field :unit, class: 'form-control'
+  br
+  .row
+    .col-xs-4
+      //input-group
+      label Price
+      = f.text_field :price, class: 'form-control'
 
   br
   input.btn.btn-primary type="submit" value="Save"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807023805) do
+ActiveRecord::Schema.define(version: 20150810082732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,11 +184,13 @@ ActiveRecord::Schema.define(version: 20150807023805) do
     t.text     "validity"
     t.string   "prepared_by"
     t.datetime "deleted_at"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "department"
     t.integer  "logreq_id"
-    t.string   "status",              default: "Pending"
+    t.string   "status",                          default: "Pending"
+    t.string   "approved_incidental_quotes",      default: "Pending"
+    t.string   "approved_incidental_quote_items", default: "Pending"
   end
 
   add_index "incidental_quotes", ["deleted_at"], name: "index_incidental_quotes_on_deleted_at", using: :btree
@@ -275,8 +277,8 @@ ActiveRecord::Schema.define(version: 20150807023805) do
   create_table "logreqs", force: :cascade do |t|
     t.date     "entry_date"
     t.text     "information"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.string   "logreq_responses"
     t.string   "shipname"
     t.datetime "deleted_at"
@@ -290,6 +292,9 @@ ActiveRecord::Schema.define(version: 20150807023805) do
     t.integer  "user_id"
     t.text     "ending_text"
     t.integer  "principal_id"
+    t.string   "approved_logreq",                  default: "Pending"
+    t.string   "approved_logreq_response",         default: "Pending"
+    t.integer  "assigned_user_breakdown_services"
   end
 
   add_index "logreqs", ["deleted_at"], name: "index_logreqs_on_deleted_at", using: :btree
@@ -509,10 +514,11 @@ ActiveRecord::Schema.define(version: 20150807023805) do
   create_table "roles", force: :cascade do |t|
     t.string   "role_name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.datetime "deleted_at"
     t.integer  "department"
+    t.string   "access_level"
   end
 
   add_index "roles", ["deleted_at"], name: "index_roles_on_deleted_at", using: :btree

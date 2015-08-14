@@ -2,93 +2,93 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Vessel Type
-        = f.select :vessel_type_id, VesselType.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      //.input-group
+      label Vessel Type
+      = f.select :vessel_type_id, VesselType.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Vessel Name
-        = f.text_field :name, class: 'form-control', required: "required"
+      //.input-group
+      label Vessel Name
+      = f.text_field :name, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Flag Of Registry
-        = f.text_field :flag_of_registry, class: 'form-control', required: "required"
+      //.input-group
+      label Flag Of Registry
+      = f.text_field :flag_of_registry, class: 'form-control', required: "required"
   br
   .row
     .col-xs-4
-      .input-group
-        label Owner/Operator
-        = f.text_field :owner_operator, class: 'form-control', required: "required"
+      //.input-group
+      label Owner/Operator
+      = f.text_field :owner_operator, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label GRT
-        = f.text_field :grt, class: 'form-control', required: "required"
+      //.input-group
+      label GRT
+      = f.text_field :grt, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label NRT
-        = f.text_field :nrt, class: 'form-control', required: "required"
+      //.input-group
+      label NRT
+      = f.text_field :nrt, class: 'form-control', required: "required"
   br
   .row
     .col-xs-4
-      .input-group
-        label DWT
-        = f.text_field :dwt, class: 'form-control', required: "required"
+      //.input-group
+      label DWT
+      = f.text_field :dwt, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label LOA
-        = f.text_field :loa, class: 'form-control', required: "required"
+      //.input-group
+      label LOA
+      = f.text_field :loa, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Service Speed
-        = f.text_field :service_speed, class: 'form-control', required: "required"
+      //.input-group
+      label Service Speed
+      = f.text_field :service_speed, class: 'form-control', required: "required"
   br
   .row
     .col-xs-4
-      .input-group
-        label Conference
-        = f.text_field :conference, class: 'form-control', required: "required"
+      //.input-group
+      label Conference
+      = f.text_field :conference, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Type Of Service
-        = f.text_field :type_of_service, class: 'form-control', required: "required"
+      //.input-group
+      label Type Of Service
+      = f.text_field :type_of_service, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Number of Booms
-        = f.text_field :num_of_booms, class: 'form-control', required: "required"  
+      //.input-group
+      label Number of Booms
+      = f.text_field :num_of_booms, class: 'form-control', required: "required"  
   br
   .row
     .col-xs-4
-      .input-group
-        label Capacity/Boom
-        = f.text_field :capacity_boom, class: 'form-control', required: "required"
+      //.input-group
+      label Capacity/Boom
+      = f.text_field :capacity_boom, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Type Of Boom
-        = f.text_field :type_of_boom, class: 'form-control', required: "required"
+      //.input-group
+      label Type Of Boom
+      = f.text_field :type_of_boom, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Number Of Hatches
-        = f.text_field :num_of_hatches, class: 'form-control', required: "required" 
+      //.input-group
+      label Number Of Hatches
+      = f.text_field :num_of_hatches, class: 'form-control', required: "required" 
   br
   .row
     .col-xs-4
-      .input-group
-        label Type Of Hatch
-        = f.text_field :type_of_hatch, class: 'form-control', required: "required"
+      //.input-group
+      label Type Of Hatch
+      = f.text_field :type_of_hatch, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Boom Cycle
-        = f.text_field :boom_cycle, class: 'form-control', required: "required"
+      //.input-group
+      label Boom Cycle
+      = f.text_field :boom_cycle, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Custom Reg Number
-        = f.text_field :customs_reg_number, class: 'form-control', required: "required" 
+      //.input-group
+      label Custom Reg Number
+      = f.text_field :customs_reg_number, class: 'form-control', required: "required" 
   br
   .row
     .col-xs-4
-      .input-group
-        label Voyage Number
-        = f.text_field :voyage_num, class: 'form-control', required: "required"
+      //.input-group
+      label Voyage Number
+      = f.text_field :voyage_num, class: 'form-control', required: "required"
   br
   br
   input.btn.btn-primary type="submit" value="Save"
