@@ -16,22 +16,18 @@
   br
   .row
     .col-xs-3
-      .input-group
-        label Name
-        = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+      label Name
+      = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
         / = f.text_field :type_name, class: 'form-control'
     .col-xs-3
-      .input-group
-        label Quantity
-        = f.text_field :quantity, class: 'form-control'
+      label Quantity
+      = f.number_field :quantity, class: 'form-control', required: "required"
     .col-xs-3
-      .input-group
-        label Unit
-        = f.text_field :unit, class: 'form-control'
+      label Unit
+      = f.text_field :unit, class: 'form-control', required: "required"
     .col-xs-3
-      .input-group
-        label Price
-        = f.text_field :price, class: 'form-control'
+      label Price
+      = f.number_field :price, class: 'form-control', required: "required"
 
   br
   input.btn.btn-primary type="submit" value="Save"

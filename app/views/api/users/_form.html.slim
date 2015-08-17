@@ -2,37 +2,30 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Role
-        = f.select :role_id, Role.all.map{ |e| [e.role_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+      label Role
+      = f.select :role_id, Role.all.map{ |e| [e.role_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label First Name
-        = f.text_field :first_name, class: 'form-control', required: "required"
+      label First Name
+      = f.text_field :first_name, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Last Name
-        = f.text_field :last_name, class: 'form-control', required: "required"
+      label Last Name
+      = f.text_field :last_name, class: 'form-control', required: "required"
   br
   .row
     .col-xs-4
-      .input-group
-        label Department
-        = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
+      label Department
+      = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Position
-        = f.text_field :position, class: 'form-control', required: "required"
+      label Position
+      = f.text_field :position, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Gender
-        = f.select :gender, ["Male","Female"], {include_blank: true }, class: 'form-control', required: "required"
+      label Gender
+      = f.select :gender, ["Male","Female"], {include_blank: true }, class: 'form-control', required: "required"
   br
   .row
-    .col-xs-4
-      .input-group
-        label Age
-        = f.text_field :age, class: 'form-control', required: "required"
+    .col-xs-2
+      label Age
+      = f.number_field :age, class: 'form-control', required: "required", :max => 90, :min => 18
   br
   br
   .row
