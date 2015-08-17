@@ -29,7 +29,11 @@ class Api::RfqsController < ApplicationController
 
   def update
     if @rfq.update(rfq_params)
-      redirect_to api_rfqs_path(step: 1), notice: 'Entry updated'
+      if params['ds'] == 'true'
+        redirect_to delegation_summary_api_rfqs_path(step: 2), notice: 'Entry updated'
+      else  
+        redirect_to api_rfqs_path(step: 1), notice: 'Entry updated'
+      end
     else
       render json: { errors: @rfq.errors }, status: :unprocessable_entity
     end
@@ -38,6 +42,10 @@ class Api::RfqsController < ApplicationController
   def destroy
     @rfq.destroy
     redirect_to api_rfqs_path(step: 1), notice: 'Entry successfully deleted'
+  end
+
+  def delegation_summary
+    @rfqs = current_user.department.nil? ? Rfq.all : Rfq.where(department: current_user.department)
   end
 
   private

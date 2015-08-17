@@ -6,10 +6,12 @@
       = link_to "Create", new_api_location_path, class: "btn btn-primary pull-right"
   .panel-body
     br
+    = render 'search_locations'
+    br
     table.table.table-hover.table-striped
       thead
         tr
-          th Name
+          th = sort_link(@q, :name)
           / th Region
           / th Address
           th Action

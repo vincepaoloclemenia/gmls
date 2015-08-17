@@ -83,6 +83,30 @@ module ApplicationHelper
       return true
     end
   end
+
+  def is_administrator?
+    if current_user.role.access_level == 'Administrator'
+      return true
+    end
+  end
+
+  def rfq_req_officer(rfq_req_officer_id)
+    if rfq_req_officer_id.nil?
+      return 'Unassigned'
+    else
+      @officer = User.find rfq_req_officer_id
+      return @officer.full_name
+    end
+  end
+
+  def rfq_mon_officer(rfq_mon_officer_id)
+    if rfq_mon_officer_id.nil?
+      return 'Unassigned'
+    else
+      @officer = User.find rfq_mon_officer_id
+      return @officer.full_name
+    end
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

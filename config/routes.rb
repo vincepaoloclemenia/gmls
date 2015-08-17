@@ -30,10 +30,15 @@ Rails.application.routes.draw do
     resources :ship_arrivals
     resources :government_agencies
     resources :prepservices
-    resources :rfqs
+    resources :rfqs do
+      get :delegation_summary, on: :collection
+    end
     resources :rfq_items do
       get :choose_rfq_supplier, on: :collection
       get :update_selected_supplier, on: :collection
+      get :view_rfq_supplier, on: :collection
+      get :approved_supplier, on: :collection
+      get :disapproved_supplier, on: :collection
     end
     resources :rfq_supplier_items
     resources :logreqs do
