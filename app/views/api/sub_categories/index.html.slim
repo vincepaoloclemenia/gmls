@@ -12,6 +12,12 @@
           th Name
           th Item Category
           th Action
+      = search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :name_cont, class: "form-control"
+          th= f.text_field :category_name_cont, class: "form-control"
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @sub_categories.each do |sub_category|
           tr

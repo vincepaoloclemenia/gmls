@@ -365,8 +365,9 @@ input[type=number] {
   margin-right: 20px;
   z-index: 1200 !important;  
   position: relative;
-  top: 40%;
-  transform: translateY(-40%);
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%)
 }
 
 #setting ul{
@@ -468,10 +469,10 @@ input[type=number] {
 }
 .menu-list li.active a{
   //color: #242424;  
-  /**/color:#666;
+  /**/color:#FAFAFA;
 }
 .menu-list li a:active {
-    color: #666;
+    color: #FAFAFA;
 }
 .menu-list li a {
     display: block;

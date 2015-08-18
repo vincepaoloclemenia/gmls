@@ -16,6 +16,16 @@
           th Subcategory
           th Price
           th Action
+      thead
+        tr= search_form_for [:api, @q] do |f|
+          th= f.text_field :item_type_cont, class: 'form-control'
+          th= f.text_field :name_cont, class: 'form-control'
+          th= f.text_field :service_type_cont, class: 'form-control'
+          th= f.text_field :category_name_cont, class: 'form-control'
+          th= f.text_field :sub_category_name_cont, class: 'form-control'
+          th= f.text_field :unit_price_eq, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @items.each do |item|
           tr

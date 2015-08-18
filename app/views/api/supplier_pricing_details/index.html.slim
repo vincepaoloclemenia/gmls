@@ -16,6 +16,16 @@
           th width="10%" Unit
           th width="10%" Quantity
           th width="10%" Action
+      = search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :supplier_name_cont, class: "form-control"
+          th= f.text_field :service_type_cont, class: "form-control"
+          th= f.text_field :item_name_cont, class: "form-control"
+          th= f.text_field :price_cont, class: "form-control"
+          th= f.text_field :unit_cont, class: "form-control"
+          th= f.text_field :quantity_eq, class: "form-control"
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @supplier_pricing_details.each do |supplier_pricing_detail|
           tr

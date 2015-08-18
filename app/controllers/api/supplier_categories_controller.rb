@@ -2,7 +2,9 @@ class Api::SupplierCategoriesController < ApplicationController
   before_action :set_supplier_category, only: [:show, :edit, :update, :destroy, :edit]
 
   def index
-    @supplier_categories = SupplierCategory.all
+    # @supplier_categories = SupplierCategory.all
+    @q = SupplierCategory.ransack(params[:q])
+    @supplier_categories = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @supplier_categories
   end
 

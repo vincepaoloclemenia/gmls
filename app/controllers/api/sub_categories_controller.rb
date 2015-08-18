@@ -2,8 +2,10 @@ class Api::SubCategoriesController < ApplicationController
   before_filter :set_sub_category, only: [:show, :update, :destroy, :edit]
 
   def index
-    @sub_categories = current_user.department.nil? ? SubCategory.all : SubCategory.where(department: current_user.department)
+    # @sub_categories = current_user.department.nil? ? SubCategory.all : SubCategory.where(department: current_user.department)
     # render json: @categories
+    @q = SubCategory.ransack(params[:q])
+    @sub_categories = @q.result.includes(:category).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

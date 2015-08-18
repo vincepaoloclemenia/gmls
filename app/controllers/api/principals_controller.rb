@@ -2,7 +2,8 @@ class Api::PrincipalsController < ApplicationController
   before_filter :set_principal, only: [:show, :update, :destroy, :edit]
 
   def index
-    @principals = Principal.paginate(:page => params[:page], :per_page => 10)
+    @q = Principal.ransack(params[:q])
+    @principals = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @principals
   end
 

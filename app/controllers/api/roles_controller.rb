@@ -2,7 +2,9 @@ class Api::RolesController < ApplicationController
   before_filter :set_role, only: [:show, :update, :destroy, :manage, :edit]
 
   def index
-    @roles = Role.order("id DESC")
+    # @roles = Role.order("id DESC") 
+    @q = Role.ransack(params[:q])
+    @roles = @q.result
     # render json: @roles
   end
 

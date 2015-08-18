@@ -2,8 +2,10 @@ class Api::VesselsController < ApplicationController
   before_filter :set_vessel, only: [:update, :destroy, :edit]
 
   def index
-    @vessels = current_user.department.nil? ? Vessel.all : Vessel.where(department: current_user.department)
+    # @vessels = current_user.department.nil? ? Vessel.all : Vessel.where(department: current_user.department)
     # render json: @vessels
+    @q = Vessel.ransack(params[:q])
+    @vessels = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

@@ -4,8 +4,8 @@
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
       | &nbsp; Request For Quotation Lists
-      / .pull-right
-	     /  = link_to "Create", new_api_rfq_path(step: 1), class: "btn btn-primary"
+      .pull-right
+        = link_to icon_text('arrow-left','Back'), api_rfqs_path(step: 1), title: 'Back', class: 'btn btn-warning'
   .panel-body
     br
     table.table.table-hover.table-striped
@@ -30,7 +30,7 @@
       thead
         th Item
         th Type
-        th U/I
+        th Status
         th Qty
         th Unit Price
         th Total Price
@@ -40,9 +40,17 @@
           tr
             td = rfq_item.item.name
             td = rfq_item.item.item_type
-            td = rfq_item.ui
+            td = rfq_item.is_approved == 't' ? 'Approved' : 'Pending'
             td = rfq_item.quantity
             td = number_to_currency(rfq_item.unit_price, unit: "P ")
             td = number_to_currency(rfq_item.total_price, unit: "P ")  
-            td = link_to icon_text('log-in','Choose Supplier'), choose_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.item_id, step: 1), title: 'Choose Supplier', class: 'btn btn-xs btn-success'
+            td 
+              - if rfq_item.supplier_id == nil
+                - if is_encoder?
+                  = link_to icon_text('log-in','Choose Supplier'), choose_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), title: 'Choose Supplier', class: 'btn btn-xs btn-success'
+              - else
+                - if is_approver?
+                  | &nbsp;
+                  = link_to icon_text('folder-open','View Supplier'), view_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), title: 'View Choose Supplier', class: 'btn btn-xs btn-info'
+
 = render 'add_rfq_item'

@@ -13,6 +13,14 @@
           th Contact Number
           th Owner (Contact Person)
           th Action
+      thead
+        tr
+          th= f.text_field :name, class: 'form_control'
+          th
+          th= f.text_field :name, class: 'form_control'
+          th= f.text_field :name, class: 'form_control'
+
+
       tbody
         - @drivers.each do |driver|
           tr

@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading
+  	h5 Search
+	.panel-body
+		= search_form_for [:api, @q] do |f|
+			br
+			.row
+				.col-xs-5
+					= f.text_field :name_cont, class: 'form-control'
+				.col-xs-1	
+					.input-group
+						input.btn.btn-primary type="submit" value=" Search "
+
+						

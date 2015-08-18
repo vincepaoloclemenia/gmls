@@ -1,0 +1,11 @@
+.row
+	= search_form_for [:api, @q] do |f|
+		br
+		.row
+			.col-xs-4
+				.input-group
+					label Location Name
+					= f.text_field :name_cont, class: 'form-control'
+		br
+		input.btn.btn-primary type="submit" value="Save"
+ 

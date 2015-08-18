@@ -2,7 +2,9 @@ class Api::ToolsController < ApplicationController
   before_filter :set_tool, only: [:show, :update, :destroy, :edit]
 
   def index
-    @tools = Tool.all
+    # @tools = Tool.all
+    @q = Tool.ransack(params[:q])
+    @tools = @q.result
     # render json: @tools
   end
 

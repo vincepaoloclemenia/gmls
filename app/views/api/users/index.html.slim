@@ -15,6 +15,15 @@
           th Gender
           th Age
           th Action
+      = search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :first_name_or_last_name_cont, class: "form-control"
+          th= f.text_field :department_cont, class: "form-control"
+          th= f.text_field :position_cont, class: "form-control"
+          th= f.text_field :gender_cont, class: "form-control"
+          th= f.text_field :age_eq, class: "form-control"
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @users.each do |user|
           tr

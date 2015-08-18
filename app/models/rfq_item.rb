@@ -4,6 +4,7 @@ class RfqItem < ActiveRecord::Base
 
   #relationships
   belongs_to :item
+  belongs_to :supplier
   belongs_to :rfq
   belongs_to :item_location_price
 

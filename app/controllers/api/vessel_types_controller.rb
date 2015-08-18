@@ -2,7 +2,9 @@ class Api::VesselTypesController < ApplicationController
   before_filter :set_vessel_type, only: [:update, :destroy, :edit]
 
   def index
-    @vessel_types = current_user.department.nil? ? VesselType.all : VesselType.where(department: current_user.department)
+    # @vessel_types = current_user.department.nil? ? VesselType.all : VesselType.where(department: current_user.department)
+    @q = VesselType.ransack(params[:q])
+    @vessel_types = @q.result.includes(:vessel_class).paginate(:page => params[:page], :per_page => 10)
     # render json: @vessel_types
   end
 
