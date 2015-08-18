@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810082732) do
+ActiveRecord::Schema.define(version: 20150817090630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,6 +295,7 @@ ActiveRecord::Schema.define(version: 20150810082732) do
     t.string   "approved_logreq",                  default: "Pending"
     t.string   "approved_logreq_response",         default: "Pending"
     t.integer  "assigned_user_breakdown_services"
+    t.string   "pier_docking_location"
   end
 
   add_index "logreqs", ["deleted_at"], name: "index_logreqs_on_deleted_at", using: :btree

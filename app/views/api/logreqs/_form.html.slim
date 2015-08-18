@@ -2,37 +2,35 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Vessel Name
-        = f.select :vessel_id, Vessel.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      label Vessel Name
+      = f.select :vessel_id, Vessel.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Arrival Date
-        = f.text_field :date_of_arrival, class: 'form-control datepicker', required: "required"
+      label Arrival Date
+      = f.text_field :date_of_arrival, class: 'form-control datepicker', required: "required"
     .col-xs-4
-      .input-group
-        label Departure Date
-        = f.text_field :date_of_departure, class: 'form-control datepicker', required: "required"
+      label Departure Date
+      = f.text_field :date_of_departure, class: 'form-control datepicker', required: "required"
   br
   .row  
     .col-xs-4
-      .input-group
-        label Location
-        = f.select :pier, Location.all.map{ |e| [e.name, e.name] }, {include_blank: true }, class: 'form-control', required: "required"
+      label Assigned Employee for Services
+      = f.select :assigned_user_breakdown_services, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+
     .col-xs-4
-      .input-group
-        label Assigned Employee
-        = f.select :user_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+      label Assigned Employee
+      = f.select :user_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-4
-      .input-group
-        label Principal
-        = f.select :principal_id, Principal.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+      label Principal
+      = f.select :principal_id, Principal.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
   br
   .row
-    .col-xs-5
-      .input-group
-        label Assigned Employee For Breakdown Of Services
-        = f.select :assigned_user_breakdown_services, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+    .col-xs-4
+      label Location
+      = f.select :pier, ['Alava Ext.', 'North Rivera', 'South Rivera', 'West Rivera', 'East Rivera'], {include_blank: true }, class: 'form-control', required: "required"
+    .col-xs-4
+      label Docking Number
+      = f.text_field :pier_docking_location, class: 'form-control', required: "required"
+        
   br
   .row
     .col-xs-12

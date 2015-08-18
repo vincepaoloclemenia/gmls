@@ -1,0 +1,41 @@
+.panel.panel-default
+  .panel-heading
+    h4.title-gray-heading
+      span.glyphicon.glyphicon-list
+      | &nbsp; Current List of Ship Berthed
+  .panel-body
+    - @logreqs.each do |logreq|
+      .col-xs-1
+        = image_tag("anchor_image.png", :alt => "GMLS", class: "img-thumbnail", width: 75, height: 75)
+      .col-xs-5
+        p 
+          span.label.label-info Vessel Name 
+          |&nbsp;
+          = logreq.vessel.name
+        p 
+          span.label.label-info Pier
+          |&nbsp;
+          = "#{logreq.pier} (#{logreq.pier_docking_location}) "
+        p 
+          span.label.label-info ETA
+          |&nbsp;
+          = logreq.date_of_arrival.present? ? logreq.date_of_arrival.strftime("%d%^b%y") : ''
+        p 
+          span.label.label-info ETD
+          |&nbsp;
+          = logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%d%^b%y") : ''
+    / br
+    / table.table.table-hover.table-striped
+    /   thead
+    /     tr
+    /       th Vessel Name
+    /       th Pier
+    /       th Date of Arrival
+    /       th Date of Departure
+    /   tbody
+    /     - @logreqs.each do |logreq|
+    /       tr
+    /         td= logreq.vessel.name
+    /         td= "#{logreq.pier} (#{logreq.pier_docking_location}) "
+    /         td= logreq.date_of_arrival.present? ? logreq.date_of_arrival.strftime("%B %d, %Y") : ''
+    /         td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
