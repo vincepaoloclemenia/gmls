@@ -951,3 +951,17 @@ End [Steps Wizard]
   color: #676a6c;
 }
 
+/* LOCATION PAGE*/
+#q_name_cont{
+  display: inline-block;
+  width: 80%;
+  border-radius: 7px 0 0 7px;
+}
+form#location_search {
+    margin-left: 15px;
+}
+#location_search .btn-primary{
+    border-radius: 0 7px 7px 0;
+    vertical-align: top;
+}
+
