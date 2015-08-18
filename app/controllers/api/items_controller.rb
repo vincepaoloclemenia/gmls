@@ -3,7 +3,7 @@ class Api::ItemsController < ApplicationController
    before_filter :set_item_with_eager_load, only: [:show]
 
   def index
-    @items = current_user.department.nil? ? Item.all : Item.where(department: current_user.department)
+    @items = current_user.department.nil? ? Item.all.paginate(:page => params[:page], :per_page => 10) : Item.where(department: current_user.department).paginate(:page => params[:page], :per_page => 10)
     # render json: @items
 
   end
