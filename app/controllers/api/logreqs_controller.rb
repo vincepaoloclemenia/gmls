@@ -139,6 +139,6 @@ class Api::LogreqsController < ApplicationController
   end
     
   def logreq_params
-    params.require(:logreq).permit(:shipname, :entry_date, :information, :department, :logreg_info, :vessel_id, :vessel_class_name, :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id, :approved_logreq, :approved_logreq_response, :assigned_user_breakdown_services)
+    params.require(:logreq).permit(:shipname, :entry_date, :information, :department, :logreg_info, :vessel_id, :vessel_class_name, :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id, :approved_logreq, :approved_logreq_response, :assigned_user_breakdown_services, :pier_docking_location)
   end
 end

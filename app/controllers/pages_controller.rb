@@ -14,4 +14,10 @@ class PagesController < ApplicationController
 		return @item
 
   end
+
+  def dashboard
+    @start_date = Date.today.beginning_of_month
+    @end_date = Date.today.end_of_month
+    @logreqs =  Logreq.where(date_of_arrival: @start_date..@end_date).order('date_of_arrival DESC')
+  end
 end

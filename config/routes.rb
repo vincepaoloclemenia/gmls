@@ -83,6 +83,10 @@ Rails.application.routes.draw do
     resources :drivers
     resources :employers
   end
+
+  #independent pages
+  get 'pages/dashboard', :as => 'dashboard'
+
   #ajax call
   get 'pages/change_subcategory', :as => 'change_subcategory'
   get 'pages/change_item', :as => 'change_item'
