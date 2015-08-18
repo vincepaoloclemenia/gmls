@@ -12,7 +12,6 @@ class PagesController < ApplicationController
   def change_item
   	@item = Item.find params[:item_id]
 		return @item
-
   end
 
   def dashboard
