@@ -3,9 +3,11 @@ class Api::LocationsController < ApplicationController
 
   def index
     # @locations = current_user.department.nil? ? Location.all : Location.where(department: current_user.department)
-    @locations = Location.paginate(:page => params[:page], :per_page => 10)
-    # render json: @locations
-    
+    #with ransack seraching
+
+    @q = Location.ransack(params[:q])
+    @locations = @q.result.paginate(:page => params[:page], :per_page => 10)
+
   end
 
   def create

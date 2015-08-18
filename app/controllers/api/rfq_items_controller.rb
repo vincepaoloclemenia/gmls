@@ -47,6 +47,25 @@ class Api::RfqItemsController < ApplicationController
     redirect_to request.referrer, notice: 'The supplier has been selected.'
   end
 
+  def view_rfq_supplier
+    @rfq = Rfq.find params[:rfq_id]
+    @rfq_item = RfqItem.find params[:rfq_item_id]  
+  end
+
+  def approved_supplier
+    @rfq_item = RfqItem.find params[:rfq_item_id]
+    @rfq_item.update_attributes(:is_approved => 't')
+    # GmlsMailer.send_mail_notification_status_change.deliver
+    redirect_to api_rfq_items_path(rfq_id: @rfq_item.rfq_id, step: 1), notice: 'The supplier for this rfq item has been marked as approved.'
+  end
+
+  def disapproved_supplier
+    @rfq_item = RfqItem.find params[:rfq_item_id]
+    @rfq_item.update_attributes(:is_approved => 'f', supplier_id: nil)
+    # GmlsMailer.send_mail_notification_status_change.deliver
+    redirect_to api_rfq_items_path(rfq_id: @rfq_item.rfq_id, step: 1), alert: 'The supplier for this rfq item has been rejected.'
+  end
+
   private
 
   def set_rfq_item
@@ -54,7 +73,7 @@ class Api::RfqItemsController < ApplicationController
   end
 
   def rfq_item_params
-    params.require(:rfq_item).permit(:rfq_id, :item_id, :ui, :start_date, :end_date, :days, :unit_price, :total_price, :description, :quantity, :name, :item_type, :department, :stat, :item_location_price_id)
+    params.require(:rfq_item).permit(:rfq_id, :item_id, :ui, :start_date, :end_date, :days, :unit_price, :total_price, :description, :quantity, :name, :item_type, :department, :stat, :item_location_price_id, :supplier_id, :is_approved, :is_rejected, :supplier_pricing)
   end
 
 end

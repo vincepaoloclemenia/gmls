@@ -1,8 +1,9 @@
 class Api::LogreqsController < ApplicationController
-  before_filter :set_logreq, only: [:show, :update, :destroy, :show, :edit]
+  before_filter :set_logreq, only: [:show, :update, :destroy, :edit]
 
   def index
-    @logreqs = current_user.department.nil? ? Logreq.all : Logreq.where(department: current_user.department)
+    
+    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
     # render json: @logreqs
   end
 
@@ -11,7 +12,7 @@ class Api::LogreqsController < ApplicationController
     @logreq.department = current_user.department
     if @logreq.save
       # render json: @logreq, status: :created, logreq: [:api, @logreq]
-      GmlsMailer.send_gmls_mailer.deliver
+      GmlsMailer.send_gmls_mailer(@logreq.id, request.url).deliver
       redirect_to api_logreqs_path(step: 1), notice: 'Entry created'
     else
       # render json: { errors: @principal.errors }, status: :unprocessable_entity
@@ -37,11 +38,11 @@ class Api::LogreqsController < ApplicationController
   end
 
   def show
-    render json: @logreq
+    # render json: @logreq
   end
   
   def ship_listings
-    @ship_listings = Logreq.where("user_id is not ?", nil)
+    @ship_listings = Logreq.where("user_id is not ?", nil).order('id DESC')
     respond_to do |format|
       format.html
       format.pdf do
@@ -89,7 +90,7 @@ class Api::LogreqsController < ApplicationController
   def anchorage_billings
     @logreq = Logreq.find params[:logreq_id]
     @delivery_lists = IncidentalQuote.where(logreq_id: params[:logreq_id]).pluck(:id)
-    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists)
+    @delivery_reports = IncidentalItem.where(incidental_quote_id: @delivery_lists).order('id DESC')
     respond_to do |format|
       format.html
       format.pdf do
@@ -102,6 +103,35 @@ class Api::LogreqsController < ApplicationController
     end
   end
 
+  def approved_logreq
+    @logreq = Logreq.find params[:logreq_id]
+    @logreq.update_attributes(:approved_logreq => 'Approved')
+    # GmlsMailer.send_mail_notification_status_change.deliver
+    redirect_to request.referrer, alert: 'The logistic requirement has been marked as Approved.'
+  end
+
+  def view_logreq
+    @logreq = Logreq.find params[:logreq_id]
+  end
+
+  def assigned_user_breakdown_service_form
+    @logreq = Logreq.find params[:li]
+  end
+
+  def assigned_user_breakdown_services
+    raise
+    @logreq = Logreq.find params[:li]
+    @logreq.update_attributes(:assigned_user_breakdown_services => params[:logreq][:assigned_user_breakdown_services])
+    # GmlsMailer.send_mail_notification_status_change(params[]).deliver
+    redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
+  end
+  
+# def approved
+#     @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])
+#     @incidental_quote.update_attributes(:status => 'Approved')
+#     GmlsMailer.send_mail_notification_status_change.deliver
+#     redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
+#   end
   private
 
   def set_logreq
@@ -109,6 +139,6 @@ class Api::LogreqsController < ApplicationController
   end
     
   def logreq_params
-    params.require(:logreq).permit(:shipname, :entry_date, :information, :department, :logreg_info, :vessel_id, :vessel_class_name, :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id)
+    params.require(:logreq).permit(:shipname, :entry_date, :information, :department, :logreg_info, :vessel_id, :vessel_class_name, :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id, :approved_logreq, :approved_logreq_response, :assigned_user_breakdown_services)
   end
 end

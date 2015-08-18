@@ -21,8 +21,10 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootsy'
 gem 'rails4-autocomplete'
 gem 'will_paginate-bootstrap'
+gem 'ransack'
 
 group :development do
+  gem 'railroady'
   gem 'byebug'
   gem 'quiet_assets'
   gem 'better_errors'

@@ -421,7 +421,7 @@ input:required:valid {
 #nav-side-bar .brand img {
   max-width: 100%;
   height: auto;
-  width: auto\9; /* ie8 */
+  width: auto; /* ie8 */
 }
 
 #nav-side-bar li span{
@@ -474,7 +474,7 @@ input:required:valid {
   /**/color:#fafafa;
 }
 .menu-list li a:active {
-    color: #666;
+    color: #FAFAFA;
 }
 .menu-list li a {
     display: block;

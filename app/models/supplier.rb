@@ -7,6 +7,7 @@ class Supplier < ActiveRecord::Base
   has_many :purchase_orders
   belongs_to :supplier_category
   belongs_to :location
+  has_many :rfq_items
 
 
   #validations

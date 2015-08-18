@@ -52,7 +52,7 @@
         - @incidental_items.each do |incidental_item|
           tr
             td = incidental_item.item.name
-            td = incidental_item.location.name
+            td = incidental_item.location_id.nil? ? '' : incidental_item.location.name
             td = incidental_item.price
             td = incidental_item.remarks
             td.text-center = link_to icon_text('trash', ''), exclude_incidental_item_api_incidental_items_path(li: params[:li], step: 2, incidental_item_id: incidental_item.id, incidental_quote_id: params[:incidental_quote_id]), class: "btn btn-danger btn-xs"

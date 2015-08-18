@@ -2,7 +2,7 @@ class Api::RolesController < ApplicationController
   before_filter :set_role, only: [:show, :update, :destroy, :manage, :edit]
 
   def index
-    @roles = current_user.department.nil? ? Role.all : Role.where(department: current_user.department)
+    @roles = Role.order("id DESC")
     # render json: @roles
   end
 
@@ -50,6 +50,6 @@ class Api::RolesController < ApplicationController
   end
     
   def role_params
-    params.require(:role).permit(:id, :role_name, :description, :department)
+    params.require(:role).permit(:id, :role_name, :description, :department, :access_level)
   end
 end
