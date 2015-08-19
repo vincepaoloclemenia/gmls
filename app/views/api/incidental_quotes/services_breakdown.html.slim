@@ -26,14 +26,14 @@
           td colspan="2" &nbsp;
     br
     .pull-right
-        = link_to "Add Services", new_api_incidental_item_path(li: @logreq.id, step: 2), class: "btn btn-primary"
+        = link_to "Add Service", new_api_incidental_item_path(li: @logreq.id, step: 2), class: "btn btn-primary"
     br
     br
     table.table
       thead
         - @service_ids.each do |serv|
           tr
-            td.bold-text.info colspan="5" = service_name(serv)
+            td.bold-text.info colspan="5" = serv.nil? ? '' : service_name(serv)
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr
