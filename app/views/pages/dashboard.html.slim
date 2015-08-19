@@ -6,12 +6,11 @@
   .panel-body
     - @logreqs.each do |logreq|
       .col-xs-6.ships
-        .col-xs-3
-          = image_tag("anchor_image.png", :alt => "GMLS", class: "img-thumbnail", width: 75, height: 75)
-        .col-xs-9
-          p.ship-list
-            .label.label-default 
-              = logreq.vessel.name
+        .col-xs-4
+          = image_tag("ShipIcon.png", :alt => "GMLS", class: "img-thumbnail")
+        .col-xs-8
+          p.ship-list.label.label-default 
+            = logreq.vessel.name
           .ship-list  
             .label.label-info 
               span Pier
