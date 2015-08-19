@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
-  root to: 'api/locations#index'
+  root to: 'pages#dashboard'
   namespace :api do
     resources :locations
     resources :roles
