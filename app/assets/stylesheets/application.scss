@@ -386,6 +386,7 @@ input:required:valid {
 
 #administration ul li a{
   padding-left: 40px;
+  font-size: 12px;
 }
 
 #content-wrapper{
@@ -446,7 +447,7 @@ input:required:valid {
   padding: 0;
   list-style: none;
   margin-top: 30px;
-  min-height: 718px;
+  min-height: 800px;
   max-height: none !important;
 }
 
@@ -966,14 +967,22 @@ form#location_search {
 }
 
 /* DASHBOARD */
-.ship-list p{
-  display: inline-block;
-}
 .ship-list .label{
-  width: 28%;
+  width: 15%;
   float: left;
   margin-right: 5px;
 }
 .ships{
-  margin: 10px 0
+  margin: 10px 0;
+  min-height: 120px;
+}
+.ships .label-default{
+  font-size: 12px;
+  text-transform: uppercase;
+}
+p.ship-list.label.label-default {
+  float: left;
+  width: 100%;
+  text-align: center;
+  white-space: normal;
 }
