@@ -23,4 +23,4 @@
             td= ship_listing.date_of_arrival.present? ? ship_listing.date_of_arrival.strftime("%B %d, %Y") : ''
             td= ship_listing.date_of_departure.present? ? ship_listing.date_of_departure.strftime("%B %d, %Y") : ''
             td= ship_listing.pier
-            td= ship_listing.user.full_name
+            td= ship_listing.user.nil? ? '' : ship_listing.user.full_name
