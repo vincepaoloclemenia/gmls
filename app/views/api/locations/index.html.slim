@@ -19,7 +19,7 @@
         tr=  search_form_for [:api, @q] do |f|
           th= f.text_field :name_cont, class: 'form-control'
           th
-            input.btn.btn-primary type="submit" value="Save"
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @locations.each do |location|
           tr
