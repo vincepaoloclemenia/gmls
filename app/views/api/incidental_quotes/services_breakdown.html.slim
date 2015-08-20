@@ -26,20 +26,21 @@
           td colspan="2" &nbsp;
     br
     .pull-right
-        = link_to "Add Service", new_api_incidental_item_path(li: @logreq.id, step: 2), class: "btn btn-primary"
+      = link_to "Add Service", new_api_incidental_item_path(li: @logreq.id, step: 2), class: "btn btn-primary"
     br
     br
     table.table
       thead
         - @service_ids.each do |serv|
           tr
-            td.bold-text.info colspan="5" = serv.nil? ? '' : service_name(serv)
+            td.bold-text.info colspan="6" = serv.nil? ? '' : service_name(serv)
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr
-                td
+                td = incidental_item.id
                 td = incidental_item.item.name
                 td = incidental_item.quantity
                 td = incidental_item.unit
                 td = incidental_item.tariff_code
-        
+                td
+                  = link_to icon_text('trash', ''), api_incidental_item_path(incidental_item), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
