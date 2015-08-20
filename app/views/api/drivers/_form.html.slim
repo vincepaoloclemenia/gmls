@@ -2,17 +2,17 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Driver Name
-        = f.text_field :name, class: 'form-control', required: "required"
+      //.input-group
+      label Driver Name
+      = f.text_field :name, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Contact Number
-        = f.text_field :contact_no, class: 'form-control', required: "required"
+      //.input-group
+      label Contact Number
+      = f.text_field :contact_no, class: 'form-control', required: "required"
     .col-xs-4
-      .input-group
-        label Employer
-        = f.select :employer_id, Employer.all.map{ |e| [e.owner_contact_person, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      //.input-group
+      label Employer
+      = f.select :employer_id, Employer.all.map{ |e| [e.owner_contact_person, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
   br      
   br
   input.btn.btn-primary type="submit" value="Save"
