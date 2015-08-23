@@ -27,4 +27,6 @@
               = link_to icon_text('pencil', ''), edit_api_sub_category_path(sub_category), title: 'View', class: 'btn btn-xs btn-warning'
               | &nbsp;
               = link_to icon_text('trash', ''), api_sub_category_path(sub_category), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
-
+      tfoot
+        tr.text_center.small-text11.bold-text
+          td colspan="6" = will_paginate @vehicles, renderer: BootstrapPagination::Rails

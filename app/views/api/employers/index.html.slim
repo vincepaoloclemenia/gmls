@@ -12,13 +12,11 @@
           th Owner / Contact Person Name
           th Contact Number
           th Action
-      / thead
-      /   = search_form_for [:api, @q] do |f|
-      /     tr
-      /       th= f.text_field :owner_contact_person_cont_any, class: 'form_control'
-      /       th= f.text_field :mobile_no_cont_any, class: 'form_control'
-      /       th
-      /         input.btn.btn-primary value='submit' value="Search"
+        tr= search_form_for [:api, @q] do |f|
+            th= f.text_field :owner_contact_person_cont_any, class: 'form-control'
+            th= f.text_field :mobile_no_cont_any, class: 'form-control'
+            th
+              input.btn.btn-primary type="submit" value="search"
       tbody
         - @employers.each do |employer|
           tr
@@ -28,4 +26,7 @@
               = link_to icon_text('pencil', ''), edit_api_employer_path(employer), title: 'View', class: 'btn btn-xs btn-warning'
               | &nbsp;
               = link_to icon_text('trash', ''), api_employer_path(employer), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+      tfoot
+        tr.text-center.small-text11.bold-text
+          td colspan="6" = will_paginate @vehicles, renderer: BootstrapPagination::Rails 
 

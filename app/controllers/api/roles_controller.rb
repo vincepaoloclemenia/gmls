@@ -4,7 +4,7 @@ class Api::RolesController < ApplicationController
   def index
     # @roles = Role.order("id DESC") 
     @q = Role.ransack(params[:q])
-    @roles = @q.result
+    @roles = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @roles
   end
 

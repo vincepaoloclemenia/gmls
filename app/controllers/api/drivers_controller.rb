@@ -35,8 +35,7 @@ class Api::DriversController < ApplicationController
     redirect_to api_drivers_path, notice: 'Entry successfully deleted'
   end
 
-  private
-
+  private 
   def set_driver
     @driver = Driver.find(params[:id])
   end
