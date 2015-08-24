@@ -66,7 +66,8 @@ class Api::LogreqsController < ApplicationController
   end
 
   def delivery_reports
-    @logreqs = Logreq.all
+    index
+
   end
 
   def delivery_lists
@@ -129,7 +130,7 @@ class Api::LogreqsController < ApplicationController
     @logreq = Logreq.find params[:li]
     @logreq.update_attributes(:assigned_user_breakdown_services => params[:logreq][:assigned_user_breakdown_services])
     # GmlsMailer.send_mail_notification_status_change(params[]).deliver
-    redirect_to request.referrer, alert: 'The quotation has been marked as Approved.'
+    redirect_to request.referrer, alert: 'The quotation has                                                                                                                                                                                                                                                                                                   been marked as Approved.'
   end
   
 # def approved
