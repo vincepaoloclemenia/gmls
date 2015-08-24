@@ -3,7 +3,8 @@ class Api::DriversController < ApplicationController
 
   def index
     # @drivers = current_user.department.nil? ? Driver.all : Driver.where(department: current_user.department)
-    @drivers = Driver.all
+    @q = Driver.ransack(params[:q])
+    @drivers = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

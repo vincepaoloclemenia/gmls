@@ -3,8 +3,9 @@ class Api::UsersController < ApplicationController
 
   def index
     # @users = current_user.department.nil? ? User.all : User.where(department: current_user.department)
-    @users = User.all
     # render json: @users
+    @q = User.ransack(params[:q])
+    @users = @q.result
   end
 
   def create

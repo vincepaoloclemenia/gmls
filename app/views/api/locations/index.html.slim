@@ -5,15 +5,20 @@
       | &nbsp;Locations List
       = link_to "Create", new_api_location_path, class: "btn btn-primary pull-right"
   .panel-body
-    = render 'search_locations'
+    br
     br
     table.table.table-hover.table-striped
       thead
         tr
-          th = sort_link(@q, :name)
+          th Name
+          / th= sort_link(@q, :name, "Name")
           / th Region
           / th Address
           th Action
+        tr=  search_form_for [:api, @q] do |f|
+          th= f.text_field :name_cont, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @locations.each do |location|
           tr
@@ -27,4 +32,3 @@
       tfoot
         tr.text-center.small-text11.bold-text
           td colspan="2" = will_paginate @locations, renderer: BootstrapPagination::Rails
-

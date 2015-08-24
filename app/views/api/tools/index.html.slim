@@ -13,6 +13,13 @@
           th Quantity
           th Unit
           th Action
+        = search_form_for [:api, @q] do |f|
+          tr
+            th= f.text_field :name_cont, class: "form-control"
+            th= f.text_field :quantity_eq, class: "form-control"
+            th= f.text_field :unit_cont, class: "form-control"
+            th
+              input.btn.btn-primary type="submit" value="Search"
       tbody
         - @tools.each do |tool|
           tr

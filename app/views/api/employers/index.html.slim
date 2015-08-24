@@ -12,6 +12,13 @@
           th Owner / Contact Person Name
           th Contact Number
           th Action
+      / thead
+      /   = search_form_for [:api, @q] do |f|
+      /     tr
+      /       th= f.text_field :owner_contact_person_cont_any, class: 'form_control'
+      /       th= f.text_field :mobile_no_cont_any, class: 'form_control'
+      /       th
+      /         input.btn.btn-primary value='submit' value="Search"
       tbody
         - @employers.each do |employer|
           tr

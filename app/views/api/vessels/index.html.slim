@@ -15,6 +15,15 @@
           th Type Of Vessel
           th Type Of Service
           th Action
+      = search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :name_cont, class: "form-control"
+          th= f.text_field :flag_of_registry_cont, class: "form-control"
+          th= f.text_field :owner_operator_cont, class: "form-control"
+          th= f.text_field :vessel_type_name_cont, class: "form-control"
+          th= f.text_field :type_of_service_cont, class: "form-control"
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @vessels.each do |vessel|
           tr

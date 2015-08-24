@@ -1,7 +1,7 @@
 = form_for [:api, @user], html: { class: '' } do |f| 
   br
   .row
-    .col-xs-4
+    .col-xs-
       //input-group
       label Role
       = f.select :role_id, Role.all.map{ |e| [e.role_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
@@ -16,9 +16,8 @@
   br
   .row
     .col-xs-4
-      .input-group
-        label Department
-        = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
+      label Department
+      = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
     .col-xs-4
       //input-group
       label Position

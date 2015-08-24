@@ -53,7 +53,7 @@ class Api::IncidentalItemsController < ApplicationController
 
   def destroy
     @incidental_item.destroy
-    redirect_to api_incidental_items_path(incidental_quote_id: params[:incidental_quote_id], step: 2), notice: 'Entry successfully deleted'
+    redirect_to request.referrer, notice: 'Entry successfully deleted'
   end
 
   def choose_supplier

@@ -14,6 +14,14 @@
           th Email
           th Point of Contact
           th Action
+      thead= search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :name_cont, class: 'form-control'
+          th= f.text_field :contact_number_cont, class: 'form-control'
+          th= f.text_field :email_cont, class: 'form-control'
+          th= f.text_field :point_of_contact_cont, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @principals.each do |principal|
           tr

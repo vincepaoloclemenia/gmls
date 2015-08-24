@@ -2,7 +2,9 @@ class Api::SupplierPricingDetailsController < ApplicationController
   before_action :set_supplier_pricing_detail, only: [:show, :edit, :update, :destroy, :edit]
 
   def index
-    @supplier_pricing_details = SupplierPricingDetail.all
+    # @supplier_pricing_details = SupplierPricingDetail.all
+    @q = SupplierPricingDetail.ransack(params[:q])
+    @supplier_pricing_details = @q.result.includes(:supplier, :service, :item, :incidental_items)
   end
 
   def create

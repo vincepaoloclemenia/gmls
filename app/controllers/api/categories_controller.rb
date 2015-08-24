@@ -2,7 +2,9 @@ class Api::CategoriesController < ApplicationController
   before_filter :set_category, only: [:show, :update, :destroy, :edit]
 
   def index
-    @categories = current_user.department.nil? ? Category.all : Category.where(department: current_user.department)
+    # @categories = current_user.department.nil? ? Category.all : Category.where(department: current_user.department)
+    @q = Category.ransack(params[:q])
+    @categories = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @categories
   end
 

@@ -3,8 +3,10 @@ class Api::EmployersController < ApplicationController
 
   def index
     # @employers = current_user.department.nil? ? Employer.all : Employer.where(department: current_user.department)
-    @employers = Employer.all
+    # @q = Employer.ransack(params[:q])
+    # @employers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @employers
+    @employers = Employer.all
   end
 
   def create

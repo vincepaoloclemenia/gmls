@@ -16,6 +16,13 @@
           th width="15%" Telephone Number
           th width="20%" Email
           th width="10%" Action
+      = search_form_for [:api, @q] do |f|
+        tr
+          th= f.text_field :name_cont, class: "form-control"
+          th= f.text_field :telephone_number_cont_any, class: "form-control"
+          th= f.text_field :email_cont, class: "form-control"
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @suppliers.each do |supplier|
           tr
