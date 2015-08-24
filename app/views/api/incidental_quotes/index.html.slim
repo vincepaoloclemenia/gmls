@@ -16,6 +16,13 @@
           th Date of Departure
           th Pier
           th Action
+        tr= search_form_for [:api, @q], url: api_incidental_quotes_path(params.merge(step: 2)), method: 'get' do |f|
+          th= f.text_field :vessel_name_cont, class: 'form-control'
+          th= f.text_field :date_of_arrival_gteq, class: 'form-control'
+          th= f.text_field :date_of_departure_lteq, class: 'form-control'
+          th= f.text_field :pier_cont_any, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @logreqs.each do |logreq|
           tr

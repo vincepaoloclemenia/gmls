@@ -2,8 +2,14 @@ class Api::LogreqsController < ApplicationController
   before_filter :set_logreq, only: [:show, :update, :destroy, :edit]
 
   def index
-    
-    @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
+    if params[:q].nil?
+      params[:q] = {}
+      params[:q][:date_of_arrival_gteq] = ""
+      params[:q][:date_of_departure_lteq] = ""
+    end
+    @q = Logreq.ransack(params[:q])
+    @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
+    # @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
     # render json: @logreqs
   end
 
