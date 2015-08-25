@@ -6,29 +6,31 @@
       = link_to "Create", new_api_driver_path, class: "btn btn-primary pull-right"
   .panel-body
     br
-    table.table.table-hover.table-striped
-      thead
-        tr
-          th Driver Name
-          th Contact Number
-          th Owner (Contact Person)
-          th Action
-      thead
-        tr
-          th= f.text_field :name, class: 'form_control'
-          th
-          th= f.text_field :name, class: 'form_control'
-          th= f.text_field :name, class: 'form_control'
-
-
-      tbody
-        - @drivers.each do |driver|
+    = search_form_for [:api, @q] do |f|
+      table.table.table-hover.table-striped
+        thead
           tr
-            td= driver.name
-            td= driver.contact_no
-            td= driver.employer.owner_contact_person
-            td
-              = link_to icon_text('pencil', ''), edit_api_driver_path(driver), title: 'View', class: 'btn btn-xs btn-warning'
-              | &nbsp;
-              = link_to icon_text('trash', ''), api_driver_path(driver), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+            th= sort_link(@q, :name, 'Driver Name', default: :desc)
+            th= sort_link(@q, :contact_no, 'Contact Number', default: :desc)
+            th= sort_link(@q, :employer_owner_contact_person_cont, 'Owner (Contact Person)', default: :desc)
+            th Action
+          tr
+            th= f.text_field :name_cont, class: 'form-control'
+            th= f.text_field :contact_no_cont_any, class: 'form-control'
+            th= f.text_field :employer_owner_contact_person_cont, class: 'form-control'
+            th
+              input.btn.btn-primary type="submit" value="Search"
+        tbody
+          - @drivers.each do |driver|
+            tr
+              td= driver.name
+              td= driver.contact_no
+              td= driver.employer.owner_contact_person
+              td
+                = link_to icon_text('pencil', ''), edit_api_driver_path(driver), title: 'View', class: 'btn btn-xs btn-warning'
+                | &nbsp;
+                = link_to icon_text('trash', ''), api_driver_path(driver), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+        tfoot
+          tr.text-center.small-text11.bold-text
+            td colspan="6" = will_paginate @drivers, renderer: BootstrapPagination::Rails
 

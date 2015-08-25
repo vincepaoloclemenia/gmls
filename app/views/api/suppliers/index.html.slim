@@ -6,36 +6,37 @@
       = link_to "Create", new_api_supplier_path, class: "btn btn-primary pull-right"
   .panel-body
     br
-    table.table.table-hover.table-striped
-      thead
-        tr
-          th width="35%" Name
-          / th Category
-          / th width="20%" Location
-          / th Mobile Number
-          th width="15%" Telephone Number
-          th width="20%" Email
-          th width="10%" Action
-      = search_form_for [:api, @q] do |f|
-        tr
-          th= f.text_field :name_cont, class: "form-control"
-          th= f.text_field :telephone_number_cont_any, class: "form-control"
-          th= f.text_field :email_cont, class: "form-control"
-          th
-            input.btn.btn-primary type="submit" value="Search"
-      tbody
-        - @suppliers.each do |supplier|
+    = search_form_for [:api, @q] do |f|
+      table.table.table-hover.table-striped
+        thead
           tr
-            td= supplier.name
-            / td= supplier.supplier_category.name
-            / td= supplier.location.name
-            / td= supplier.mobile_number
-            td= supplier.telephone_number
-            td= supplier.email
-            td
-              = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), title: 'View', class: 'btn btn-xs btn-warning'
-              | &nbsp;
-              = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
-      tfoot
-        tr.text-center.small-text11.bold-text
-          td colspan="4" = will_paginate @suppliers, renderer: BootstrapPagination::Rails
+            th width="35%" = sort_link(@q, :name, 'Name', default: :desc)
+            / th Category
+            / th width="20%" Location
+            / th Mobile Number
+            th width="15%" = sort_link(@q, :telephone_number, 'Telephone Number', default: :desc)
+            th width="20%" = sort_link(@q, :email, 'Email', default: :desc)
+            th width="10%" Action
+        = search_form_for [:api, @q] do |f|
+          tr
+            th= f.text_field :name_cont, class: "form-control"
+            th= f.text_field :telephone_number_cont_any, class: "form-control"
+            th= f.text_field :email_cont, class: "form-control"
+            th
+              input.btn.btn-primary type="submit" value="Search"
+        tbody
+          - @suppliers.each do |supplier|
+            tr
+              td= supplier.name
+              / td= supplier.supplier_category.name
+              / td= supplier.location.name
+              / td= supplier.mobile_number
+              td= supplier.telephone_number
+              td= supplier.email
+              td
+                = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), title: 'View', class: 'btn btn-xs btn-warning'
+                | &nbsp;
+                = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+        tfoot
+          tr.text-center.small-text11.bold-text
+            td colspan="6" = will_paginate @suppliers, renderer: BootstrapPagination::Rails

@@ -38,7 +38,7 @@
                 = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Services Breakdown', class: 'btn btn-xs btn-info'
       tfoot
         tr.text-center.small-text11.bold-text
-          td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails
+          td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails
 javascript:
   $(document).ready(function(){
     $('.datepicker').datepicker({format: 'MM d, yyyy'});

@@ -7,7 +7,7 @@ class Api::EmployersController < ApplicationController
     # @employers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @employers
     @q = Employer.ransack(params[:q])
-    @employers = @q.result.paginate(:page => params[:page], :per_page => 5)
+    @employers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # @employers = Employer.all
   end
 
