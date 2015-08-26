@@ -58,6 +58,16 @@ class Api::PurchaseOrdersController < ApplicationController
     @supplier = Supplier.find params[:supplier_id]
   end
 
+  def rfq_purchase_order
+    @list_rfqs = Rfq.all
+  end
+
+  def rfq_build_po
+    @rfq = Rfq.find params[:rfq_id]
+    @list_suppliers = RfqItem.where(rfq_id: @rfq.id).distinct.pluck(:supplier_id)
+    @rfq_items = RfqItem.where(rfq_id: @rfq.id)
+  end
+
   private
 
   def set_purchase_order

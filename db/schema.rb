@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817090630) do
+ActiveRecord::Schema.define(version: 20150824052852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -492,6 +492,7 @@ ActiveRecord::Schema.define(version: 20150817090630) do
     t.boolean  "is_awarded",              default: false
     t.integer  "monitoring_officer_id"
     t.integer  "requirements_officer_id"
+    t.string   "current_status",          default: "f"
   end
 
   add_index "rfqs", ["deleted_at"], name: "index_rfqs_on_deleted_at", using: :btree

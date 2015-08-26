@@ -107,6 +107,11 @@ module ApplicationHelper
       return @officer.full_name
     end
   end
+
+  def supplier_name(supplier_id)
+    @supplier = Supplier.find supplier_id
+    @supplier.name
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

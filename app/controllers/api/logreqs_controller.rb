@@ -119,7 +119,6 @@ class Api::LogreqsController < ApplicationController
   end
 
   def assigned_user_breakdown_services
-    raise
     @logreq = Logreq.find params[:li]
     @logreq.update_attributes(:assigned_user_breakdown_services => params[:logreq][:assigned_user_breakdown_services])
     # GmlsMailer.send_mail_notification_status_change(params[]).deliver

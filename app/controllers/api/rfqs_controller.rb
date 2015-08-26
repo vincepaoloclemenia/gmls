@@ -48,6 +48,17 @@ class Api::RfqsController < ApplicationController
     @rfqs = current_user.department.nil? ? Rfq.all : Rfq.where(department: current_user.department)
   end
 
+  def display_full_info
+    @rfq = Rfq.find(params[:id])
+    @rfq_items = RfqItem.where(rfq_id: @rfq.id)
+  end
+
+  def final_approval
+    @rfq = Rfq.find params[:id]
+    @rfq.update_attributes(:current_status => 't')
+    redirect_to delegation_summary_api_rfqs_path(step: 2), notice: 'This RFQ has been approved.'
+  end
+
   private
 
   def set_rfq
