@@ -4,7 +4,7 @@ class Api::SupplierPricingDetailsController < ApplicationController
   def index
     # @supplier_pricing_details = SupplierPricingDetail.all
     @q = SupplierPricingDetail.ransack(params[:q])
-    @supplier_pricing_details = @q.result.includes(:supplier, :service, :item, :incidental_items)
+    @supplier_pricing_details = @q.result.includes(:supplier, :service, :item, :incidental_items).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
@@ -32,7 +32,7 @@ class Api::SupplierPricingDetailsController < ApplicationController
     @supplier_pricing_detail = SupplierPricingDetail.new
   end
 
-  def destroy
+  def destro0
     @supplier_pricing_detail.destroy
     redirect_to api_supplier_pricing_details_path, notice: 'Entry successfully deleted'
   end

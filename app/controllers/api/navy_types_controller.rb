@@ -4,7 +4,7 @@ class Api::NavyTypesController < ApplicationController
   def index
     # @navy_types = current_user.department.nil? ? NavyType.all : NavyType.where(department: current_user.department)
     @q = NavyType.ransack(params[:q])
-    @navy_types = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @navy_types = @q.result.paginate(:page => (params[:page]), :per_page => 10)
     # render json: @navy_types
   end
 

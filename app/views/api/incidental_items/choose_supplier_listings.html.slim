@@ -13,6 +13,12 @@
           th Date
           th Company
           th Action
+        tr= search_form_for [:api, @q], url: request.path, method: 'get' do |f|
+          th= f.text_field :quotation_no_eq, class: 'form-control'
+          th= f.text_field :updated_at_eq, class: 'form-control'
+          th= f.text_field :company_cont, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @incidental_quotes.each do |incidental_quote|
           tr
@@ -22,3 +28,6 @@
             td
               - if count_incidental_items(incidental_quote.id) != 0
                 = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs"
+      tfoot
+        tr.text-center.small-text.bold-text
+          td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails

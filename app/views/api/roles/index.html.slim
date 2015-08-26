@@ -27,4 +27,7 @@
               = link_to icon_text('pencil', ''), edit_api_role_path(role), title: 'View', class: 'btn btn-xs btn-warning'
               | &nbsp;
               = link_to icon_text('trash', ''), api_role_path(role), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+      tfoot
+        tr.text-center.small-text11.bold-text
+          td colspan="6" = will_paginate @roles, renderer: BootstrapPagination::Rails
 

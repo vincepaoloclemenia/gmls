@@ -2,8 +2,10 @@ class Api::IncidentalQuotesController < ApplicationController
   before_filter :set_incidental_quote, only: [:update, :destroy, :display_data, :edit]
 
   def index
+    @q = Logreq.ransack(params[:q])
+    # @incidental_quotes = @q.result.includes(:logreq, :vessel)
     # @incidental_quotes = current_user.department.nil? ? IncidentalQuote.all : IncidentalQuote.where(department: current_user.department)
-    @logreqs =    .role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
+    @logreqs =  current_user.role.access_level == 'Approver' ? @q.result.includes(:vessel).order('id DESC') : @q.result.includes(:vessel).where(user_id: current_user.id).order('id DESC').paginate(:page => params[:page], :per_page => 10)
     # @logreq_responses = LogreqResponse.where(logreq_id: @logreq.id)
     # @incidental_quotes = IncidentalQuote.where(logreq_id: @logreq.id)
     # render json: @incidental_quotes

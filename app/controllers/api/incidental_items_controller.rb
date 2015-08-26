@@ -69,7 +69,8 @@ class Api::IncidentalItemsController < ApplicationController
   end
 
   def choose_supplier_listings
-    @incidental_quotes = IncidentalQuote.all
+    @q = IncidentalQuote.ransack(params[:q])
+    @incidental_quotes = @q.result.paginate(:page => (params[:page]), :per_page => 10)
   end
 
   def list_supplier_per_items
