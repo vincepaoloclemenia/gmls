@@ -2,8 +2,6 @@ class Api::VehiclesController < ApplicationController
   before_filter :set_vehicle, only: [:show, :update, :destroy, :edit]
 
   def index
-    # @vehicles = Vehicle.all
-    # render json: @vehicles
     # inclusion of ransack
     @q = Vehicle.ransack(params[:q])
     @vehicles = @q.result.includes(:employer, :driver).paginate(:page => params[:page], :per_page => 10)

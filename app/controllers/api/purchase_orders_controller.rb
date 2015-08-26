@@ -2,7 +2,13 @@ class Api::PurchaseOrdersController < ApplicationController
   before_filter :set_purchase_order, only: [:show, :update, :destroy, :edit]
 
   def index
-    @purchase_orders = current_user.department.nil? ? PurchaseOrder.all : PurchaseOrder.where(department: current_user.department)
+    if params[:q].nil?
+      params[:q] = {}
+      params[:q][:date_created_eq] = ""
+      params[:q][:delivery_date_eq] = ""
+    end
+    @q = PurchaseOrder.ransack(params[:q])
+    @purchase_orders = current_user.department.nil? ? @q.result.includes(:supplier) : @q.result.includes(:supplier).where(department: current_user.department)
   end
 
   def create
@@ -56,6 +62,16 @@ class Api::PurchaseOrdersController < ApplicationController
 
   def edit
     @supplier = Supplier.find params[:supplier_id]
+  end
+
+  def rfq_purchase_order
+    @list_rfqs = Rfq.all
+  end
+
+  def rfq_build_po
+    @rfq = Rfq.find params[:rfq_id]
+    @list_suppliers = RfqItem.where(rfq_id: @rfq.id).distinct.pluck(:supplier_id)
+    @rfq_items = RfqItem.where(rfq_id: @rfq.id)
   end
 
   private

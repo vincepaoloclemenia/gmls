@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     # @users = current_user.department.nil? ? User.all : User.where(department: current_user.department)
     # render json: @users
     @q = User.ransack(params[:q])
-    @users = @q.result
+    @users = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

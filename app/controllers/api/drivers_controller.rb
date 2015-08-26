@@ -4,7 +4,7 @@ class Api::DriversController < ApplicationController
   def index
     # @drivers = current_user.department.nil? ? Driver.all : Driver.where(department: current_user.department)
     @q = Driver.ransack(params[:q])
-    @drivers = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @drivers = @q.result.includes(:employer).paginate(:page => (params[:page]), :per_page => 10)
   end
 
   def create
@@ -35,8 +35,7 @@ class Api::DriversController < ApplicationController
     redirect_to api_drivers_path, notice: 'Entry successfully deleted'
   end
 
-  private
-
+  private 
   def set_driver
     @driver = Driver.find(params[:id])
   end

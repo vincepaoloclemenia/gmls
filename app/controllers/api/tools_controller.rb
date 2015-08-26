@@ -4,7 +4,7 @@ class Api::ToolsController < ApplicationController
   def index
     # @tools = Tool.all
     @q = Tool.ransack(params[:q])
-    @tools = @q.result
+    @tools = @q.result.paginate(:page => (params[:page]), :per_page => 10)
     # render json: @tools
   end
 

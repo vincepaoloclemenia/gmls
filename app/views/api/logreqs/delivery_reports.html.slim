@@ -11,20 +11,35 @@
     table.table.table-hover.table-striped
       thead
         tr
-          th Encoded Number
+          / th Encoded Number
           th Vessel Name
           th Date of Arrival
           th Date of Departure
           th Pier
           th Action
+        tr= search_form_for [:api, @q], url: request.path, action: "POST" do |f|
+          / th
+          th= f.text_field :vessel_name_cont_any, class: 'form-control'
+          th= f.text_field :date_of_arrival_gteq, class: 'form-control datepicker', value: params["q"]["date_of_arrival_gteq"]
+          th= f.text_field :date_of_departure_lteq, class: 'form-control datepicker', value: params["q"]["date_of_departure_lteq"]
+          th= f.text_field :pier_cont, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @logreqs.each do |logreq|
           tr
-            td= "000"+"#{logreq.id}"
+            / td= "000"+"#{logreq.id}"
             td= logreq.vessel.name
             td= logreq.date_of_arrival.present? ? logreq.date_of_arrival.strftime("%B %d, %Y") : ''
             td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
             td= logreq.pier
             td
               = link_to "View Delivery Breakdown", delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Delivery Breakdown"
+      tfoot
+        tr.text-center.small-text11.bold-text
+          td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'MM d, yyyy'});
+  });
               

@@ -13,6 +13,14 @@
         th Delivery Date
         th Prepared By
         th Action
+      tr= search_form_for [:api, @q] do |f|
+        th= f.text_field :supplier_name_eq, class: 'form-control'
+        th= f.text_field :date_created_eq, class: 'form-control datepicker', value: params["q"]["date_created_eq"]
+        th= f.text_field :delivery_date_eq, class: 'form-control datepicker', value: params["q"]["delivery_date_eq"]
+        th= f.text_field :supplier_name_eq, class: 'form-control'
+        th
+          input.btn.btn-primary type='submit' value="Search"
+
       - @purchase_orders.each do |purchase_order|
         tr
           td = purchase_order.supplier.name
@@ -25,5 +33,8 @@
             = link_to icon_text('trash', ''), api_purchase_order_path(purchase_order), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
             | &nbsp;
             = link_to "Print PDF Form", api_purchase_order_path(purchase_order, format: 'pdf'), title: 'Display PDF', class: 'btn btn-xs btn-info'
-
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'MM d, yyyy'});
+  });
         

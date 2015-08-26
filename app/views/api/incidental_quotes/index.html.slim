@@ -16,6 +16,13 @@
           th Date of Departure
           th Pier
           th Action
+        tr= search_form_for [:api, @q], url: api_incidental_quotes_path(), method: 'get' do |f|
+          th= f.text_field :vessel_name_cont, class: 'form-control'
+          th= f.text_field :date_of_arrival_gteq, class: 'form-control datepicker'
+          th= f.text_field :date_of_departure_lteq, class: 'form-control datepicker'
+          th= f.text_field :pier_cont_any, class: 'form-control'
+          th
+            input.btn.btn-primary type="submit" value="Search"
       tbody
         - @logreqs.each do |logreq|
           tr
@@ -29,6 +36,13 @@
               - if logreq.assigned_user_breakdown_services == current_user.id
                 | &nbsp;
                 = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Services Breakdown', class: 'btn btn-xs btn-info'
+      tfoot
+        tr.text-center.small-text11.bold-text
+          td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'MM d, yyyy'});
+  });
               
 
 
