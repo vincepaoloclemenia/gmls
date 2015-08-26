@@ -1,34 +1,28 @@
-br
-.container
-  .row
-    .col-sm-8.col-md-5.col-md-offset-4
-      .center_area style=("height: 100px;") 
-      .center_area style=("width: 350px;") 
-        .panel.panel-primary
+#bg-login
+	br
+	.container
+	  .row
+	    .col-sm-8.col-md-4.col-md-offset-4
+	      //.center_area style=("height: 100px;") 
+	      .center_area 
           .panel-heading
-            img.img-rounded height="87" src="/gmls.png" width="243" /
+            img.img-rounded src="/logo.png" /
           .panel-body
         		= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   						.row
 						    .col-xs-12
 						      .div
-						      	= f.label :email
-						      .div
-						        = f.email_field :email, autofocus: true, class: 'form-control'
-					  	br
+						        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address'
 					  	.row
 						    .col-xs-12
 						      .div
-						      	= f.label :password
-						      .div
-						        = f.password_field :password, autocomplete: "off", class: 'form-control'
-					  	br
+						        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
 					  	.row
 						    .col-xs-12
-						      .pull-right
-						    		= f.submit "Login", class: "btn btn-primary"
-							br
+						    	= f.submit "Login", class: "btn btn-primary"
 					  	.row
-						    .col-xs-12  		
+						    .col-xs-12  	
+						    	#forgotpass
 									/ = render "devise/shared/links"
+									=link_to "Forgot your password?", new_password_path(resource_name)
             
