@@ -13,7 +13,7 @@
             th width="25%" = sort_link(@q, :supplier_name, 'Supplier', default: :desc)
             th width="15%" = sort_link(@q, :service_type, 'Service Type', default: :desc)
             th width="20%" = sort_link(@q, :item_name, 'Service Offered', default: :desc)
-            th width="10%" Price (P)
+            th width="10%" = sort_link(@q, :price, 'Price', default: :desc)
             th width="10%" = sort_link(@q, :unit, 'Unit', default: :desc)
             th width="10%" = sort_link(@q, :quantity, 'Quantity', default: :desc)
             th width="10%" Action
@@ -21,8 +21,8 @@
             th= f.text_field :supplier_name_cont, class: "form-control"
             th= f.text_field :service_type_cont, class: "form-control"
             th= f.text_field :item_name_cont, class: "form-control"
-            th
-            / th= f.text_field :price_cont_any, class: "form-control"
+            /th
+            th= f.text_field :price_eq, class: "form-control"
             th= f.text_field :unit_cont, class: "form-control"
             th= f.text_field :quantity_eq, class: "form-control"
             th
