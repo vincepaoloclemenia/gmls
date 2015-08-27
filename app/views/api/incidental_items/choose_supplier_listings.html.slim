@@ -5,29 +5,35 @@
       span.glyphicon.glyphicon-list 
       | &nbsp; Suppliers List
   .panel-body
-    b
-    table.table.table-hover.table-striped
-      thead
-        tr
-          th Quotation Number
-          th Date
-          th Company
-          th Action
-        tr= search_form_for [:api, @q], url: request.path, method: 'get' do |f|
-          th= f.text_field :quotation_no_eq, class: 'form-control'
-          th= f.text_field :updated_at_eq, class: 'form-control'
-          th= f.text_field :company_cont, class: 'form-control'
-          th
-            input.btn.btn-primary type="submit" value="Search"
-      tbody
-        - @incidental_quotes.each do |incidental_quote|
+    br
+    = search_form_for [:api, @q], url: request.path, method: 'get' do |f|
+      table.table.table-hover.table-striped
+        thead
           tr
-            td= incidental_quote.quotation_no
-            td= incidental_quote.created_at.present? ? incidental_quote.created_at.strftime("%B %d, %Y") : ''
-            td= incidental_quote.company
-            td
-              - if count_incidental_items(incidental_quote.id) != 0
-                = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs"
-      tfoot
-        tr.text-center.small-text.bold-text
-          td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails
+            th= sort_link(@q, :quotation_no, 'Quotation Number', default: :desc)
+            th= sort_link(@q, :updated_at, 'Date', default: :desc)
+            th= sort_link(@q, :company, 'Company', default: :desc)
+            th Action
+          tr
+            th= f.text_field :quotation_no_eq, class: 'form-control'
+            th= f.text_field :updated_at_eq, class: 'form-control datepicker', value: params["q"]["updated_at_eq"]
+            th= f.text_field :company_cont, class: 'form-control'
+            th
+              input.btn.btn-primary type="submit" value="Search"
+        tbody
+          - @incidental_quotes.each do |incidental_quote|
+            tr
+              td= incidental_quote.quotation_no
+              td= incidental_quote.created_at.present? ? incidental_quote.created_at.strftime("%B %d, %Y") : ''
+              td= incidental_quote.company
+              td
+                - if count_incidental_items(incidental_quote.id) != 0
+                  = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs"
+        tfoot
+          tr.text-center.small-text.bold-text
+            td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'MM d, yyyy'});
+  });
+
