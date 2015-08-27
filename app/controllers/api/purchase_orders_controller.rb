@@ -8,7 +8,7 @@ class Api::PurchaseOrdersController < ApplicationController
       params[:q][:delivery_date_eq] = ""
     end
     @q = PurchaseOrder.ransack(params[:q])
-    @purchase_orders = current_user.department.nil? ? @q.result.includes(:supplier) : @q.result.includes(:supplier).where(department: current_user.department)
+    @purchase_orders = current_user.department.nil? ? @q.result.includes(:supplier) : @q.result.includes(:supplier).where(department: current_user.department).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

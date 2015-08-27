@@ -15,7 +15,6 @@
             th= sort_link(@q, :company, 'Company', default: :desc)
             th Action
           tr
-            -raise
             th= f.text_field :quotation_no_eq, class: 'form-control'
             th= f.text_field :updated_at_eq, class: 'form-control datepicker', value: params["q"]["updated_at_eq"]
             th= f.text_field :company_cont, class: 'form-control'
