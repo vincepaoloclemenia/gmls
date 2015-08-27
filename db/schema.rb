@@ -492,6 +492,7 @@ ActiveRecord::Schema.define(version: 20150825063133) do
     t.boolean  "is_awarded",              default: false
     t.integer  "monitoring_officer_id"
     t.integer  "requirements_officer_id"
+    t.string   "current_status",          default: "f"
   end
 
   add_index "rfqs", ["deleted_at"], name: "index_rfqs_on_deleted_at", using: :btree

@@ -26,7 +26,11 @@
 
   </div>
 <% else %>
-  <%= render "layouts/login" %>
+  <%- if devise_mapping.recoverable? && controller_name == 'passwords' %>
+    <%= render "layouts/forgot_passwords" %><br />
+  <% else -%>
+    <%= render "layouts/login" %>
+  <% end -%>  
 <% end %>
 
 </body>

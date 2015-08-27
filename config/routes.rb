@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     resources :prepservices
     resources :rfqs do
       get :delegation_summary, on: :collection
+      get :final_approval, on: :collection
+      get :display_full_info, on: :collection
+      
     end
     resources :rfq_items do
       get :choose_rfq_supplier, on: :collection
@@ -76,7 +79,10 @@ Rails.application.routes.draw do
     resources :contract_items
     resources :role_managements
     resources :logreq_responses
-    resources :purchase_orders
+    resources :purchase_orders do
+      get :rfq_build_po, on: :collection
+      get :rfq_purchase_order, on: :collection
+    end
     resources :purchase_order_items
     resources :supplier_pricing_details
     resources :purchasing_orders
