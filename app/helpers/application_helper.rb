@@ -112,6 +112,15 @@ module ApplicationHelper
     @supplier = Supplier.find supplier_id
     @supplier.name
   end
+
+  def po_listing_per_rfq(rfq_id)
+    @entry = PurchaseOrder.where(rfq_id: rfq_id)
+    if @entry.count.nil? || @entry.count == 0
+      return false
+    else
+      return true
+    end
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

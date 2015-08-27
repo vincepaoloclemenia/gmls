@@ -14,10 +14,13 @@ class Api::PurchaseOrdersController < ApplicationController
   def create
     @purchase_order = PurchaseOrder.new(purchase_order_params)
     @purchase_order.department = current_user.department
-    
+    raise
     if @purchase_order.save
-      # render json: @purchase_order, status: :created, rfq_item: [:api, @purchase_order]
-      redirect_to api_purchase_orders_path(step: 4), notice: 'Entry created'
+      if purchase_order_params["rfq_id"].nil?
+        redirect_to api_purchase_orders_path(step: 4), notice: 'Entry created'
+      else
+        redirect_to rfq_purchase_order_api_purchase_orders_path(step: 3), notice: 'Entry created'
+      end
     else
       render json: { errors: @purchase_order.errors }, status: :unprocessable_entity
     end
@@ -25,7 +28,11 @@ class Api::PurchaseOrdersController < ApplicationController
 
   def update
     if @purchase_order.update(purchase_order_params)
-      redirect_to api_purchase_orders_path(step: 4), notice: 'Entry updated'
+      if purchase_order_params["rfq_id"].nil?
+        redirect_to api_purchase_orders_path(step: 4), notice: 'Entry updated'
+      else  
+        redirect_to list_rfq_build_po_api_purchase_orders_path(rfq_id: purchase_order_params["rfq_id"], step: 3), notice: 'Entry created'
+      end
     else
       render json: { errors: @purchase_order.errors }, status: :unprocessable_entity
     end
@@ -68,11 +75,24 @@ class Api::PurchaseOrdersController < ApplicationController
     @list_rfqs = Rfq.all
   end
 
+  def create_rfq_po
+    @purchase_order = PurchaseOrder.new
+    @rfq = Rfq.find params[:rfq_id]
+  end
+
   def rfq_build_po
     @rfq = Rfq.find params[:rfq_id]
     @list_suppliers = RfqItem.where(rfq_id: @rfq.id).distinct.pluck(:supplier_id)
     @rfq_items = RfqItem.where(rfq_id: @rfq.id)
   end
+
+  def list_rfq_build_po
+    @purchase_orders = PurchaseOrder.where(rfq_id: params[:rfq_id])
+  end
+
+  def rfq_edit
+    @purchase_order = PurchaseOrder.find params[:purchase_order_id]
+  end  
 
   private
 
