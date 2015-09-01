@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       get :display_full_info, on: :collection
       get :rfq_delivery_lists, on: :collection
       get :rfq_item_delivery, on: :collection
+      get :rfq_disbursement_account, on: :collection
+      get :rfq_anchorage_billings, on: :collection
     end
     resources :rfq_items do
       get :choose_rfq_supplier, on: :collection

@@ -82,6 +82,25 @@ class Api::RfqsController < ApplicationController
     end
   end
 
+  def rfq_disbursement_account
+    @rfqs = current_user.department.nil? ? Rfq.all : Rfq.where(department: current_user.department)
+  end
+
+  def rfq_anchorage_billings
+    @rfq = Rfq.find params[:rfq_id]
+    @delivery_reports = RfqItem.where(rfq_id: @rfq).order('id DESC')
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "RFQ Anchorage Billing",
+              :orientation  => 'Landscape',
+              :page_width   => '13in',
+              :margin => {:top       => 2,
+                           :bottom   => 2}
+      end
+    end
+  end
+
   private
 
   def set_rfq
