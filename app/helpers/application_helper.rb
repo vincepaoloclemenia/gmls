@@ -121,6 +121,11 @@ module ApplicationHelper
       return true
     end
   end
+
+  def check_rfq_items(rfq_id)
+    @items = RfqItem.where(rfq_id: rfq_id)
+    @items.count
+  end
 end
 
 # :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id

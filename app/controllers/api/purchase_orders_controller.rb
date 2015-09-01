@@ -50,7 +50,11 @@ class Api::PurchaseOrdersController < ApplicationController
 
   def show
     @supplier = Supplier.find @purchase_order.supplier_id
-    @items = IncidentalItem.where({ incidental_quote_id: @purchase_order.incidental_quote_id, supplier_id: @purchase_order.supplier_id })
+    if @purchase_order.rfq_id.nil?
+      @items = IncidentalItem.where({ incidental_quote_id: @purchase_order.incidental_quote_id, supplier_id: @purchase_order.supplier_id })
+    else
+      @items_rfq = RfqItem.where(rfq_id: @purchase_order.rfq_id, supplier_id: @purchase_order.supplier_id)
+    end  
     respond_to do |format|
       format.html
       format.pdf do

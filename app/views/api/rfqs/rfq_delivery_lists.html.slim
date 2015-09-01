@@ -1,0 +1,32 @@
+= render "layouts/upper_menu_rfq"
+.panel.panel-default
+  .panel-heading
+    h3.title-gray-heading
+      span.glyphicon.glyphicon-list
+      | &nbsp; RFQ Delivery Report
+      .pull-right
+	      = link_to "Download (PDF)", rfq_delivery_lists_api_rfqs_path(rfq_id: @rfq.id, step: 4, format: 'pdf'), class: "btn btn-info", target: "_blank"
+  .panel-body
+    br
+    table.table.table-hover.table-striped
+      tr
+        td.bold-text RFQ Title
+        td = @rfq.title
+        td.bold-text Principal Name
+        td = @rfq.principal.name
+      tr
+        td.bold-text Duns
+        td = @rfq.duns
+        td.bold-text Cage Code
+        td = @rfq.cage_code
+    br
+    table.table.table-hover.table-striped
+      tr
+        th Quantity
+        th Unit
+        th Particulars
+      - @delivery_list.each do |dl|
+        tr
+          td= dl.quantity
+          td= dl.ui
+          td= dl.item.name

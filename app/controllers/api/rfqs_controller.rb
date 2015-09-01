@@ -59,6 +59,29 @@ class Api::RfqsController < ApplicationController
     redirect_to delegation_summary_api_rfqs_path(step: 2), notice: 'This RFQ has been approved.'
   end
 
+  def rfq_item_delivery
+    @rfqs = current_user.department.nil? ? Rfq.all : Rfq.where(department: current_user.department)
+  end
+
+  def rfq_delivery_lists
+    @rfq = Rfq.find params[:rfq_id]
+    @delivery_list = RfqItem.where(rfq_id: @rfq.id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf         => "Delivery Receipt",
+              :orientation  => 'Portrait',
+              :page_width   => '13in',
+              :margin => {:top       => 35,
+                          :bottom   => 30,
+                          :left => 0,
+                          :right => 0},
+              :header => { :html => { :template => 'api/logreqs/header.pdf.slim' }},
+              :footer => { :html => { :template => 'api/logreqs/footer.pdf.slim' }}
+      end
+    end
+  end
+
   private
 
   def set_rfq

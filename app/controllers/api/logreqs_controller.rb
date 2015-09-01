@@ -66,7 +66,7 @@ class Api::LogreqsController < ApplicationController
   end
 
   def delivery_reports
-    index
+    # index
 
   end
 

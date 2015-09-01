@@ -34,7 +34,8 @@ Rails.application.routes.draw do
       get :delegation_summary, on: :collection
       get :final_approval, on: :collection
       get :display_full_info, on: :collection
-      
+      get :rfq_delivery_lists, on: :collection
+      get :rfq_item_delivery, on: :collection
     end
     resources :rfq_items do
       get :choose_rfq_supplier, on: :collection
