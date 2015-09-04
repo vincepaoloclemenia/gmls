@@ -27,7 +27,7 @@
               = link_to icon_text('user', 'Assigned Officer'), edit_api_rfq_path(rfq, step: 2, ds: true), title: 'View', class: 'btn btn-xs btn-warning'
               -if rfq.current_status == 't'
                 | &nbsp;
-                = link_to icon_text('barcode', 'Build P.O.'), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-primary'
+                = link_to icon_text('list-alt', 'Build P.O.'), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-primary'
               - else
                 - if @rfq_req_officer != 'Unassigned' && @rfq_mon_officer != 'Unassigned'
                   | &nbsp;

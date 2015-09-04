@@ -69,6 +69,10 @@ class Api::IncidentalItemsController < ApplicationController
   end
 
   def choose_supplier_listings
+    if params[:q].nil? 
+      params[:q] = {}
+      params[:q][:updated_at] = ""
+    end
     @q = IncidentalQuote.ransack(params[:q])
     @incidental_quotes = @q.result.paginate(:page => (params[:page]), :per_page => 10)
   end

@@ -1,0 +1,58 @@
+= form_for [:api, @purchase_order], html: { class: '' } do |f| 
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Supplier Name
+        = f.text_field :supplier_name, value: supplier_name(params[:supplier_id]), class: 'form-control', readonly: true
+        = f.hidden_field :supplier_id, value: params[:supplier_id], class: 'form-control'
+        = f.hidden_field :rfq_id, value: params[:rfq_id], class: 'form-control'
+    .col-xs-4
+      .input-group
+        label P.O. Number
+        = f.text_field :purchase_order_number, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Attention
+        = f.text_field :attention, class: 'form-control', required: "required"
+  br
+  .row  
+    .col-xs-4
+      .input-group
+        label Deliver To
+        = f.text_field :deliver_to, class: 'form-control', required: "required"
+    .col-xs-4
+      .input-group
+        label Date Created
+        = f.text_field :date_created, class: 'form-control datepicker', required: "required"
+    .col-xs-4
+      .input-group
+        label Delivery Date
+        = f.text_field :delivery_date, class: 'form-control datepicker', required: "required"    
+  br
+  .row
+    .col-xs-4
+      .input-group
+        label Payment Terms
+        = f.text_field :payment_terms, class: 'form-control'
+    .col-xs-4
+      .input-group
+        label Prepared By
+        = f.text_field :user, value: "#{current_user.full_name}", class: 'form-control', readonly: true
+        = f.hidden_field :prepared_by, value: current_user.id, class: 'form-control'
+  br
+  .row
+    .col-xs-12
+      .form-group
+        label Remarks
+        = f.bootsy_area :remarks, class: 'form-control', rows: 5, style:"resize: none;"
+  br
+  br
+  input.btn.btn-primary type="submit" value="Save"
+  | &nbsp;  
+  / button class="btn btn-danger" Cancel
+  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'dd-mm-yyyy'});
+  });

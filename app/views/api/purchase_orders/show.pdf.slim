@@ -44,17 +44,32 @@
 			th.text-center width="10%" Discount
 			th.text-center width="15%" Amount
 		- @total = []
-		- @items.each do |item|
-			- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
-			tr
-				td.text-center = item.id
-				td.text-center = "#{item.item.name} / #{item.area}"
-				td 
-				td
-				td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
-				td
-				td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
-			- @total << @pspd.price
+		- if params[:rfq_id].present? 
+			/ = render "rfq_item"
+			- @items_rfq.each do |item|
+				- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
+				tr
+					td.text-center = item.id
+					td.text-center = item.item.name
+					td.text-center = item.quantity
+					td.text-center = item.ui
+					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+					td
+					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+				- @total << @pspd.price
+		- else
+			/ = render "incidental_item"
+			- @items.each do |item|
+				- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
+				tr
+					td.text-center = item.id
+					td.text-center = "#{item.item.name} / #{item.area}"
+					td 
+					td
+					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+					td
+					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+				- @total << @pspd.price
 	br
 	br
 	table.borderless.small-text12 width="100%"	
@@ -81,4 +96,4 @@
 
 
 
-
+/ :item_id, :ui, :start_date, :end_date, :days, :unit_price, :total_price, :description, :quantity, :name, :item_type, :department, :stat, :item_location_price_id, :supplier_id, :is_approved, :is_rejected, :supplier_pricing

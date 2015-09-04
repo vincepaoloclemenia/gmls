@@ -1,0 +1,24 @@
+= wicked_pdf_stylesheet_link_tag "application"
+.full_body_pdf
+  table.table.table-striped.small-text
+    tr
+      td.bold-text RFQ Title
+      td = @rfq.title
+      td.bold-text Principal Name
+      td = @rfq.principal.name
+    tr
+      td.bold-text Duns
+      td = @rfq.duns
+      td.bold-text Cage Code
+      td = @rfq.cage_code
+  br
+  table.table.table-striped.small-text
+    tr
+      th Quantity
+      th Unit
+      th Particulars
+    - @delivery_list.each do |dl|
+      tr
+        td= dl.quantity
+        td= dl.ui
+        td= dl.item.name

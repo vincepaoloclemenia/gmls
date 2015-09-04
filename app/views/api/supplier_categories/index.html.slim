@@ -27,3 +27,7 @@
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @supplier_categories,  renderer: BootstrapPagination::Rails
+javascript:
+  $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'MM d, yyyy'});
+  });
