@@ -10,10 +10,10 @@
       table.table.table-hover.table-striped
         thead
           tr
-            th= sort_link(@q, :name, default: :desc)
+            th= sort_link(@q, :name, 'Vehicle Name', default: :desc)
             th= sort_link(@q, :plate_number, default: :desc)
-            th= sort_link(@q, :employer_owner_contact_person, default: :desc)
-            th= sort_link(@q, :driver_name, default: :desc)
+            th= sort_link(@q, :employer_owner_contact_person, 'Contact Person', default: :desc)
+            th= sort_link(@q, :driver_name, 'Driver' , default: :desc)
             th Mobile Number
             th Action
         thead

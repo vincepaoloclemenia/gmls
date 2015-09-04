@@ -24,7 +24,9 @@ body{
   min-height: .01%;
   overflow-x: auto;
 }
-
+.table > thead > tr > th{
+  vertical-align: top;
+}
 .button_space{
   margin-right: 5px;
 }
@@ -1050,3 +1052,6 @@ p.ship-list.label.label-default {
   text-align: center;
   list-style: none;
 }
+// a.sort_link {
+//   font-size: 12px;
+// }
