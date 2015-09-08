@@ -13,14 +13,20 @@
         tr
           th RFQ Title
           th Principal Name
-          th Requirement Officer
-          th Monitoring Officer
+/ <<<<<<< HEAD
+/           th Requirement
+/            Officer
+/           th Monitoring Officer
+/ =======
+          th Status
+/ >>>>>>> master
           th Action
       tbody
         - @list_rfqs.each do |rfq|
           tr
             td= rfq.title
             td= rfq.principal.name
+/ <<<<<<< HEAD
             td= @rfq_req_officer = rfq_req_officer(rfq.requirements_officer_id)
             td= @rfq_mon_officer = rfq_mon_officer(rfq.monitoring_officer_id)
     /         td
@@ -37,3 +43,13 @@
     /           / | &nbsp;
     /           / = link_to 'Add Item', api_rfq_items_path(step: 1, rfq_id: rfq.id), class: 'btn btn-xs btn-success'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Add Item"
     /           
+=======
+            td= rfq.current_status == 't' ? "Approved" : "Pending"
+            td
+              - if rfq.current_status == 't'
+                | &nbsp;
+                = link_to icon_text('list-alt', 'Build P.O.'), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-primary'
+                - if po_listing_per_rfq(rfq.id) == true
+                  | &nbsp;
+                  = link_to icon_text('check', 'View List PO'), list_rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-info'
+>>>>>>> master

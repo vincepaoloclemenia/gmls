@@ -34,7 +34,10 @@ Rails.application.routes.draw do
       get :delegation_summary, on: :collection
       get :final_approval, on: :collection
       get :display_full_info, on: :collection
-      
+      get :rfq_delivery_lists, on: :collection
+      get :rfq_item_delivery, on: :collection
+      get :rfq_disbursement_account, on: :collection
+      get :rfq_anchorage_billings, on: :collection
     end
     resources :rfq_items do
       get :choose_rfq_supplier, on: :collection
@@ -81,7 +84,14 @@ Rails.application.routes.draw do
     resources :logreq_responses
     resources :purchase_orders do
       get :rfq_build_po, on: :collection
+# <<<<<<< HEAD
       get :rfq_purchase_order, on: :collection
+# =======
+      get :list_rfq_build_po, on: :collection
+      get :rfq_purchase_order, on: :collection
+      get :create_rfq_po, on: :collection
+      get :rfq_edit, on: :collection
+# >>>>>>> master
     end
     resources :purchase_order_items
     resources :supplier_pricing_details

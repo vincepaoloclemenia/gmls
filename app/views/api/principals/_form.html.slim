@@ -8,7 +8,7 @@
     .col-xs-5
       //.input-group
       label Email
-      = f.text_field :email, class: 'form-control', required: "required"
+      = f.email_field :email, class: 'form-control', required: "required"
   br
   .row  
     .col-xs-5
@@ -24,7 +24,7 @@
     .col-xs-5
       .form-group
         label Address
-        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;"
+        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;", required: "required"
   br
   br
   input.btn.btn-primary type="submit" value="Save"

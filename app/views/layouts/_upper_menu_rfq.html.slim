@@ -12,11 +12,11 @@
       div
         span 3
         | P.O. Creation
-    li#step5.level5 class="#{current(5)}"
+    li#step4.level5 class="#{current(4)}"
       div
         span 4
         | Monitoring Of Deliveries
-    li#step6.level6 class="#{current(6)}"
+    li#step5.level6 class="#{current(5)}"
       div
         span 5
         | Accounting
@@ -38,13 +38,13 @@ javascript:
         window.location.href='/api/rfqs/delegation_summary?step=2';
       });
       $("#step3").click(function(){ 
-        window.location.href='/api/incidental_items/choose_supplier_listings?step=3';
+        window.location.href='/api/purchase_orders/rfq_purchase_order?step=3';
       });
       $("#step4").click(function(){ 
-        window.location.href='/api/purchase_orders?step=4';
+        window.location.href='/api/rfqs/rfq_item_delivery?step=4';
       });
       $("#step5").click(function(){ 
-        window.location.href='/api/logreqs/delivery_reports?step=5';
+        window.location.href='/api/rfqs/rfq_disbursement_account?step=5';
       });
     });
   });

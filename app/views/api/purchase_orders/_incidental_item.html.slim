@@ -1,0 +1,11 @@
+- @items.each do |item|
+	- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
+	tr
+		td.text-center = item.id
+		td.text-center = "#{item.item.name} / #{item.area}"
+		td 
+		td
+		td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+		td
+		td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+	- @total << @pspd.price
