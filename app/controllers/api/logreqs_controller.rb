@@ -8,8 +8,8 @@ class Api::LogreqsController < ApplicationController
       params[:q][:date_of_departure_lteq] = ""
     end
     @q = Logreq.ransack(params[:q])
-    @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
-    # @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
+    # @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @logreqs =  current_user.role.access_level == 'Approver' ? @q.result.paginate(:page => params[:page], :per_page => 10) : @q.result.where(user_id: current_user.id).order('id DESC').paginate(:page => params[:page], :per_page => 10)
     # render json: @logreqs
   end
 

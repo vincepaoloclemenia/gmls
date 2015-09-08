@@ -10,7 +10,5 @@ class IncidentalItem < ActiveRecord::Base
   validates :item_id, presence: true
   validates :price, presence: true
   validates :area, presence: true
-  validates :supplier_pricing_detail_id, presence: true
-  validates :supplier_id, presence: true
 
 end
