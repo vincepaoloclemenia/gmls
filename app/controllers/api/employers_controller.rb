@@ -13,18 +13,26 @@ class Api::EmployersController < ApplicationController
 
   def create
     @employer = Employer.new(employer_params)
-    if @employer.save
-      redirect_to api_employers_path, notice: 'Entry created'
+    if @employer.owner_contact_person != " "
+      if @employer.save
+        redirect_to api_employers_path, notice: 'Entry created'
+      else
+        render json: { errors: @employer.errors }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: @employer.errors }, status: :unprocessable_entity
+      redirect_to new_api_employer_path, alert: 'Incorrect entry'
     end
   end
 
   def update
-    if @employer.update(employer_params)
-      redirect_to api_employers_path, notice: 'Entry Updated'
+    if @employer.owner_contact_person != " " 
+      if @employer.update(employer_params)
+        redirect_to api_employers_path, notice: 'Entry Updated'
+      else
+        render json: { errors: @employer.errors }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: @employer.errors }, status: :unprocessable_entity
+      redirect_to new_api_employer_path, alert: 'Incorrect entry'
     end
   end
   

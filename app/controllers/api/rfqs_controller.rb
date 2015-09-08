@@ -101,6 +101,7 @@ class Api::RfqsController < ApplicationController
     end
   end
 
+# >>>>>>> master
   private
 
   def set_rfq

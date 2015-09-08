@@ -84,10 +84,14 @@ Rails.application.routes.draw do
     resources :logreq_responses
     resources :purchase_orders do
       get :rfq_build_po, on: :collection
+# <<<<<<< HEAD
+      get :rfq_purchase_order, on: :collection
+# =======
       get :list_rfq_build_po, on: :collection
       get :rfq_purchase_order, on: :collection
       get :create_rfq_po, on: :collection
       get :rfq_edit, on: :collection
+# >>>>>>> master
     end
     resources :purchase_order_items
     resources :supplier_pricing_details

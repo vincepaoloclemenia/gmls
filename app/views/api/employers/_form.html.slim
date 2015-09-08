@@ -4,11 +4,11 @@
     .col-xs-4
       .input-group
         label Owner / Contact Person
-        = f.text_field :owner_contact_person, class: 'form-control', required: "required"
+        = f.text_field :owner_contact_person, class: 'form-control', required: "required", maxLength: 50
     .col-xs-4
       .input-group
         label Contact Number
-        = f.text_field :mobile_no, class: 'form-control', required: "required"
+        = f.number_field :mobile_no, class: 'form-control', required: "required"
   br      
   br
   input.btn.btn-primary type="submit" value="Save"

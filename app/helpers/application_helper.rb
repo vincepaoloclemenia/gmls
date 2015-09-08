@@ -126,4 +126,5 @@ module ApplicationHelper
     @items = RfqItem.where(rfq_id: rfq_id)
     @items.count
   end
+# >>>>>>> master
 end
