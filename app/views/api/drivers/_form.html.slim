@@ -18,3 +18,13 @@
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
   = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+
+
+  - if @driver.errors.any?
+    .error_explanation
+      h2 = pluralize(@driver.errors.count, "error")
+      | &nbsp; prohibited this entry from being saved
+
+      ul
+        - @driver.errors.full_messages.each do |msg|
+          li = msg

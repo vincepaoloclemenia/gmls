@@ -127,6 +127,3 @@ module ApplicationHelper
     @items.count
   end
 end
-
-# :date_of_arrival, :date_of_departure, :pier, :user_id, :ending_text, :principal_id
-

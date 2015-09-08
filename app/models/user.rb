@@ -12,13 +12,13 @@ class User < ActiveRecord::Base
   has_many :ship_arrival, dependent: :destroy
   has_many :logreqs
   
-  validates :email, presence: true       
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
-  # validates :department, presence: true
-  # validates :position, presence: true
-  # validates :age, presence: true
-  # validates :gender, presence: true
+  validates :email, presence: true, uniqueness: true       
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :department, presence: true
+  validates :position, presence: true
+  validates :age, presence: true
+  validates :gender, presence: true
   
   def ensure_authentication_token
     if authentication_token.blank?
