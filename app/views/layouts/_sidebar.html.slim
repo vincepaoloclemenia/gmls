@@ -20,14 +20,14 @@
   /   = link_to "CONTRACTS", api_contracts_path
   
   - if is_administrator?
-    li.collapsed data-target="#administration" data-toggle="collapse" 
+    li data-target="#administration" data-toggle="collapse"
       a
         | ADMINISTRATION
         span.pull-right.glyphicon.glyphicon-chevron-down
     ul#administration.sub-menu.collapse
       li class='#{ "active" if params[:controller] == 'api/principals' }'
         = link_to "PRINCIPALS", api_principals_path 
-      li.collapsed data-target="#vehicle" data-toggle="collapse" 
+      li data-target="#vehicle" data-toggle="collapse" 
         a
           | VEHICLE SETUP
           span.pull-right.glyphicon.glyphicon-chevron-down/
@@ -40,7 +40,7 @@
           = link_to "OWNERS/CONTACT PERSONS", api_employers_path    
       li class='#{ "active" if params[:controller] == 'api/tools' }'
         = link_to "EQUIPMENTS", api_tools_path 
-      li.collapsed data-target="#transportation" data-toggle="collapse" 
+      li data-target="#transportation" data-toggle="collapse"
         a
           | VESSEL SETUP
           span.pull-right.glyphicon.glyphicon-chevron-down/
@@ -53,7 +53,7 @@
           = link_to "VESSEL TYPES", api_vessel_types_path 
         li class='#{ "active" if params[:controller] == 'api/navy_types' }'
           = link_to "NAVY TYPES", api_navy_types_path 
-      li.collapsed data-target="#items" data-toggle="collapse" 
+      li data-target="#items" data-toggle="collapse"
         a
           | ITEM SETUP
           span.pull-right.glyphicon.glyphicon-chevron-down/
@@ -68,7 +68,7 @@
           = link_to "SERVICES", api_services_path
       li class='#{ "active" if params[:controller] == 'api/locations' }'
         = link_to "LOCATIONS", api_locations_path 
-      li.collapsed data-target="#suppliers" data-toggle="collapse" 
+      li data-target="#suppliers" data-toggle="collapse" data-parent="accordion"
         a
           | SUPPLIER SETUP
           span.pull-right.glyphicon.glyphicon-chevron-down/
@@ -87,4 +87,3 @@
       /   = link_to "GOVERNMENT AGENCIES", api_government_agencies_path 
       / li
       /   = link_to "QUALITY QUESTIONNAIRE", api_quality_questionnaires_path 
-

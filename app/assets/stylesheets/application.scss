@@ -14,7 +14,9 @@ body{
   //background-repeat: no-repeat;
   //background-size: cover;
 }
-
+.topmargin{
+  margin-top: 10px;
+}
 .blank_check{
   height: 20px;
   width: 20px;
@@ -23,6 +25,15 @@ body{
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;
+}
+.table > thead > tr > th{
+  vertical-align: top;
+}
+.table thead th, .table thead th a{
+  color: #666;
+}
+.table thead th a:hover{
+  color: #337ab7; 
 }
 
 .button_space{
@@ -507,11 +518,11 @@ input[type=number] {
 .menu-list li a:focus {
     text-decoration: none;
 }
-/**/.menu-list li[aria-expanded="true"]{
-  background-color: #B6A754;
+/**/.menu-list li[aria-expanded="true"] {
+    background-color: rgba(255, 255, 255, 0.2);
 }/**/
 
-@media(min-width: 1024px){
+@media (min-width: 1024px){
   #nav-side-bar li{
     font-size: 13px !important;
   }
@@ -974,10 +985,6 @@ End [Steps Wizard]
 form#location_search {
     margin-left: 15px;
 }
-#location_search .btn-primary{
-    border-radius: 0 7px 7px 0;
-    vertical-align: top;
-}
 
 /* DASHBOARD */
 .ship-list .label{
@@ -1050,3 +1057,6 @@ p.ship-list.label.label-default {
   text-align: center;
   list-style: none;
 }
+// a.sort_link {
+//   font-size: 12px;
+// }
