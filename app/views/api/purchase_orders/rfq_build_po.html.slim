@@ -9,28 +9,27 @@
   .panel-body
     br
     table.table.table-hover.table-striped
-      thead
-        tr
-          td.bold-text RFQ Title
-          td.bold-text Principal Name
-          td.bold-text Duns
-          td.bold-text Cage Code
-      tbody
-        tr
-          td= @rfq.title
-          td= @rfq.principal.name
-          td= @rfq.duns
-          td= @rfq.cage_code
-        tr
-          td.bold-text Requirement Officer
-          td.bold-text Monitoring Officer
-          td.bold-text Date Created
-          td.bold-text Current Status
-        tr  
-          td= @rfq_req_officer = rfq_req_officer(@rfq.requirements_officer_id)
-          td= @rfq_mon_officer = rfq_mon_officer(@rfq.monitoring_officer_id)
-          td= @rfq.created_at.strftime("%B %d, %Y") 
-          td= @rfq.current_status == 'f' ? 'Pending' : 'Approved' 
+      tr
+        td.bold-text RFQ Title
+        td= @rfq.title
+
+        td.bold-text Duns
+        td= @rfq.duns
+      tr
+        td.bold-text Principal Name
+        td= @rfq.principal.name
+        td.bold-text Cage Code
+        td= @rfq.cage_code
+      tr
+        td.bold-text Requirement Officer
+        td= @rfq_req_officer = rfq_req_officer(@rfq.requirements_officer_id)
+        td.bold-text Monitoring Officer
+        td= @rfq_mon_officer = rfq_mon_officer(@rfq.monitoring_officer_id)
+      tr  
+        td.bold-text Date Created
+        td= @rfq.created_at.strftime("%B %d, %Y") 
+        td.bold-text Current Status
+        td= @rfq.current_status == 'f' ? 'Pending' : 'Approved' 
     br
     br
     table.table.table-hover.table-striped
