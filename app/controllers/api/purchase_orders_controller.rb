@@ -14,7 +14,6 @@ class Api::PurchaseOrdersController < ApplicationController
   def create
     @purchase_order = PurchaseOrder.new(purchase_order_params)
     @purchase_order.department = current_user.department
-    raise
     if @purchase_order.save
       if purchase_order_params["rfq_id"].nil?
         redirect_to api_purchase_orders_path(step: 4), notice: 'Entry created'
