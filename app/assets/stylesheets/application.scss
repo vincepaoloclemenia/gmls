@@ -1030,10 +1030,6 @@ p.ship-list.label.label-default {
 }
 #bg-login h2{
   color: #eee;
-// <<<<<<< HEAD
-  font-family: open sans;
-// =======
-// >>>>>>> master
 }
 #forgotpass{
   text-align: center;
@@ -1060,6 +1056,12 @@ p.ship-list.label.label-default {
 #error_explanation ul li{
   text-align: center;
   list-style: none;
+}
+#bg-login #alert-float{
+  position: absolute;
+  width: 90%;
+  opacity: 0.8;
+  text-align: center;
 }
 // a.sort_link {
 //   font-size: 12px;
