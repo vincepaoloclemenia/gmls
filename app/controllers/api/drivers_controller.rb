@@ -14,7 +14,8 @@ class Api::DriversController < ApplicationController
       # render json: @driver, status: :created, driver: [:api, @driver]
       redirect_to api_drivers_path, notice: 'Entry created'
     else
-      render json: { errors: @driver.errors }, status: :unprocessable_entity
+      redirect_to new_api_driver_path, alert: @driver.errors.full_messages.to_sentence
+      # render json: { errors: @driver.errors }, status: :unprocessable_entity
     end
   end
 
@@ -22,7 +23,8 @@ class Api::DriversController < ApplicationController
     if @driver.update(driver_params)
       redirect_to api_drivers_path, notice: 'Entry updated'
     else
-      render json: { errors: @driver.errors }, status: :unprocessable_entity
+      redirect_to edit_api_driver_path, alert: @driver.errors.full_messages.to_sentence
+      # render json: { errors: @driver.errors }, status: :unprocessable_entity
     end
   end
 
@@ -41,6 +43,7 @@ class Api::DriversController < ApplicationController
   end
     
   def driver_params
+    # raise
     params.require(:driver).permit(:name, :contact_no, :employer_id)
   end
 end

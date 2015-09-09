@@ -12,7 +12,7 @@
           tr
             th= sort_link(@q, :name, 'Driver Name', default: :desc)
             th= sort_link(@q, :contact_no, 'Contact Number', default: :desc)
-            th= sort_link(@q, :employer_owner_contact_person_cont, 'Owner (Contact Person)', default: :desc)
+            th= sort_link(@q, :employer_owner_contact_person, 'Owner (Contact Person)', default: :desc)
             th Action
           tr
             th= f.text_field :name_cont, class: 'form-control'
@@ -25,7 +25,7 @@
             tr
               td= driver.name
               td= driver.contact_no
-              td= driver.employer.owner_contact_person
+              td= driver.employer.nil? ? "No Owner" : driver.employer.owner_contact_person
               td
                 = link_to icon_text('pencil', ''), edit_api_driver_path(driver), title: 'View', class: 'btn btn-xs btn-warning'
                 | &nbsp;

@@ -25,14 +25,10 @@ class Api::EmployersController < ApplicationController
   end
 
   def update
-    if @employer.owner_contact_person != " " 
-      if @employer.update(employer_params)
-        redirect_to api_employers_path, notice: 'Entry Updated'
-      else
-        render json: { errors: @employer.errors }, status: :unprocessable_entity
-      end
+    if @employer.update(employer_params)
+      redirect_to api_employers_path, notice: 'Entry Updated'
     else
-      redirect_to new_api_employer_path, alert: 'Incorrect entry'
+      redirect_to edit_api_employer_path(@employer), alert: 'Please provide the right input.'
     end
   end
   
@@ -52,6 +48,7 @@ class Api::EmployersController < ApplicationController
   end
     
   def employer_params
+    params["employer"]["owner_contact_person"].strip!
     params.require(:employer).permit(:owner_contact_person, :mobile_no)
   end
 end
