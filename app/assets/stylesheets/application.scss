@@ -1061,6 +1061,20 @@ p.ship-list.label.label-default {
   text-align: center;
   list-style: none;
 }
+
+.box-fixed-height{
+  min-height: 300px;
+  max-height: 500px;
+}
+.small-textwithmargin{
+  margin-top: 10px;
+  font-size: 9px !important;
+}
+.text-top{
+  vertical-align: top!important; 
+  padding-top: 8px;
+}
+
 // a.sort_link {
 //   font-size: 12px;
 // }
