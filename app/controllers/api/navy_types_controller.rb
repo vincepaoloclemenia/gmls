@@ -16,7 +16,7 @@ class Api::NavyTypesController < ApplicationController
       redirect_to api_navy_types_path, notice: 'Entry created'
     else
       # render json: { errors: @navy_type.errors }, status: :unprocessable_entity
-      redirect_to @navy_type, alert: @navy_type.errors.full_messages.first
+      redirect_to new_api_navy_type_path, alert: @navy_type.errors.full_messages.first
     end
   end
 
@@ -25,7 +25,7 @@ class Api::NavyTypesController < ApplicationController
       # head :no_content
       redirect_to api_navy_types_path, notice: 'Entry updated'
     else
-      render json: { errors: @navy_type.errors }, status: :unprocessable_entity
+      redirect_to edit_api_navy_type_path, alert: @navy_type.errors.full_messages.first
     end
   end
   

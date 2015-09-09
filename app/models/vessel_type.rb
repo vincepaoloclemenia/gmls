@@ -5,5 +5,5 @@ class VesselType < ActiveRecord::Base
   has_many :vessels, dependent: :destroy
 
   #validations
-  validates :name, :vessel_class_id, presence: true
+  validates_presence_of :name, :beam, :length, :crew_count, :draft, :displacement
 end

@@ -25,7 +25,7 @@
       = f.text_field :beam, class: 'form-control', required: "required"
     .col-xs-4
       //.input-group
-      label Displacement (m)
+      label Displacement
       = f.text_field :displacement, class: 'form-control', required: "required"  
   br
   .row
@@ -37,4 +37,4 @@
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+  = link_to 'Cancel', api_vessel_types_path, class: 'btn btn-warning'

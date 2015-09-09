@@ -6,5 +6,6 @@ class VesselClass < ActiveRecord::Base
   has_many :vessels, dependent: :destroy
 
   #validations
-  validates :name, presence: true
+  validates_presence_of :name
+  validates_format_of :name, :with => /^[a-zA-Z\d\s]*$/, :multiline => true
 end

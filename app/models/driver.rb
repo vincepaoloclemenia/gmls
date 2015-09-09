@@ -3,7 +3,7 @@ class Driver < ActiveRecord::Base
 	has_many :vehicles
 
 	validates_presence_of :name
-	validates_format_of :name, :with => /[-a-z]/
+	validates_format_of :name, :with => /^[a-zA-Z\d\s]*$/, :multiline => true
 	validates :contact_no, presence: true, numericality: { only_integer: true }
 	validates :employer_id, presence: true
 end

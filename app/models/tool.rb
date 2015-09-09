@@ -1,5 +1,5 @@
 class Tool < ActiveRecord::Base
 
   #validations
-  validates :name, :quantity, :unit, presence: true
+  validates_presence_of :name, :quantity, :unit
 end

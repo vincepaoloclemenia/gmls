@@ -13,10 +13,9 @@ class Api::ToolsController < ApplicationController
     @tool.department = current_user.department
 
     if @tool.save
-      redirect_to api_tools_path, notice: 'Entry created'
+      redirect_to api_tools_path , notice: 'Entry created'
     else
-      # render json: { errors: @tool.errors }, status: :unprocessable_entity
-      redirect_to @tool, alert: @tool.errors.full_messages.first
+      redirect_to new_api_tool_path, alert: @tool.errors.full_messages.first
     end
   end
 

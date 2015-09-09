@@ -16,7 +16,7 @@ class Api::VesselClassesController < ApplicationController
       redirect_to api_vessel_classes_path, notice: 'Entry created'
     else
       # render json: { errors: @vessel_class.errors }, status: :unprocessable_entity
-      redirect_to @vessel_class, alert: @vessel_class.errors.full_messages.first
+      redirect_to new_api_vessel_class_path, alert: @vessel_class.errors.full_messages.first
     end
   end
 
@@ -24,7 +24,7 @@ class Api::VesselClassesController < ApplicationController
     if @vessel_class.update(vessel_class_params)
       redirect_to api_vessel_classes_path, notice: 'Entry updated'
     else
-      render json: { errors: @vessel_class.errors }, status: :unprocessable_entity
+      redirect_to edit_api_vessel_class_path, alert: @vessel_class.errors.full_messages.first
     end
   end
   

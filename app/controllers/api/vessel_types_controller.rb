@@ -16,7 +16,7 @@ class Api::VesselTypesController < ApplicationController
       redirect_to api_vessel_types_path, notice: 'Entry created'
     else
       # render json: { errors: @vessel_type.errors }, status: :unprocessable_entity
-      redirect_to @vessel_class, alert: @vessel_class.errors.full_messages.first
+      redirect_to new_api_vessel_type_path, alert: @vessel_type.errors.full_messages.first
     end
   end
 
@@ -25,7 +25,8 @@ class Api::VesselTypesController < ApplicationController
       # head :no_content
       redirect_to api_vessel_types_path, notice: 'Entry updated'
     else
-      render json: { errors: @vessel_type.errors }, status: :unprocessable_entity
+      redirect_to edit_api_vessel_type_path, alert: @vessel_type.errors.full_messages.first
+      # render json: { errors: @vessel_type.errors }, status: :unprocessable_entity
     end
   end
   
