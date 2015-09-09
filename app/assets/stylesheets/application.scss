@@ -35,6 +35,9 @@ body{
 .table thead th a:hover{
   color: #337ab7; 
 }
+.table td{
+  font-size: 12px
+}
 
 .button_space{
   margin-right: 5px;
@@ -472,7 +475,7 @@ input[type=number] {
   padding: 0;
   list-style: none;
   margin-top: 30px;
-  min-height: 800px;
+  min-height: 950px;
   max-height: none !important;
 }
 
@@ -1066,3 +1069,38 @@ p.ship-list.label.label-default {
 // a.sort_link {
 //   font-size: 12px;
 // }
+
+/****** ACTION BUTTON WITH TITLE ONHOVER ******/
+.btn-icon-hover [title]{
+  position:relative;
+}
+
+.btn-icon-hover [title]:after{
+  content:attr(title);
+  color:#fff;
+  background:#333;
+  background:rgba(51,51,51,0.75);
+  padding:5px;
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  bottom:100%;
+  white-space:nowrap;
+  -webkit-transition:0.25s linear opacity;
+}
+.btn-icon-hover [title]:hover:after{
+  left:-35px;
+  opacity:1;
+}
+
+.btn-icon-hover [title]:hover:before{
+  content:'';
+  position:absolute;
+  border-top: 8px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left:8px solid (51,51,51,0.75);
+  left:-8px;
+}
+.btn-icon-hover a, .btn-icon-hover button{
+  text-align: center;
+}

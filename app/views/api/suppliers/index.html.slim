@@ -24,7 +24,7 @@
             th= f.text_field :email_cont, class: "form-control"
             th
               input.btn.btn-primary type="submit" value="Search"
-        tbody
+        tbody.btn-icon-hover
           - @suppliers.each do |supplier|
             tr
               td= supplier.name
@@ -34,9 +34,9 @@
               td= supplier.telephone_number
               td= supplier.email
               td
-                = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), title: 'View', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), title: 'View Quotation', class: 'btn btn-xs btn-warning'
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+                = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete Quotation"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @suppliers, renderer: BootstrapPagination::Rails

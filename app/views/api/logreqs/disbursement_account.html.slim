@@ -13,22 +13,22 @@
         thead
           tr
             / th Encoded Number
-            th= sort_link(@q, :vessel_name, 'Vessel Name', default: :desc)
-            th= sort_link(@q, :pier, 'Pier', default: :desc)
-            th Action
+            th.col-xs-5 = sort_link(@q, :vessel_name, 'Vessel Name', default: :desc)
+            th.col-xs-5 = sort_link(@q, :pier, 'Pier', default: :desc)
+            th.col-xs-5.text-center Action
           tr
             th= f.text_field :vessel_name_cont_any, class: 'form-control'
             th= f.text_field :pier_cont, class: 'form-control'
             th 
-              input.btn.btn-primary type="submit" value="Search" id="mysearch"
-        tbody
+              input.btn.btn-primary style="width:100%;" type="submit" value="Search" id="mysearch"
+        tbody.btn-icon-hover
           - @logreqs.each do |logreq|
             tr
               / td = "000"+"#{logreq.id}"
               td = logreq.vessel.name
               td = logreq.pier
-              td.text-right
-                = link_to "View Anchorage Billing", anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Anchorage Billing"
+              td.text-center
+                = link_to icon_text('eye-open',''), anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), title:"View Anchorage Billing", class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Anchorage Billing"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails

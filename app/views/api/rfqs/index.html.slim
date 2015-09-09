@@ -11,22 +11,22 @@
     table.table.table-hover.table-striped
       thead
         tr
-          th RFQ Title
-          th Principal Name
-          th Duns
-          th Cage Code
-          th Action
-      tbody
+          th.col-xs-3 RFQ Title
+          th.col-xs-2 Principal Name
+          th.col-xs-2 Duns
+          th.col-xs-2 Cage Code
+          th.col-xs-2.text-center Action
+      tbody.btn-icon-hover
         - @rfqs.each do |rfq|
           tr
             td= rfq.title
             td= rfq.principal.name
             td= rfq.duns
             td= rfq.cage_code
-            td
-              = link_to icon_text('pencil', ''), edit_api_rfq_path(rfq, step: 1), title: 'View', class: 'btn btn-xs btn-warning'
+            td.text-center
+              = link_to icon_text('pencil', ''), edit_api_rfq_path(rfq, step: 1), title: 'Edit Request', class: 'btn btn-xs btn-warning'
               | &nbsp;
-              = link_to icon_text('trash', ''), api_rfq_path(rfq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+              = link_to icon_text('trash', ''), api_rfq_path(rfq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete Request"
               | &nbsp;
-              = link_to 'Add Item', api_rfq_items_path(step: 1, rfq_id: rfq.id), class: 'btn btn-xs btn-success'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Add Item"
+              = link_to icon_text('plus', ''), api_rfq_items_path(step: 1, rfq_id: rfq.id), class: 'btn btn-xs btn-success'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Add Request"
               

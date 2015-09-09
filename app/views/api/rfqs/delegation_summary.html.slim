@@ -11,12 +11,12 @@
     table.table.table-hover.table-striped
       thead
         tr
-          th RFQ Title
-          th Principal Name
-          th Requirement Officer
-          th Monitoring Officer
-          th Action
-      tbody
+          th.col-xs-3 RFQ Title
+          th.col-xs-2 Principal Name
+          th.col-xs-2 Requirement Officer
+          th.col-xs-2 Monitoring Officer
+          th.col-xs-1 Action
+      tbody.btn-icon-hover
         - @rfqs.each do |rfq|
           tr
             td= rfq.title
@@ -24,14 +24,13 @@
             td= @rfq_req_officer = rfq_req_officer(rfq.requirements_officer_id)
             td= @rfq_mon_officer = rfq_mon_officer(rfq.monitoring_officer_id)
             td
-              = link_to icon_text('user', 'Assigned Officer'), edit_api_rfq_path(rfq, step: 2, ds: true), title: 'View', class: 'btn btn-xs btn-warning'
+              = link_to icon_text('user', ''), edit_api_rfq_path(rfq, step: 2, ds: true), title: 'Assigned Officer', class: 'btn btn-xs btn-warning'
               -if rfq.current_status == 't'
                 | &nbsp;
 / <<<<<<< HEAD
 /                 = link_to icon_text('barcode', 'Build P.O.'), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-primary'
 / =======
                 = link_to icon_text('list-alt', 'Build P.O.'), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View', class: 'btn btn-xs btn-primary'
-/ >>>>>>> master
               - else
                 - if @rfq_req_officer != 'Unassigned' && @rfq_mon_officer != 'Unassigned'
                   | &nbsp;
