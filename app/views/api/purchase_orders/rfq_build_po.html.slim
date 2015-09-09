@@ -4,8 +4,8 @@
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
       | &nbsp; RFQ - Build Purchase Order
-      / .pull-right
-	     /  = link_to icon_text('thumbs-up', 'Approved'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn btn-primary"
+      .pull-right
+	      = link_to icon_text('thumbs-up', 'Approved'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn btn-primary"
   .panel-body
     br
     table.table.table-hover.table-striped
