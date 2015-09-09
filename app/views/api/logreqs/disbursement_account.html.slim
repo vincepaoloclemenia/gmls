@@ -8,33 +8,42 @@
 	      / = link_to "View Ship Listings", ship_listings_api_logreqs_path(step: 1), class: "btn btn-default"
   .panel-body
     br
-    table.table.table-hover
-      thead
-        tr
-          th Encoded Number
-          th Vessel Name
-          th Pier
-          th 
-      tbody
-        - @logreqs.each do |logreq|
-          tr.info
-            td = "000"+"#{logreq.id}"
-            td = logreq.vessel.name
-            td = logreq.pier
-            td.text-right
-              = link_to "View Anchorage Billing", anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Anchorage Billing"
-          
+    = search_form_for [:api, @q], url: request.path, action: 'POST' do |f|
+      table.table.table-hover.table-striped
+        thead
           tr
-            td.warning colspan="4" Incidental Quotation
+            / th Encoded Number
+            th= sort_link(@q, :vessel_name, 'Vessel Name', default: :desc)
+            th= sort_link(@q, :pier, 'Pier', default: :desc)
+            th Action
           tr
-            td
-            td.bold-text.text-center Quotation Number
-            td.bold-text.text-center Date Created
-            td.bold-text.text-center Company
-          - @listquotes = list_quotes(logreq.id)  
-          - @listquotes.each  do |ic|
+            th= f.text_field :vessel_name_cont_any, class: 'form-control'
+            th= f.text_field :pier_cont, class: 'form-control'
+            th 
+              input.btn.btn-primary type="submit" value="Search" id="mysearch"
+        tbody
+          - @logreqs.each do |logreq|
             tr
-              td
-              td.text-center = ic.quotation_no
-              td.text-center = ic.created_at.present? ? ic.created_at.strftime("%B %d, %Y") : ''
-              td.text-center = ic.company  
+              / td = "000"+"#{logreq.id}"
+              td = logreq.vessel.name
+              td = logreq.pier
+              td.text-right
+                = link_to "View Anchorage Billing", anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Anchorage Billing"
+        tfoot
+          tr.text-center.small-text11.bold-text
+            td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails
+            
+            / tr
+            /   td.warning colspan="4" Incidental Quotation
+            / tr
+            /   td
+            /   td.bold-text.text-center Quotation Number
+            /   td.bold-text.text-center Date Created
+            /   td.bold-text.text-center Company
+            / - @listquotes = list_quotes(logreq.id)  
+            / - @listquotes.each  do |ic|
+            /   tr
+            /     td
+            /     td.text-center = ic.quotation_no
+            /     td.text-center = ic.created_at.present? ? ic.created_at.strftime("%B %d, %Y") : ''
+            /     td.text-center = ic.company  

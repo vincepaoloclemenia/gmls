@@ -8,8 +8,8 @@ class Api::LogreqsController < ApplicationController
       params[:q][:date_of_departure_lteq] = ""
     end
     @q = Logreq.ransack(params[:q])
-    @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
-    # @logreqs =  current_user.role.access_level == 'Approver' ? Logreq.order('id DESC') : Logreq.where(user_id: current_user.id).order('id DESC')
+    # @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @logreqs =  current_user.role.access_level == 'Approver' ? @q.result.paginate(:page => params[:page], :per_page => 10) : @q.result.where(user_id: current_user.id).order('id DESC').paginate(:page => params[:page], :per_page => 10)
     # render json: @logreqs
   end
 
@@ -66,8 +66,7 @@ class Api::LogreqsController < ApplicationController
   end
 
   def delivery_reports
-    # index
-
+    index
   end
 
   def delivery_lists
@@ -91,7 +90,8 @@ class Api::LogreqsController < ApplicationController
   end
 
   def disbursement_account
-    @logreqs = Logreq.all
+    @q = Logreq.ransack(params[:q])
+    @logreqs = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
 
   def anchorage_billings
@@ -112,9 +112,15 @@ class Api::LogreqsController < ApplicationController
 
   def approved_logreq
     @logreq = Logreq.find params[:logreq_id]
-    @logreq.update_attributes(:approved_logreq => 'Approved')
+    if params[:st] == '1'
+      @logreq.update_attributes(:approved_logreq => 'Pending')
+      redirect_to request.referrer, alert: 'The logistic requirement has been marked as Pending.'  
+    else  
+      @logreq.update_attributes(:approved_logreq => 'Approved')
+      redirect_to request.referrer, notice: 'The logistic requirement has been marked as Approved.'
+    end
     # GmlsMailer.send_mail_notification_status_change.deliver
-    redirect_to request.referrer, alert: 'The logistic requirement has been marked as Approved.'
+    
   end
 
   def view_logreq

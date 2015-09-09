@@ -6,8 +6,8 @@
       | &nbsp; Choosing of Supplier (RFQ Item)
       .pull-right
         = link_to icon_text('arrow-left','Back'), api_rfq_items_path(rfq_id: @rfq_item.rfq_id, step: 1), title: 'Back', class: 'btn btn-warning'
-        | &nbsp;
-        = link_to "Approved", new_api_logreq_path(step: 1), class: "btn btn-primary"
+        / | &nbsp;
+        / = link_to "Approved", new_api_logreq_path(step: 1), class: "btn btn-primary"
 
   .panel-body
     br

@@ -14,11 +14,11 @@
   .row  
     .col-xs-4
       label Assigned Employee for Services
-      = f.select :assigned_user_breakdown_services, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+      = f.select :assigned_user_breakdown_services, User.where(department: 1).map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
 
     .col-xs-4
       label Assigned Employee
-      = f.select :user_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
+      = f.select :user_id, User.where(department: 1).map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-4
       label Principal
       = f.select :principal_id, Principal.all.map{ |e| [e.name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"

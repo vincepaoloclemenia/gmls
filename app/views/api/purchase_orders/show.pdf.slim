@@ -34,8 +34,8 @@
 			td.small-text13 
 				span.bold-text = @purchase_order.attention
 	br
-	table.small-text12 width="100%" border=1
-		tr
+	table.small-text12.borderless width="100%" border=1 height="350"
+		tr height='30'
 			th.text-center width="10%" Item #
 			th.text-center width="30%" Item Description
 			th.text-center width="10%" Qty:
@@ -48,11 +48,11 @@
 			/ = render "rfq_item"
 			- @items_rfq.each do |item|
 				- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
-				tr
+				tr height='30'
 					td.text-center = item.id
 					td.text-center = item.item.name
-					td.text-center = item.quantity
-					td.text-center = item.ui
+					td.text-center = @pspd.quantity
+					td.text-center = @pspd.unit
 					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
 					td
 					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
@@ -62,13 +62,13 @@
 			- @items.each do |item|
 				- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
 				tr
-					td.text-center = item.id
-					td.text-center = "#{item.item.name} / #{item.area}"
-					td 
-					td
-					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
-					td
-					td.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+					td.text-top.text-center = item.id
+					td.text-top.text-center = "#{item.item.name} / #{item.location.name}"
+					td.text-top.text-center = @pspd.quantity
+					td.text-top.text-center = @pspd.unit
+					td.text-top.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
+					td.text-top
+					td.text-top.text-center = @pspd.price == 0 || @pspd.price.nil? ? "P 0.00 " : number_to_currency(@pspd.price, unit: "P ")
 				- @total << @pspd.price
 	br
 	br
@@ -91,9 +91,5 @@
 		tr
 			td width="20%" Prepared By:
 			td colspan="6" = full_name(@purchase_order.prepared_by)
-				
-
-
-
-
-/ :item_id, :ui, :start_date, :end_date, :days, :unit_price, :total_price, :description, :quantity, :name, :item_type, :department, :stat, :item_location_price_id, :supplier_id, :is_approved, :is_rejected, :supplier_pricing
+	br
+	.pull-right.small-textwithmargin = DateTime.now.strftime("Printed on %m/%d/%Y %T")

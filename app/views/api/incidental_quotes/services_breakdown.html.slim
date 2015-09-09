@@ -5,7 +5,7 @@
       span.glyphicon.glyphicon-list
       | &nbsp;Breakdown of Services
       .pull-right
-	      = link_to "Export To PDF", services_breakdown_api_incidental_quotes_path(li: @logreq.id, format: 'pdf'), title: 'Services Breakdown', class: 'btn btn-info', target: "_blank"
+	      = link_to "Export To PDF", services_breakdown_api_incidental_quotes_path(li: @logreq.id, format: 'pdf'), title:'Services Breakdown', class: 'btn btn-info', target: "_blank"
   .panel-body
     br
     table.table
@@ -37,7 +37,7 @@
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr
-                td = incidental_item.id
+                td = incidental_item.service.name
                 td = incidental_item.item.name
                 td = incidental_item.quantity
                 td = incidental_item.unit

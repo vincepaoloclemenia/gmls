@@ -4,33 +4,32 @@
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
       | &nbsp; RFQ - Build Purchase Order
-      / .pull-right
-	     /  = link_to icon_text('thumbs-up', 'Approved'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn btn-primary"
+      .pull-right
+	      = link_to icon_text('thumbs-up', 'Approved'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn btn-primary"
   .panel-body
     br
     table.table.table-hover.table-striped
-      thead
-        tr
-          td.bold-text RFQ Title
-          td.bold-text Principal Name
-          td.bold-text Duns
-          td.bold-text Cage Code
-      tbody
-        tr
-          td= @rfq.title
-          td= @rfq.principal.name
-          td= @rfq.duns
-          td= @rfq.cage_code
-        tr
-          td.bold-text Requirement Officer
-          td.bold-text Monitoring Officer
-          td.bold-text Date Created
-          td.bold-text Current Status
-        tr  
-          td= @rfq_req_officer = rfq_req_officer(@rfq.requirements_officer_id)
-          td= @rfq_mon_officer = rfq_mon_officer(@rfq.monitoring_officer_id)
-          td= @rfq.created_at.strftime("%B %d, %Y") 
-          td= @rfq.current_status == 'f' ? 'Pending' : 'Approved' 
+      tr
+        td.bold-text RFQ Title
+        td= @rfq.title
+
+        td.bold-text Duns
+        td= @rfq.duns
+      tr
+        td.bold-text Principal Name
+        td= @rfq.principal.name
+        td.bold-text Cage Code
+        td= @rfq.cage_code
+      tr
+        td.bold-text Requirement Officer
+        td= @rfq_req_officer = rfq_req_officer(@rfq.requirements_officer_id)
+        td.bold-text Monitoring Officer
+        td= @rfq_mon_officer = rfq_mon_officer(@rfq.monitoring_officer_id)
+      tr  
+        td.bold-text Date Created
+        td= @rfq.created_at.strftime("%B %d, %Y") 
+        td.bold-text Current Status
+        td= @rfq.current_status == 'f' ? 'Pending' : 'Approved' 
     br
     br
     table.table.table-hover.table-striped
@@ -38,11 +37,8 @@
         tr.info
           td colspan='3' = supplier_name(supp)
           td
-/ <<<<<<< HEAD
-            = link_to icon_text('list-alt', 'Create P.O.'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn-xs btn-primary pull-right"
-/ =======
+            / = link_to icon_text('list-alt', 'Create P.O.'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn-xs btn-primary pull-right"
             = link_to icon_text('list-alt', 'Create P.O.'), create_rfq_po_api_purchase_orders_path(supplier_id: supp, step: 3, rfq_id: @rfq.id), class: "btn btn-sm btn-primary pull-right"
-/>>>>>>> master
         tr
           td.bold-text Item Name
           td.bold-text Quantity

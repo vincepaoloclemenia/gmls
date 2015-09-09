@@ -5,6 +5,11 @@
     	span.glyphicon.glyphicon-check
     	| &nbsp; Logistic Requirement
     	.pull-right
-    		= link_to "Approved This Logistic Requirement", approved_logreq_api_logreqs_path(logreq_id: @logreq.id, step: 1), class: "btn btn-primary"
+    		= link_to "Back", api_logreqs_path(step: 1), class: "btn btn-warning"
+    		| &nbsp;
+    		- if @logreq.approved_logreq == 'Approved'
+    			= link_to "Disapprove", approved_logreq_api_logreqs_path(logreq_id: @logreq.id, step: 1, st: 1), class: "btn btn-danger"
+    		- else
+    			= link_to "Approve", approved_logreq_api_logreqs_path(logreq_id: @logreq.id, step: 1), class: "btn btn-primary"
   .panel-body
     = render "show_form"

@@ -35,8 +35,8 @@
                 - if logreq.approved_logreq == 'Approved'
                   = link_to "View Logreq Quotation", manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Create Quotation', class: 'btn btn-xs btn-success'
                 - if logreq.assigned_user_breakdown_services == current_user.id
-                  | &nbsp;
-                  = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title: 'Services Breakdown', class: 'btn btn-xs btn-info'
+                  | 
+                  = link_to "Services Breakdown", services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), title:'Services Breakdown', class: 'btn btn-xs btn-info'
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails
