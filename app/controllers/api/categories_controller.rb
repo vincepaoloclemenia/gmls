@@ -16,7 +16,7 @@ class Api::CategoriesController < ApplicationController
       # render json: @category, status: :created, category: [:api, @category]
       redirect_to api_categories_path, notice: 'Entry created'
     else
-      redirect_to @category, alert: @category.errors.full_messages.first
+      redirect_to new_api_category_path, alert: @category.errors.full_messages.first
     end
   end
 
@@ -25,7 +25,7 @@ class Api::CategoriesController < ApplicationController
       # head :no_content
       redirect_to api_categories_path, notice: 'Entry updated'
     else
-      render json: { errors: @category.errors }, status: :unprocessable_entity
+      redirect_to edit_api_category_path, alert: @category.errors.full_messages.first
     end
   end
   
@@ -46,6 +46,7 @@ class Api::CategoriesController < ApplicationController
   end
 
   def category_params
+    params["category"]["name"].strip!
     params.require(:category).permit(:name, :description, :department)
   end
 

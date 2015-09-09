@@ -12,6 +12,7 @@ class Vessel < ActiveRecord::Base
   #validations
   validates_presence_of :name, :flag_of_registry, :owner_operator, :grt, :nrt, :dwt, :loa, :service_speed, :conference, :type_of_service, :num_of_booms, :capacity_boom, :type_of_boom, :num_of_hatches, :type_of_hatch, :boom_cycle, :customs_reg_number, :voyage_num
   validates_format_of :name, :with => /^[a-zA-Z\d\s]*$/, :multiline => true
+  validates_uniqueness_of :name, :case_sensitive => false
 
   private
   	def check_for_logreq_entries

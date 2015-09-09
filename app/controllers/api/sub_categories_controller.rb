@@ -15,7 +15,7 @@ class Api::SubCategoriesController < ApplicationController
       # render json: @sub_category, status: :created, sub_category: [:api, @sub_category]
       redirect_to api_sub_categories_path, notice: 'Entry created'
     else
-      redirect_to @sub_category, alert: @sub_category.errors.full_messages.first
+      redirect_to new_api_sub_category_path, alert: @sub_category.errors.full_messages.first
       # render json: { errors: @sub_category.errors }, status: :unprocessable_entity
     end
   end
@@ -25,7 +25,7 @@ class Api::SubCategoriesController < ApplicationController
       # head :no_content
       redirect_to api_sub_categories_path, notice: 'Entry updated'
     else
-      render json: { errors: @sub_category.errors }, status: :unprocessable_entity
+      redirect_to edit_api_sub_category_path, alert: @sub_category.errors.full_messages.first
     end
   end
 
@@ -46,6 +46,7 @@ class Api::SubCategoriesController < ApplicationController
   end
 
   def sub_category_params
+    params["sub_category"]["name"].strip!
     params.require(:sub_category).permit(:name, :description, :category_id, :category_name, :sub_category_id, :department)
   end
 
