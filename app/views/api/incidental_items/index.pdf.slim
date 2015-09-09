@@ -40,8 +40,8 @@
       - @incidental_items.each do |incidental_item|
         tr
           td = incidental_item.item.name
-          td = incidental_item.area
-          td = incidental_item.price
+          td = incidental_item.location_id.nil? ? '' : incidental_item.location.name
+          td = number_to_currency(incidental_item.price, unit: "P ")
           td = incidental_item.remarks
           
   table.table.borderless.small-text

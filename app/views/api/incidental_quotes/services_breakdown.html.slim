@@ -37,7 +37,7 @@
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr
-                td = incidental_item.id
+                td = incidental_item.service.name
                 td = incidental_item.item.name
                 td = incidental_item.quantity
                 td = incidental_item.unit

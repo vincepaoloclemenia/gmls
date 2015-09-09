@@ -126,5 +126,30 @@ module ApplicationHelper
     @items = RfqItem.where(rfq_id: rfq_id)
     @items.count
   end
+
+  # def has_dups(array)
+  #   unless array.uniq.length == array.length
+  #     return 'true'
+  #   else
+  #     return 'false'
+  #   end
+  # end
+
+  # def fib(n)
+  #   case n
+  #     when 0
+  #       return 0
+  #     when 1
+  #       return 1
+  #   else
+  #     a = [0, 1]
+  #     (2..n).each do |i|
+  #       a << a[i-2].to_i + a[i-1].to_i
+  #     end
+  #     return a, a.last
+  #   end
+  # end
+
+
 # >>>>>>> master
 end

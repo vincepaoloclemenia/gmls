@@ -850,7 +850,7 @@ Begin [Steps Wizard]
 .sub_steps li{
   float: left;
   border-right: 1px solid #ccc;
-  design: none;
+  display: none;
   padding-left: 20px;
   padding-right: 10px;
   font-size: 11px;
@@ -1066,6 +1066,19 @@ p.ship-list.label.label-default {
   opacity: 0.8;
   text-align: center;
 }
+.box-fixed-height{
+  min-height: 300px;
+  max-height: 500px;
+}
+.small-textwithmargin{
+  margin-top: 10px;
+  font-size: 9px !important;
+}
+.text-top{
+  vertical-align: top!important; 
+  padding-top: 8px;
+}
+
 // a.sort_link {
 //   font-size: 12px;
 // }
