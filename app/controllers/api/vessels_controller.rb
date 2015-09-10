@@ -34,8 +34,11 @@ class Api::VesselsController < ApplicationController
   end
   
   def destroy
-    @vessel.destroy
-    redirect_to api_vessels_path, notice: 'Entry successfully deleted'
+    if @vessel.destroy
+      redirect_to api_vessels_path, alert: 'Entry successfully deleted'
+    else
+      redirect_to api_vessels_path, alert: @vessel.errors.full_messages.first
+    end
     # head :no_content
   end
 

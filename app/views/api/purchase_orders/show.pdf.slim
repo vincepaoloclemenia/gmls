@@ -48,7 +48,7 @@
 			/ = render "rfq_item"
 			- @items_rfq.each do |item|
 				- @pspd = per_supplier_pricing_detail(item.item_id, item.supplier_id).last
-				tr height='30'
+				tr
 					td.text-center = item.id
 					td.text-center = item.item.name
 					td.text-center = @pspd.quantity

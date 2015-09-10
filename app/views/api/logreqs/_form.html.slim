@@ -36,13 +36,13 @@
     .col-xs-12
       .form-group
         label Details
-        = f.bootsy_area :information, class: 'form-control', rows: 5, style:"resize: none;"
+        = f.bootsy_area :information, class: 'form-control', rows: 5, style:"resize: none;", required: "required"
   br
   .row
     .col-xs-12
       .form-group
         label Ending Text / Code
-        = f.bootsy_area :ending_text, class: 'form-control', rows: 5, style:"resize: none;"
+        = f.bootsy_area :ending_text, class: 'form-control', rows: 5, style:"resize: none;", required: "required"
   br
   br
   input.btn.btn-primary type="submit" value="Save"

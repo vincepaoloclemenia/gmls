@@ -16,8 +16,10 @@ class Vessel < ActiveRecord::Base
   private
   	def check_for_logreq_entries
   		if logreqs.any?
-	      errors[:notice] << "cannot delete vessel that has already a data in the Logistics Requirements / RFQ"
-	      return false
+	      # errors[:base] << "cannot delete vessel that has already a data in the Logistics Requirements / RFQ"
+	      errors.add :base, "Cannot delete vessel that has already a data in the Logistics Requirements / RFQ"
+        return false
+
 	    end
   	end
 
