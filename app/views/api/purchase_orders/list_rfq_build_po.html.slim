@@ -24,7 +24,7 @@
               | &nbsp;
               = link_to icon_text('trash', ''), api_purchase_order_path(purchase_order), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
               | &nbsp;
-              = link_to "Print PDF Form", api_purchase_order_path(purchase_order, format: 'pdf', rfq_id: params[:rfq_id]), title: 'Display PDF', class: 'btn btn-xs btn-info'
+              = link_to "Print PDF Form", api_purchase_order_path(purchase_order, format: 'pdf', rfq_id: params[:rfq_id]), title: 'Display PDF', class: 'btn btn-xs btn-info', target: "_blank"
 javascript:
   $(document).ready(function(){
     $('.datepicker').datepicker({format: 'MM d, yyyy'});
