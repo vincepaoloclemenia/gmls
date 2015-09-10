@@ -16,7 +16,7 @@ class Api::SuppliersController < ApplicationController
       # render json: @supplier, status: :created, supplier: [:api, @supplier]
       redirect_to api_suppliers_path, notice: 'Entry created'
     else
-      redirect_to @supplier, alert: @supplier.errors.full_messages.first
+      redirect_to new_api_supplier_path, alert: @supplier.errors.full_messages.first
       # render json: { errors: @supplier.errors }, status: :unprocessable_entity
     end
   end
@@ -29,7 +29,7 @@ class Api::SuppliersController < ApplicationController
     if @supplier.update(supplier_params)
       redirect_to api_suppliers_path, notice: 'Entry updated'
     else
-      render json: { errors: @supplier.errors }, status: :unprocessable_entity
+      redirect_to edit_api_supplier_path, alert: @supplier.errors.full_messages.first
     end
   end
   
@@ -45,6 +45,7 @@ class Api::SuppliersController < ApplicationController
   end
 
   def supplier_params
+    params["supplier"]["name"].strip!
     params.require(:supplier).permit(:name, :email, :department, :contact_person, :fax_number, :telephone_number, :mobile_number, :address, :supplier_category_id, :location_id)
   end
 

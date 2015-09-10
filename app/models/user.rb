@@ -11,15 +11,11 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :ship_arrival, dependent: :destroy
   has_many :logreqs
-  
-  validates :email, presence: true, uniqueness: true       
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :department, presence: true
-  validates :position, presence: true
-  validates :age, presence: true
-  validates :gender, presence: true
-  
+
+    
+  validates_uniqueness_of :email, :case_sensitive => false 
+  validates_presence_of :email, :first_name, :last_name, :department, :position, :age, :gender
+
   def ensure_authentication_token
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token

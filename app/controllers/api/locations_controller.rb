@@ -19,7 +19,7 @@ class Api::LocationsController < ApplicationController
       redirect_to api_locations_path, notice: 'Entry created'
     else
       # render json: { errors: @location.errors }, status: :unprocessable_entity
-      redirect_to @location, alert: @location.errors.full_messages.first
+      redirect_to new_api_location_path, alert: @location.errors.full_messages.first
     end
   end
 
@@ -31,7 +31,7 @@ class Api::LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to api_locations_path, notice: 'Entry updated'
     else
-      render json: { errors: @location.errors }, status: :unprocessable_entity
+      redirect_to edit_api_location_path, alert: @location.errors.full_messages.first
     end
   end
   
@@ -47,6 +47,7 @@ class Api::LocationsController < ApplicationController
   end
 
   def location_params
+    params["location"]["name"].strip!
     params.require(:location).permit(:name, :location_type, :region, :address, :department)
   end
 end

@@ -14,7 +14,7 @@ class Api::SupplierCategoriesController < ApplicationController
       # render json: @supplier_category, status: :created, supplier_category: [:api, @supplier_category]
       redirect_to api_supplier_categories_path, notice: 'Entry created'
     else
-      redirect_to @supplier_category, alert: @supplier_category.errors.full_messages.first
+      redirect_to new_api_supplier_category_path, alert: @supplier_category.errors.full_messages.first
       # render json: { errors: @supplier_category.errors }, status: :unprocessable_entity
     end
   end
@@ -28,7 +28,7 @@ class Api::SupplierCategoriesController < ApplicationController
       # head :no_content
       redirect_to api_supplier_categories_path, notice: 'Entry updated'
     else
-      render json: { errors: @supplier_category.errors }, status: :unprocessable_entity
+      redirect_to edit_api_supplier_category_path, alert: @supplier_category.errors.full_messages.first
     end
   end
   
@@ -48,6 +48,7 @@ class Api::SupplierCategoriesController < ApplicationController
     end
 
     def supplier_category_params
+      params["supplier_category"]["name"].strip!
       params.require(:supplier_category).permit(:name)
     end
 end

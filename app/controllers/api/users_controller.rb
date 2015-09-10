@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
       # render json: @user, status: :created, user: [:api, @user]
       redirect_to api_users_path, notice: 'Entry created'
     else
-      redirect_to @user, alert: @user.errors.full_messages.first
+      redirect_to new_api_user_path, alert: @user.errors.full_messages.first
       # render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
@@ -25,7 +25,7 @@ class Api::UsersController < ApplicationController
       # head :no_content
       redirect_to api_users_path, notice: 'Entry updated'
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      redirect_to edit_api_user_path, alert: @user.errors.full_messages.first
     end
   end
   

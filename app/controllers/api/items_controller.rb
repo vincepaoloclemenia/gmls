@@ -23,8 +23,7 @@ class Api::ItemsController < ApplicationController
       # render json: @item, status: :created, item: [:api, @item]
       redirect_to api_items_path, notice: 'Entry created'
     else
-      # render json: { errors: @item.errors }, status: :unprocessable_entity
-      redirect_to api_items_path, alert: @item.errors.full_messages.first
+      redirect_to new_api_item_path, alert: @item.errors.full_messages.first
     end
   end
 
@@ -32,7 +31,7 @@ class Api::ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to api_items_path, notice: 'Entry updated'
     else
-      render json: { errors: @item.errors }, status: :unprocessable_entity
+      redirect_to edit_api_item_path, alert: @item.errors.full_messages.first
     end
   end
   

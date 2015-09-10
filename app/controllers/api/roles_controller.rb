@@ -15,7 +15,7 @@ class Api::RolesController < ApplicationController
       # render json: @role, status: :created, role: [:api, @role]
       redirect_to api_roles_path, notice: 'Entry created'
     else
-      redirect_to @role, alert: @role.errors.full_messages.first
+      redirect_to new_api_role_path, alert: @role.errors.full_messages.first
       # render json: { errors: @role.errors }, status: :unprocessable_entity
     end
   end
@@ -37,7 +37,7 @@ class Api::RolesController < ApplicationController
       # head :no_content
       redirect_to api_roles_path, notice: 'Entry updated'
     else
-      render json: { errors: @role.errors }, status: :unprocessable_entity
+      redirect_to new_api_role_path, alert: @role.errors.full_messages.first
     end
   end
   
@@ -52,6 +52,7 @@ class Api::RolesController < ApplicationController
   end
     
   def role_params
+    params["role"]["role_name"].strip!
     params.require(:role).permit(:id, :role_name, :description, :department, :access_level)
   end
 end
