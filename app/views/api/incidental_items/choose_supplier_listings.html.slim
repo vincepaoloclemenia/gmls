@@ -10,25 +10,25 @@
       table.table.table-hover.table-striped
         thead
           tr
-            th= sort_link(@q, :quotation_no, 'Quotation Number', default: :desc)
-            th= sort_link(@q, :updated_at, 'Date', default: :desc)
-            th= sort_link(@q, :company, 'Company', default: :desc)
-            th Action
+            th.col-xs-4 = sort_link(@q, :quotation_no, 'Quotation Number', default: :desc)
+            th.col-xs-3 = sort_link(@q, :updated_at, 'Date', default: :desc)
+            th.col-xs-3  = sort_link(@q, :company, 'Company', default: :desc)
+            th.col-xs-2.text-center Action
           tr
             th= f.text_field :quotation_no_eq, class: 'form-control'
             th= f.text_field :updated_at_eq, class: 'form-control datepicker', value: params["q"]["updated_at_eq"]
             th= f.text_field :company_cont, class: 'form-control'
             th
-              input.btn.btn-primary type="submit" value="Search"
-        tbody
+              input.btn.btn-primary style="width:100%" type="submit" value="Search"
+        tbody.btn-icon-hover
           - @incidental_quotes.each do |incidental_quote|
             tr
               td= incidental_quote.quotation_no
               td= incidental_quote.created_at.present? ? incidental_quote.created_at.strftime("%B %d, %Y") : ''
               td= incidental_quote.company
-              td
+              td.text-center
                 - if count_incidental_items(incidental_quote.id) != 0
-                  = link_to "Choose Supplier", choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs"
+                  = link_to icon_text('log-in',''), choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), title:"Choose Supplier", class: "btn btn-info btn-xs"
         tfoot
           tr.text-center.small-text.bold-text
             td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails

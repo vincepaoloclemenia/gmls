@@ -35,6 +35,9 @@ body{
 .table thead th a:hover{
   color: #337ab7; 
 }
+.table td{
+  font-size: 12px
+}
 
 .button_space{
   margin-right: 5px;
@@ -472,7 +475,7 @@ input[type=number] {
   padding: 0;
   list-style: none;
   margin-top: 30px;
-  min-height: 800px;
+  min-height: 950px;
   max-height: none !important;
 }
 
@@ -847,7 +850,7 @@ Begin [Steps Wizard]
 .sub_steps li{
   float: left;
   border-right: 1px solid #ccc;
-  design: none;
+  display: none;
   padding-left: 20px;
   padding-right: 10px;
   font-size: 11px;
@@ -1011,7 +1014,7 @@ p.ship-list.label.label-default {
 #bg-login{
   float: left;
   width: 100%;
-  min-height: 730px;
+  min-height: 950px;
   background: url('/login-bg.jpg');
   background-position:center top;
   background-repeat: no-repeat;
@@ -1030,10 +1033,6 @@ p.ship-list.label.label-default {
 }
 #bg-login h2{
   color: #eee;
-// <<<<<<< HEAD
-  font-family: open sans;
-// =======
-// >>>>>>> master
 }
 #forgotpass{
   text-align: center;
@@ -1061,7 +1060,12 @@ p.ship-list.label.label-default {
   text-align: center;
   list-style: none;
 }
-
+#bg-login #alert-float{
+  position: absolute;
+  width: 90%;
+  opacity: 0.8;
+  text-align: center;
+}
 .box-fixed-height{
   min-height: 300px;
   max-height: 500px;
@@ -1078,3 +1082,38 @@ p.ship-list.label.label-default {
 // a.sort_link {
 //   font-size: 12px;
 // }
+
+/****** ACTION BUTTON WITH TITLE ONHOVER ******/
+.btn-icon-hover [title]{
+  position:relative;
+}
+
+.btn-icon-hover [title]:after{
+  content:attr(title);
+  color:#fff;
+  background:#333;
+  background:rgba(51,51,51,0.75);
+  padding:5px;
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  bottom:100%;
+  white-space:nowrap;
+  -webkit-transition:0.25s linear opacity;
+}
+.btn-icon-hover [title]:hover:after{
+  left:-35px;
+  opacity:1;
+}
+
+.btn-icon-hover [title]:hover:before{
+  content:'';
+  position:absolute;
+  border-top: 8px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-left:8px solid (51,51,51,0.75);
+  left:-8px;
+}
+.btn-icon-hover a, .btn-icon-hover button{
+  text-align: center;
+}
