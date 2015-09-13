@@ -43,7 +43,7 @@
             td.bold-text Action
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
-              tr
+              tr.btn-icon-hover
                 td = incidental_item.service.name
                 td = incidental_item.item.name
                 td = incidental_item.quantity

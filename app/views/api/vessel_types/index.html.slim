@@ -20,16 +20,16 @@
             th= f.text_field :crew_count_eq, class: "form-control"
             th
               input.btn.btn-primary type="submit" value="Search" 
-        tbody
+        tbody.btn-icon-hover
           - @vessel_types.each do |vessel_type|
             tr
               td= vessel_type.name
               td= vessel_type.vessel_class.name
               td= vessel_type.crew_count
               td
-                = link_to icon_text('pencil', ''), edit_api_vessel_type_path(vessel_type), title: 'View', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_vessel_type_path(vessel_type), title: 'Edit List', class: 'btn btn-xs btn-warning'
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_vessel_type_path(vessel_type), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+                = link_to icon_text('trash', ''), api_vessel_type_path(vessel_type), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete List"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @vehicles, renderer: BootstrapPagination::Rails

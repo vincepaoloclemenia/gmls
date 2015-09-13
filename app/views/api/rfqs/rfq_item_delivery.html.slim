@@ -14,7 +14,7 @@
           th Duns
           th Cage Code
           th Action
-      tbody
+      tbody.btn-icon-hover
         - @rfqs.each do |rfq|
           tr
             td= rfq.title
@@ -24,5 +24,5 @@
             td
               - @rfqs_items = check_rfq_items(rfq.id)
               - if @rfqs_items != 0 
-                = link_to icon_text('list', 'Delivery List'), rfq_delivery_lists_api_rfqs_path(rfq_id: rfq.id, step: 1), title: 'View Delivery List', class: 'btn btn-xs btn-info'
+                = link_to icon_text('list', ''), rfq_delivery_lists_api_rfqs_path(rfq_id: rfq.id, step: 1), title: 'View Delivery List', class: 'btn btn-xs btn-info'
               

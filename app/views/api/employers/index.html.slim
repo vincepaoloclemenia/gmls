@@ -18,7 +18,7 @@
               th= f.number_field :mobile_no_cont_any, class: 'form-control'
               th
                 input.btn.btn-primary type="submit" value="search"
-        tbody
+        tbody.btn-icon-hover
           - @employers.each do |employer|
             tr
               td= employer.owner_contact_person
