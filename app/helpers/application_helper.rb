@@ -131,4 +131,9 @@ module ApplicationHelper
     @data = PurchaseOrder.where({supplier_id: supplier_id, rfq_id: rfq_id})
     @data.count
   end
+
+  def po_logreq_exist(supplier_id, incidental_quote_id)
+    @data = PurchaseOrder.where({supplier_id: supplier_id, incidental_quote_id: incidental_quote_id})
+    @data.count
+  end  
 end
