@@ -35,7 +35,7 @@
           tr
             td.bold-text.info colspan="6" = serv.nil? ? '' : service_name(serv)
           tr
-            td.bold-text Service Type
+            td.bold-text 
             td.bold-text Item Name
             td.bold-text Quantity
             td.bold-text Unit
@@ -44,7 +44,7 @@
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr.btn-icon-hover
-                td = incidental_item.service.name
+                td 
                 td = incidental_item.item.name
                 td = incidental_item.quantity
                 td = incidental_item.unit
