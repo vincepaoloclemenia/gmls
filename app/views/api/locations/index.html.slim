@@ -16,7 +16,7 @@
             th= f.text_field :name_cont, class: 'form-control'
             th
               input.btn.btn-primary type="submit" value="Search"
-        tbody
+        tbody.btn-icon-hover
           - @locations.each do |location|
             tr
               td= location.name

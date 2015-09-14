@@ -10,11 +10,11 @@
       table.table.table-hover.table-striped
         thead
           tr
-            th= sort_link(@q, :name, 'Name', default_order: :desc)
-            th Contact Number
-            th= sort_link(@q, :email, 'Email', default_order: :desc)
-            th= sort_link(@q, :point_of_contact, default_order: :desc)
-            th Action
+            th.col-xs-3 = sort_link(@q, :name, 'Name', default_order: :desc)
+            th.col-xs-2 Contact Number
+            th.col-xs-3 = sort_link(@q, :email, 'Email', default_order: :desc)
+            th.col-xs-2= sort_link(@q, :point_of_contact, default_order: :desc)
+            th.col-xs-2.text-center Action
         thead
           tr
             th= f.text_field :name_cont_any, class: 'form-control'
@@ -22,18 +22,18 @@
             th= f.text_field :email_cont_any, class: 'form-control'
             th= f.text_field :point_of_contact_cont_any, class: 'form-control'
             th
-              input.btn.btn-primary type="submit" value="Search"
-        tbody
+              input.btn.btn-primary style="width:100%" type="submit" value="Search"
+        tbody.btn-icon-hover
           - @principals.each do |principal|
             tr
               td= principal.name
               td= principal.contact_number
               td= principal.email
               td= principal.point_of_contact
-              td
-                = link_to icon_text('pencil', ''), edit_api_principal_path(principal), title: 'View', class: 'btn btn-xs btn-warning'
+              td.text-center
+                = link_to icon_text('pencil', ''), edit_api_principal_path(principal), title: 'Edit List', class: 'btn btn-xs btn-warning'
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_principal_path(principal), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+                = link_to icon_text('trash', ''), api_principal_path(principal), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete List"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @principals, renderer: BootstrapPagination::Rails

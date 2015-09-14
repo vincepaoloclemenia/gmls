@@ -20,7 +20,7 @@
             th= f.text_field :employer_owner_contact_person_cont, class: 'form-control'
             th
               input.btn.btn-primary type="submit" value="Search"
-        tbody
+        tbody.btn-icon-hover
           - @drivers.each do |driver|
             tr
               td= driver.name

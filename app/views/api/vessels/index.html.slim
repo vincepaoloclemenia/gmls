@@ -24,7 +24,7 @@
             th= f.text_field :type_of_service_cont, class: "form-control"
             th
               input.btn.btn-primary type="submit" value="Search"
-        tbody
+        tbody.btn-icon-hover
           - @vessels.each do |vessel|
             tr
               td= vessel.name
@@ -33,9 +33,9 @@
               td= vessel.vessel_type.name
               td= vessel.type_of_service
               td
-                = link_to icon_text('pencil', ''), edit_api_vessel_path(vessel), title: 'View', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_vessel_path(vessel), title: 'Edit List', class: 'btn btn-xs btn-warning'
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_vessel_path(vessel), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+                = link_to icon_text('trash', ''), api_vessel_path(vessel), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete List"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @vehicles, renderer: BootstrapPagination::Rails
