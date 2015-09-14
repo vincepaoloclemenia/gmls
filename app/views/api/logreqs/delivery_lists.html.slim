@@ -31,6 +31,6 @@
         th Particulars
       - @delivery_reports.each do |dl|
         tr
-          td= 
-          td= dl.item.unit_of_issue
+          td= dl.quantity
+          td= dl.unit
           td= "#{dl.item.name} / #{dl.area} / #{dl.remarks}"  
