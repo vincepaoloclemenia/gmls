@@ -60,7 +60,7 @@ class Api::IncidentalItemsController < ApplicationController
     @incidental_quote = IncidentalQuote.find(params[:incidental_quote_id])
     @logreq_detail = Logreq.find @incidental_quote.logreq_id
     @incidental_items = IncidentalItem.where(incidental_quote_id: params[:incidental_quote_id])
-
+    @supplier_count = IncidentalItem.where(incidental_quote_id: params[:incidental_quote_id]).pluck(:supplier_id)
   end
 
   def update_supplier

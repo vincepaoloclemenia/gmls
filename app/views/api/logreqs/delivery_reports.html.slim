@@ -13,11 +13,11 @@
         thead
           tr
             / th Encoded Number
-            th= sort_link(@q, :vessel_name, 'Vessel Name', default: :desc)
-            th= sort_link(@q, :date_of_arrival, 'Date of Arrival', default: :desc)
-            th= sort_link(@q, :date_of_departure, 'Date of Departure', default: :desc)
-            th= sort_link(@q, :pier, 'Pier', default: :desc)
-            th Action
+            th.col-xs-4 = sort_link(@q, :vessel_name, 'Vessel Name', default: :desc)
+            th.col-xs-2 = sort_link(@q, :date_of_arrival, 'Date of Arrival', default: :desc)
+            th.col-xs-2 = sort_link(@q, :date_of_departure, 'Date of Departure', default: :desc)
+            th.col-xs-2 = sort_link(@q, :pier, 'Pier', default: :desc)
+            th.col-xs-1.text-center Action
           tr
             / th
             th= f.text_field :vessel_name_cont_any, class: 'form-control'
@@ -25,8 +25,8 @@
             th= f.text_field :date_of_departure_lteq, class: 'form-control datepicker', value: params["q"]["date_of_departure_lteq"]
             th= f.text_field :pier_cont, class: 'form-control'
             th
-              input.btn.btn-primary type="submit" value="Search"
-        tbody
+              input.btn.btn-primary style="width:100%" type="submit" value="Search"
+        tbody.btn-icon-hover
           - @logreqs.each do |logreq|
             tr
               / td= "000"+"#{logreq.id}"
@@ -34,8 +34,8 @@
               td= logreq.date_of_arrival.present? ? logreq.date_of_arrival.strftime("%B %d, %Y") : ''
               td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
               td= logreq.pier
-              td
-                = link_to "View Delivery Breakdown", delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Delivery Breakdown"
+              td.text-center
+                = link_to icon_text('eye-open',''), delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), title:"View Delivery Breakdown", class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Delivery Breakdown"
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails

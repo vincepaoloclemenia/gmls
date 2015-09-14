@@ -34,6 +34,13 @@
         - @service_ids.each do |serv|
           tr
             td.bold-text.info colspan="6" = serv.nil? ? '' : service_name(serv)
+          tr
+            td.bold-text Service Type
+            td.bold-text Item Name
+            td.bold-text Quantity
+            td.bold-text Unit
+            td.bold-text Tariff Code
+            td.bold-text Action
           - @incidental_items.each do |incidental_item|
             - if serv == incidental_item.service_id
               tr

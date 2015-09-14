@@ -18,10 +18,10 @@ br
   .row
     .col-xs-6
       label Requirement Officer
-      = f.select :requirements_officer_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+      = f.select :requirements_officer_id, User.where(department: 0).map{ |e| [e.full_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
     .col-xs-6
       label Monitoring Officer
-      = f.select :monitoring_officer_id, User.all.map{ |e| [e.full_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
+      = f.select :monitoring_officer_id, User.where(department: 0).map{ |e| [e.full_name, e.id] }, {include_blank: true }, class: 'form-control', required: "required"
       = hidden_field_tag :ds, true
   br
   br
