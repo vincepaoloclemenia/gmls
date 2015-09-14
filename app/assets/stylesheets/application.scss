@@ -475,7 +475,7 @@ input[type=number] {
   padding: 0;
   list-style: none;
   margin-top: 30px;
-  min-height: 950px;
+  min-height: 750px;
   max-height: none !important;
 }
 
@@ -1014,7 +1014,6 @@ p.ship-list.label.label-default {
 #bg-login{
   float: left;
   width: 100%;
-  min-height: 950px;
   background: url('/login-bg.jpg');
   background-position:center top;
   background-repeat: no-repeat;
@@ -1022,6 +1021,7 @@ p.ship-list.label.label-default {
 }
 #bg-login .panel-heading{
   text-align: center;
+  padding: 0;
 }
 #bg-login img{
   width: 70%;
@@ -1061,8 +1061,8 @@ p.ship-list.label.label-default {
   list-style: none;
 }
 #bg-login #alert-float{
-  position: absolute;
-  width: 90%;
+  position: relative;
+  width: 100%;
   opacity: 0.8;
   text-align: center;
 }
@@ -1084,36 +1084,64 @@ p.ship-list.label.label-default {
 // }
 
 /****** ACTION BUTTON WITH TITLE ONHOVER ******/
-.btn-icon-hover [title]{
-  position:relative;
+// .btn-icon-hover [title]{
+//   position:relative;
+// }
+
+// .btn-icon-hover [title]:after{
+//   content:attr(title);
+//   color:#fff;
+//   background:#333;
+//   background:rgba(51,51,51,0.75);
+//   padding:5px;
+//   position:absolute;
+//   left:-9999px;
+//   opacity:0;
+//   bottom:100%;
+//   white-space:nowrap;
+//   -webkit-transition:0.25s linear opacity;
+// }
+// .btn-icon-hover [title]:hover:after{
+//   left:-35px;
+//   opacity:1;
+// }
+
+// .btn-icon-hover [title]:hover:before{
+//   content:'';
+//   position:absolute;
+//   border-top: 8px solid transparent;
+//   border-bottom: 1px solid transparent;
+//   border-left:8px solid (51,51,51,0.75);
+//   left:-8px;
+// }
+// .btn-icon-hover a, .btn-icon-hover button{
+//   text-align: center;
+// }
+.tooltip{
+  position: relative;
+  display: inline-block;
+  opacity: 1;
+  line-height: 1.5;
+}
+.tooltip:hover:before {
+    display: block;
+    background: #444;
+    opacity: 0.8;
+    content: attr(data-tooltip);
+    position: absolute;
+    font-size: 11px;
+    color: #fff;
+    right: 0px;
+    margin-top: -27px;
+    width: auto;
+    text-align: center;
+    padding: 4px;
+    border-radius: 0;
+}
+.tooltip:hover span:before {
+    bottom: 5px;
+    right: 40px;
+    border-width: 16px 17px 0;
+    border-color: #000 transparent;
 }
 
-.btn-icon-hover [title]:after{
-  content:attr(title);
-  color:#fff;
-  background:#333;
-  background:rgba(51,51,51,0.75);
-  padding:5px;
-  position:absolute;
-  left:-9999px;
-  opacity:0;
-  bottom:100%;
-  white-space:nowrap;
-  -webkit-transition:0.25s linear opacity;
-}
-.btn-icon-hover [title]:hover:after{
-  left:-35px;
-  opacity:1;
-}
-
-.btn-icon-hover [title]:hover:before{
-  content:'';
-  position:absolute;
-  border-top: 8px solid transparent;
-  border-bottom: 1px solid transparent;
-  border-left:8px solid (51,51,51,0.75);
-  left:-8px;
-}
-.btn-icon-hover a, .btn-icon-hover button{
-  text-align: center;
-}

@@ -24,5 +24,5 @@
             td
               - @rfqs_items = check_rfq_items(rfq.id)
               - if @rfqs_items != 0 
-                = link_to icon_text('list', ''), rfq_anchorage_billings_api_rfqs_path(rfq_id: rfq.id, step: 5), title: 'View Billing', class: 'btn btn-xs btn-info'
+                = link_to icon_text('list', ''), rfq_anchorage_billings_api_rfqs_path(rfq_id: rfq.id, step: 5), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View Billing"}
               

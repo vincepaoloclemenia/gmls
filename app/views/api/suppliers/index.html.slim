@@ -34,9 +34,9 @@
               td= supplier.telephone_number
               td= supplier.email
               td
-                = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), title: 'View Quotation', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_supplier_path(supplier), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "View Quotation"}
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete Quotation"
+                = link_to icon_text('trash', ''), api_supplier_path(supplier), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete Quotation"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @suppliers, renderer: BootstrapPagination::Rails

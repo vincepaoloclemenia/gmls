@@ -38,18 +38,18 @@
               td= logreq.approved_logreq
               td.text-center
                 - if is_encoder?
-                  = link_to icon_text('pencil', ''), edit_api_logreq_path(logreq, step: 1), title: 'Edit LogReq', class: 'btn btn-xs btn-warning'
+                  = link_to icon_text('pencil', ''), edit_api_logreq_path(logreq, step: 1), title: 'Edit LogReq', class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit LogReq"}
                   | &nbsp;
-                  = link_to icon_text('trash', ''), api_logreq_path(logreq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete LogReq"
+                  = link_to icon_text('trash', ''), api_logreq_path(logreq, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete LogReq"}
                 / | &nbsp;
                 / = link_to icon_text('th-list', ''), edit_api_logreq_path(logreq, step: 1), title: 'View Summary', class: 'btn btn-xs btn-info'
                 - if is_approver?
                   | &nbsp;
-                  = link_to icon_text('file', ''), view_logreq_api_logreqs_path(logreq_id: logreq.id, step: 1), title: 'View And Approve', class: 'btn btn-xs btn-info'
+                  = link_to icon_text('file', ''), view_logreq_api_logreqs_path(logreq_id: logreq.id, step: 1), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View and Approve"}
                 - else
                   - if logreq.approved_logreq == 'Approved'
                     | &nbsp;
-                    = link_to icon_text('plus', ''), api_logreq_responses_path(logreq_id: logreq.id, step: 1), title: 'Add Response', class: 'btn btn-xs btn-success'
+                    = link_to icon_text('plus', ''), api_logreq_responses_path(logreq_id: logreq.id, step: 1), class: 'btn btn-xs btn-success tooltip', data:{tooltip: "Add Response"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails

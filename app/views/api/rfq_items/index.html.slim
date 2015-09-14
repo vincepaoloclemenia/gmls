@@ -47,10 +47,10 @@
             td 
               - if rfq_item.supplier_id == nil
                 - if is_encoder?
-                  = link_to icon_text('log-in',''), choose_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), title: 'Choose Supplier', class: 'btn btn-xs btn-success'
+                  = link_to icon_text('log-in',''), choose_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), class: 'btn btn-xs btn-success tooltip', data:{tooltip: "Choose Supplier"}
               - else
                 - if is_approver?
                   | &nbsp;
-                  = link_to icon_text('folder-open',''), view_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), title: 'View Supplier', class: 'btn btn-xs btn-info'
+                  = link_to icon_text('folder-open',''), view_rfq_supplier_api_rfq_items_path(rfq_item_id: rfq_item.id, step: 1, rfq_id: params[:rfq_id]), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View Supplier"}
 
 = render 'add_rfq_item'
