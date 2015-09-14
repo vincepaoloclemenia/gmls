@@ -20,7 +20,7 @@
           tr
             th= f.text_field :first_name_or_last_name_cont, class: "form-control"
             / th= f.text_field :department_cont, class: "form-control"
-            th= f.select :department_eq, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
+            th= f.select :department_eq, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control'
             th= f.text_field :position_cont, class: "form-control"
             th= f.text_field :gender_cont, class: "form-control"
             th= f.text_field :age_eq, class: "form-control"

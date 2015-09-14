@@ -3,9 +3,11 @@ class Api::EmployersController < ApplicationController
 
   def index
     # @employers = current_user.department.nil? ? Employer.all : Employer.where(department: current_user.department)
-    # @q = Employer.ransack(params[:q])
-    # @employers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @employers
+    unless params["q"].nil?
+      params["q"]["owner_contact_person_cont_any"].strip!
+      params["q"]["mobile_no_cont_any"].strip!
+    end
     @q = Employer.ransack(params[:q])
     @employers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # @employers = Employer.all

@@ -3,6 +3,7 @@ class Api::CategoriesController < ApplicationController
 
   def index
     # @categories = current_user.department.nil? ? Category.all : Category.where(department: current_user.department)
+    clear_search_space
     @q = Category.ransack(params[:q])
     @categories = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @categories
@@ -16,7 +17,7 @@ class Api::CategoriesController < ApplicationController
       # render json: @category, status: :created, category: [:api, @category]
       redirect_to api_categories_path, notice: 'Entry created'
     else
-      redirect_to @category, alert: @category.errors.full_messages.first
+      redirect_to new_api_category_path, alert: @category.errors.full_messages.first
     end
   end
 
@@ -25,7 +26,7 @@ class Api::CategoriesController < ApplicationController
       # head :no_content
       redirect_to api_categories_path, notice: 'Entry updated'
     else
-      render json: { errors: @category.errors }, status: :unprocessable_entity
+      redirect_to edit_api_category_path, alert: @category.errors.full_messages.first
     end
   end
   
@@ -39,6 +40,12 @@ class Api::CategoriesController < ApplicationController
     # head :no_content
   end
 
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end
+
   private
 
   def set_category
@@ -46,6 +53,7 @@ class Api::CategoriesController < ApplicationController
   end
 
   def category_params
+    params["category"]["name"].strip!
     params.require(:category).permit(:name, :description, :department)
   end
 

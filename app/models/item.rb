@@ -11,7 +11,14 @@ class Item < ActiveRecord::Base
   has_many :item_location_prices, dependent: :destroy
   
   #validations
-  validates :name, :item_type ,:unit_price, presence: true
+  # :item_type == 'Services' ? (validates_presence_of :name) : (validates_presence_of :name, :unit_price, :package_size)
+  if :item_type == "Services"
+    validates_presence_of :name
+  else
+    validates_presence_of :name, :unit_price, :package_size, :unit_of_issue
+  end
+
+  validates_uniqueness_of :name, :case_sensitive => false
 
   #callbacks
   after_create :initial_price

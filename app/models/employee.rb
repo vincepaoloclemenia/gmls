@@ -1,11 +1,7 @@
 class Employee < ActiveRecord::Base
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :department, presence: true
-  validates :position, presence: true
-  validates :age, presence: true
-  validates :gender, presence: true
+  validates_presence_of :first_name, :last_name, :department, :position, :age, :gender
+  # validates_uniqueness_of 
 
   belongs_to :role
 end

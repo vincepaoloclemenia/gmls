@@ -7,5 +7,6 @@ class SubCategory < ActiveRecord::Base
   has_many :items, dependent: :destroy
 
   #validations
-  validates :name, presence: true
+  validates_presence_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
 end

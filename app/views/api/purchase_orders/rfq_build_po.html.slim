@@ -37,8 +37,11 @@
         tr.info
           td colspan='3' = supplier_name(supp)
           td
-            / = link_to icon_text('list-alt', 'Create P.O.'), final_approval_api_rfqs_path(id: @rfq.id, step: 1), class: "btn-xs btn-primary pull-right"
-            = link_to icon_text('list-alt', 'Create P.O.'), create_rfq_po_api_purchase_orders_path(supplier_id: supp, step: 3, rfq_id: @rfq.id), class: "btn btn-sm btn-primary pull-right"
+            - @data = po_rfq_exist(supp, @rfq.id).to_i
+            - if @data == 0
+              = link_to icon_text('list-alt', 'Create P.O.'), create_rfq_po_api_purchase_orders_path(supplier_id: supp, step: 3, rfq_id: @rfq.id), class: "btn btn-sm btn-primary pull-right"
+            - else
+              span.label.label-info.pull-right.small-text12 P.O. Created
         tr
           td.bold-text Item Name
           td.bold-text Quantity

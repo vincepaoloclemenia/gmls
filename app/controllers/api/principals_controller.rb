@@ -2,6 +2,12 @@ class Api::PrincipalsController < ApplicationController
   before_filter :set_principal, only: [:show, :update, :destroy, :edit]
 
   def index
+    unless params["q"].nil? 
+      params["q"]["name_cont"].strip!
+      params["q"]["contact_number_cont_any"].strip!
+      params["q"]["email_cont_any"].strip!
+      params["q"]["point_of_contact_cont_any"].strip!
+    end
     @q = Principal.ransack(params[:q])
     @principals = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @principals
@@ -48,5 +54,5 @@ class Api::PrincipalsController < ApplicationController
   def principal_params
     params.require(:principal).permit(:name, :contact_number, :email, :point_of_contact, :address, :department)
   end
-
+  
 end

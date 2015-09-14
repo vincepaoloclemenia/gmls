@@ -4,8 +4,9 @@ class Api::VesselsController < ApplicationController
   def index
     # @vessels = current_user.department.nil? ? Vessel.all : Vessel.where(department: current_user.department)
     # render json: @vessels
+    remove_search_space
     @q = Vessel.ransack(params[:q])
-    @vessels = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @vessels = @q.result.paginate(:page => params[:page], :per_page => 4)
   end
 
   def create
@@ -40,6 +41,16 @@ class Api::VesselsController < ApplicationController
       redirect_to api_vessels_path, alert: @vessel.errors.full_messages.first
     end
     # head :no_content
+  end
+
+  def remove_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["flag_of_registry_cont"].strip!
+      params["q"]["owner_operator_cont"].strip!
+      params["q"]["vessel_type_name_cont"].strip!
+      params["q"]["type_of_service_cont"].strip!
+    end
   end
 
   private

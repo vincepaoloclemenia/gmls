@@ -10,5 +10,4 @@ class Principal < ActiveRecord::Base
   validates :name, :contact_number, :email, :address, :point_of_contact, presence: true
   validates :name, :uniqueness_without_deleted => true
 
-  
 end

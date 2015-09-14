@@ -9,7 +9,8 @@ class Supplier < ActiveRecord::Base
   belongs_to :location
   has_many :rfq_items
 
-
   #validations
-  validates :name, presence: true
+  validates_presence_of :name, :address
+  validates_uniqueness_of :name
+  # validates_format_of :mobile_number , :with => /[^a-z]+$/, :multiline => true, presence: false
 end

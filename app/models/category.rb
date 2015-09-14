@@ -5,5 +5,6 @@ class Category < ActiveRecord::Base
   has_many :items, dependent: :destroy
 
   #validations
-  validates :name, presence: true
+  validates_presence_of :name
+  
 end

@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
   def index
     # @users = current_user.department.nil? ? User.all : User.where(department: current_user.department)
     # render json: @users
+    clear_search_space
     @q = User.ransack(params[:q])
     @users = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
@@ -15,7 +16,7 @@ class Api::UsersController < ApplicationController
       # render json: @user, status: :created, user: [:api, @user]
       redirect_to api_users_path, notice: 'Entry created'
     else
-      redirect_to @user, alert: @user.errors.full_messages.first
+      redirect_to new_api_user_path, alert: @user.errors.full_messages.first
       # render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
@@ -25,7 +26,7 @@ class Api::UsersController < ApplicationController
       # head :no_content
       redirect_to api_users_path, notice: 'Entry updated'
     else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
+      redirect_to edit_api_user_path, alert: @user.errors.full_messages.first
     end
   end
   
@@ -53,6 +54,16 @@ class Api::UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["first_name_or_last_name_cont"].strip!
+      params["q"]["department_eq"].strip!
+      params["q"]["position_cont"].strip!
+      params["q"]["gender_cont"].strip!
+      params["q"]["age_eq"].strip!
+    end
   end
 
   private

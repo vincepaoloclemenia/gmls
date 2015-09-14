@@ -4,27 +4,27 @@
     .col-xs-5
       //.input-group
       label Principal Name
-      = f.text_field :name, class: 'form-control', required: "required"
+      = f.text_field :name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-5
       //.input-group
       label Email
-      = f.email_field :email, class: 'form-control', required: "required"
+      = f.email_field :email, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row  
     .col-xs-5
       //.input-group
       label Contact Number
-      = f.number_field :contact_number, class: 'form-control', required: "required"
+      = f.number_field :contact_number, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-5
       //.input-group
       label Point of Contact
-      = f.text_field :point_of_contact, class: 'form-control', required: "required"
+      = f.text_field :point_of_contact, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-5
       .form-group
         label Address
-        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;", required: "required"
+        = f.text_area :address, class: 'form-control', rows: 5, style:"resize: none;", required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   br
   input.btn.btn-primary type="submit" value="Save"
