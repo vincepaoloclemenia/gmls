@@ -14,19 +14,23 @@
     .col-xs-4
       .input-group
         label Point Of Contact
-        
+        #point_of_contract
+          
     .col-xs-4
       .input-group
         label Phone Number
+        #phone_number
         
     .col-xs-4
       .input-group
         label Email Address 
+        #email
   br
   .row
     .col-xs-12
       .form-group
         label Address
+        #address
   br
   .row
     .col-xs-6
@@ -43,3 +47,19 @@
   | &nbsp;  
   / button class="btn btn-danger" Cancel
   = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+
+javascript:
+  $(function() {
+    $(document).ready(function() {
+      $('#rfq_principal_id').change(function(){
+        $.ajax({
+          url: "#{list_principal_info_path}",
+          data: {
+            principal_id : $('#rfq_principal_id').val()
+          },
+          dataType: "script"
+        });
+      });
+      
+    });
+  });

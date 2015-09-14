@@ -84,14 +84,11 @@ Rails.application.routes.draw do
     resources :logreq_responses
     resources :purchase_orders do
       get :rfq_build_po, on: :collection
-# <<<<<<< HEAD
-      get :rfq_purchase_order, on: :collection
-# =======
       get :list_rfq_build_po, on: :collection
       get :rfq_purchase_order, on: :collection
       get :create_rfq_po, on: :collection
       get :rfq_edit, on: :collection
-# >>>>>>> master
+
     end
     resources :purchase_order_items
     resources :supplier_pricing_details
@@ -108,4 +105,5 @@ Rails.application.routes.draw do
   get 'pages/change_item', :as => 'change_item'
   get 'pages/list_supplier_items_per_price', :as => 'list_supplier_items_per_price'
   get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
+  get 'pages/list_principal_info', :as => 'list_principal_info'
 end

@@ -4,7 +4,7 @@ class Api::LocationsController < ApplicationController
   def index
     # @locations = current_user.department.nil? ? Location.all : Location.where(department: current_user.department)
     #with ransack seraching
-
+    category_name_cont
     @q = Location.ransack(params[:q])
     @locations = @q.result.paginate(:page => params[:page], :per_page => 10)
 
@@ -19,7 +19,7 @@ class Api::LocationsController < ApplicationController
       redirect_to api_locations_path, notice: 'Entry created'
     else
       # render json: { errors: @location.errors }, status: :unprocessable_entity
-      redirect_to @location, alert: @location.errors.full_messages.first
+      redirect_to new_api_location_path, alert: @location.errors.full_messages.first
     end
   end
 
@@ -31,7 +31,7 @@ class Api::LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to api_locations_path, notice: 'Entry updated'
     else
-      render json: { errors: @location.errors }, status: :unprocessable_entity
+      redirect_to edit_api_location_path, alert: @location.errors.full_messages.first
     end
   end
   
@@ -40,6 +40,12 @@ class Api::LocationsController < ApplicationController
     redirect_to api_locations_path, notice: 'Entry was successfully deleted'
   end
 
+  def category_name_cont
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end  
+
   private
 
   def set_location
@@ -47,6 +53,7 @@ class Api::LocationsController < ApplicationController
   end
 
   def location_params
+    params["location"]["name"].strip!
     params.require(:location).permit(:name, :location_type, :region, :address, :department)
   end
 end

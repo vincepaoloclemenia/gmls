@@ -8,10 +8,10 @@
 
     .col-xs-4
       .input-group
-        label Item Category Name
-        = f.text_field :name, class: 'form-control', required: "required"
+        label Sub Category Name
+        = f.text_field :name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+  = link_to 'Cancel', api_sub_categories_path, class: 'btn btn-warning'

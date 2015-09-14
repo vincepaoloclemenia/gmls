@@ -127,29 +127,13 @@ module ApplicationHelper
     @items.count
   end
 
-  # def has_dups(array)
-  #   unless array.uniq.length == array.length
-  #     return 'true'
-  #   else
-  #     return 'false'
-  #   end
-  # end
+  def po_rfq_exist(supplier_id, rfq_id)
+    @data = PurchaseOrder.where({supplier_id: supplier_id, rfq_id: rfq_id})
+    @data.count
+  end
 
-  # def fib(n)
-  #   case n
-  #     when 0
-  #       return 0
-  #     when 1
-  #       return 1
-  #   else
-  #     a = [0, 1]
-  #     (2..n).each do |i|
-  #       a << a[i-2].to_i + a[i-1].to_i
-  #     end
-  #     return a, a.last
-  #   end
-  # end
-
-
-# >>>>>>> master
+  def po_logreq_exist(supplier_id, incidental_quote_id)
+    @data = PurchaseOrder.where({supplier_id: supplier_id, incidental_quote_id: incidental_quote_id})
+    @data.count
+  end  
 end

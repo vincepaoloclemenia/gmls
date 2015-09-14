@@ -17,18 +17,18 @@
       = f.select :location_id, Location.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-4
       label Price
-      = f.text_field :price, class: 'form-control'
+      = f.text_field :price, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
       label Quantity
-      = f.text_field :quantity, class: 'form-control'
+      = f.text_field :quantity, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       label Unit
-      = f.text_field :unit, class: 'form-control'
+      = f.text_field :unit, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       label Tariff Code
-      = f.text_field :tariff_code, class: 'form-control'
+      = f.text_field :tariff_code, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
@@ -36,7 +36,7 @@
       = f.select :service_id, Service.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control'
     .col-xs-8
       label Remarks
-      = f.text_area :remarks, class: 'form-control'
+      = f.text_area :remarks, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
       / = f.hidden_field :incidental_quote_id, value: params[:incidental_quote_id]
       = f.hidden_field :logreq_id, value: params[:li]
   br

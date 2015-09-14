@@ -3,6 +3,11 @@ class Api::ToolsController < ApplicationController
 
   def index
     # @tools = Tool.all
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["quantity_eq"].strip!
+      params["q"]["unit_cont"].strip!
+    end
     @q = Tool.ransack(params[:q])
     @tools = @q.result.paginate(:page => (params[:page]), :per_page => 10)
     # render json: @tools

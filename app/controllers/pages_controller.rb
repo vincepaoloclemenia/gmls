@@ -19,4 +19,8 @@ class PagesController < ApplicationController
     @end_date = Date.today.end_of_month
     @logreqs =  Logreq.where(date_of_arrival: @start_date..@end_date).order('date_of_arrival DESC')
   end
+
+  def list_principal_info
+    @info = Principal.find params[:principal_id]
+  end
 end

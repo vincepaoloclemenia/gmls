@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   has_many :supplier
   has_many :incidental_items 
 
-  validates :name, presence: true
+  validates_presence_of :name
 
   
 end

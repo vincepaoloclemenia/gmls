@@ -3,6 +3,11 @@ class Api::DriversController < ApplicationController
 
   def index
     # @drivers = current_user.department.nil? ? Driver.all : Driver.where(department: current_user.department)
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["contact_no_cont_any"].strip!
+      params["q"]["employer_owner_contact_person_cont"].strip!
+    end
     @q = Driver.ransack(params[:q])
     @drivers = @q.result.includes(:employer).paginate(:page => (params[:page]), :per_page => 10)
   end

@@ -3,7 +3,7 @@
   .row
     .col-xs-4
         label Role Name
-        = f.text_field :role_name, class: 'form-control', required: "required" 
+        = f.text_field :role_name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$' 
     .col-xs-4
         label Access Level
         = f.select :access_level, ["Data Encoder","Approver", "Administrator"], {include_blank: true }, class: 'form-control', required: "required"
@@ -12,9 +12,9 @@
     .col-xs-8
       .form-group
         label Description
-        = f.text_area :description, class: 'form-control', rows: 5, style:"resize: none;"
+        = f.text_area :description, class: 'form-control', rows: 5, style:"resize: none;", pattern: '^(?!\s*$|\s).*$'
   br
   br
   input.btn.btn-primary type="submit" value="Save"
   | &nbsp;  
-  = link_to 'Cancel', request.referer, class: 'btn btn-warning'
+  = link_to 'Cancel', api_roles_path, class: 'btn btn-warning'

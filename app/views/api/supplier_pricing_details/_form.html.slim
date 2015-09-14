@@ -23,17 +23,17 @@
     .col-xs-4
       //input-group
       label Quantity
-      = f.text_field :quantity, class: 'form-control'
+      = f.text_field :quantity, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //input-group
       label Unit
-      = f.text_field :unit, class: 'form-control'
+      = f.text_field :unit, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
       //input-group
       label Price
-      = f.text_field :price, class: 'form-control'
+      = f.text_field :price, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
 
 
   br

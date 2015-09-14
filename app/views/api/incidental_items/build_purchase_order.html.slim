@@ -12,7 +12,11 @@
         tr.info
           td.bold-text colspan='2' = @show_supplier_info.name
           td.text-right colspan='2'
-            = link_to "Generate P.O.", new_api_purchase_order_path(step: 4, incidental_quote_id: params[:incidental_quote_id], supplier_id: @show_supplier_info.id), class: "btn btn-info btn-xs" 
+            - @data = po_logreq_exist(@show_supplier_info.id, params[:incidental_quote_id]).to_i
+            - if @data == 0
+              = link_to "Generate P.O.", new_api_purchase_order_path(step: 4, incidental_quote_id: params[:incidental_quote_id], supplier_id: @show_supplier_info.id), class: "btn btn-info btn-xs" 
+            - else
+              span.label.label-success.pull-right.small-text11 P.O. Created
         tr.warning
           td width="10%"
           th width="30%" Item Name

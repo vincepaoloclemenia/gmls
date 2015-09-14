@@ -3,6 +3,7 @@ class Api::RolesController < ApplicationController
 
   def index
     # @roles = Role.order("id DESC") 
+    clear_search_space
     @q = Role.ransack(params[:q])
     @roles = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @roles
@@ -15,7 +16,7 @@ class Api::RolesController < ApplicationController
       # render json: @role, status: :created, role: [:api, @role]
       redirect_to api_roles_path, notice: 'Entry created'
     else
-      redirect_to @role, alert: @role.errors.full_messages.first
+      redirect_to new_api_role_path, alert: @role.errors.full_messages.first
       # render json: { errors: @role.errors }, status: :unprocessable_entity
     end
   end
@@ -37,7 +38,7 @@ class Api::RolesController < ApplicationController
       # head :no_content
       redirect_to api_roles_path, notice: 'Entry updated'
     else
-      render json: { errors: @role.errors }, status: :unprocessable_entity
+      redirect_to new_api_role_path, alert: @role.errors.full_messages.first
     end
   end
   
@@ -45,6 +46,14 @@ class Api::RolesController < ApplicationController
     @role.destroy
     redirect_to api_roles_path, notice: 'Entry successfully deleted'
   end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["role_name_cont"].strip!
+      params["q"]["access_level_cont"].strip!
+    end
+  end
+
   private
 
   def set_role
@@ -52,6 +61,7 @@ class Api::RolesController < ApplicationController
   end
     
   def role_params
+    params["role"]["role_name"].strip!
     params.require(:role).permit(:id, :role_name, :description, :department, :access_level)
   end
 end
