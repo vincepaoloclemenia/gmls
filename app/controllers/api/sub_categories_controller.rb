@@ -4,6 +4,7 @@ class Api::SubCategoriesController < ApplicationController
   def index
     # @sub_categories = current_user.department.nil? ? SubCategory.all : SubCategory.where(department: current_user.department)
     # render json: @categories
+    clear_search_space
     @q = SubCategory.ransack(params[:q])
     @sub_categories = @q.result.includes(:category).paginate(:page => params[:page], :per_page => 10)
   end
@@ -37,6 +38,13 @@ class Api::SubCategoriesController < ApplicationController
     @sub_category.destroy
     redirect_to api_sub_categories_path, notice: 'Entry successfully deleted'
     # head :no_content
+  end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["category_name_cont"].strip!
+    end
   end
 
   private

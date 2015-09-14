@@ -8,30 +8,30 @@
     .col-xs-4
       //input-group
       label First Name
-      = f.text_field :first_name, class: 'form-control', required: "required"
+      = f.text_field :first_name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //input-group
       label Last Name
-      = f.text_field :last_name, class: 'form-control', required: "required"
+      = f.text_field :last_name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
       label Department
-      = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required"
+      = f.select :department, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //input-group
       label Position
-      = f.text_field :position, class: 'form-control', required: "required"
+      = f.text_field :position, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //input-group
       label Gender
-      = f.select :gender, ["Male","Female"], {include_blank: true }, class: 'form-control', required: "required"
+      = f.select :gender, ["Male","Female"], {include_blank: true }, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
       //input-group
       label Age
-      = f.text_field :age, class: 'form-control', required: "required"
+      = f.text_field :age, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   br
   .row
@@ -43,11 +43,11 @@
     .col-xs-4
       //input-group
       label Email
-      = f.email_field :email, class: 'form-control', required: "required"
+      = f.email_field :email, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //input-group
       label Password
-      = f.password_field :password, class: 'form-control', required: "required"
+      = f.password_field :password, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
 
   br
   br

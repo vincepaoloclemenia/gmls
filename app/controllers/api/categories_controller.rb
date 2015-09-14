@@ -3,6 +3,7 @@ class Api::CategoriesController < ApplicationController
 
   def index
     # @categories = current_user.department.nil? ? Category.all : Category.where(department: current_user.department)
+    clear_search_space
     @q = Category.ransack(params[:q])
     @categories = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @categories
@@ -37,6 +38,12 @@ class Api::CategoriesController < ApplicationController
     @category.destroy
     redirect_to api_categories_path, notice: 'Entry successfully deleted.'
     # head :no_content
+  end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
   end
 
   private

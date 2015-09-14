@@ -4,6 +4,7 @@ class Api::VesselClassesController < ApplicationController
   def index
     # @vessel_classes = current_user.department.nil? ? VesselClass.all : VesselClass.where(department: current_user.department)
     # render json: @vessel_classes
+    clear_search_space
     @q = VesselClass.ransack(params[:q])
     @vessel_classes = @q.result.paginate(:page => params[:page], :per_page => 10)
   end
@@ -37,6 +38,12 @@ class Api::VesselClassesController < ApplicationController
     redirect_to api_vessel_classes_path, notice: 'Entry was successfully deleted'
   end
 
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end
+
   private
 
   def set_vessel_class
@@ -46,5 +53,5 @@ class Api::VesselClassesController < ApplicationController
   def vessel_class_params
     params.require(:vessel_class).permit(:name, :department)
   end
-
+  
 end

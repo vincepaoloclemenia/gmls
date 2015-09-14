@@ -8,37 +8,37 @@
     .col-xs-4
       //.input-group
       label Supplier Name
-      = f.text_field :name, class: 'form-control', required: "required"
+      = f.text_field :name, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //.input-group
       label Contact Person
-      = f.text_field :contact_person, class: 'form-control'
+      = f.text_field :contact_person, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       //.input-group
       label Mobile Number
-      = f.text_field :mobile_number, class: 'form-control'  
+      = f.text_field :mobile_number, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-4
       //.input-group
       label Telephone Number
-      = f.text_field :telephone_number, class: 'form-control'
+      = f.text_field :telephone_number, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     
     .col-xs-4
       //.input-group
       label Fax Number
-      = f.text_field :fax_number, class: 'form-control'
+      = f.text_field :fax_number, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
 
     .col-xs-4
       //.input-group
       label Email
-      = f.text_field :email, class: 'form-control'  
+      = f.text_field :email, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
   br
   .row
     .col-xs-8
       //.input-group
       label Address
-      = f.text_area :address, class: 'form-control', rows: 5, cols: 70, style:"resize: none;"
+      = f.text_area :address, class: 'form-control', rows: 5, cols: 70, style:"resize: none;", pattern: '^(?!\s*$|\s).*$'
       / br
       / //.input-group
       /   label Location

@@ -3,6 +3,13 @@ class Api::VehiclesController < ApplicationController
 
   def index
     # inclusion of ransack
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["plate_number_cont"].strip!
+      params["q"]["employer_owner_contact_person_cont"].strip!
+      params["q"]["driver_name_cont"].strip!
+      params["q"]["mobile_number_cont"].strip!
+    end
     @q = Vehicle.ransack(params[:q])
     @vehicles = @q.result.includes(:employer, :driver).paginate(:page => params[:page], :per_page => 10)
 

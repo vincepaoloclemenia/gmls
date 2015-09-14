@@ -6,10 +6,10 @@
       = f.select :vessel_id, Vessel.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
     .col-xs-4
       label Arrival Date
-      = f.text_field :date_of_arrival, class: 'form-control datepicker', required: "required"
+      = f.text_field :date_of_arrival, class: 'form-control datepicker', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       label Departure Date
-      = f.text_field :date_of_departure, class: 'form-control datepicker', required: "required"
+      = f.text_field :date_of_departure, class: 'form-control datepicker', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row  
     .col-xs-4

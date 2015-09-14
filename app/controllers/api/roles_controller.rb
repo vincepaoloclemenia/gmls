@@ -3,6 +3,7 @@ class Api::RolesController < ApplicationController
 
   def index
     # @roles = Role.order("id DESC") 
+    clear_search_space
     @q = Role.ransack(params[:q])
     @roles = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @roles
@@ -45,6 +46,14 @@ class Api::RolesController < ApplicationController
     @role.destroy
     redirect_to api_roles_path, notice: 'Entry successfully deleted'
   end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["role_name_cont"].strip!
+      params["q"]["access_level_cont"].strip!
+    end
+  end
+
   private
 
   def set_role

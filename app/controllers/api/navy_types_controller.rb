@@ -3,6 +3,7 @@ class Api::NavyTypesController < ApplicationController
 
   def index
     # @navy_types = current_user.department.nil? ? NavyType.all : NavyType.where(department: current_user.department)
+    clear_search_space
     @q = NavyType.ransack(params[:q])
     @navy_types = @q.result.paginate(:page => (params[:page]), :per_page => 10)
     # render json: @navy_types
@@ -39,6 +40,12 @@ class Api::NavyTypesController < ApplicationController
     # head :no_content
   end
 
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end
+  
   private
 
   def set_navy_type

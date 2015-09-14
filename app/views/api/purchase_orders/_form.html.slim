@@ -4,7 +4,7 @@
     .col-xs-4
       .input-group
         label Supplier Name
-        = f.text_field :supplier_name, value: @supplier.name, class: 'form-control', readonly: true
+        = f.text_field :supplier_name, value: @supplier.name, class: 'form-control', readonly: true, pattern: '^(?!\s*$|\s).*$'
         - @supplier_id = params[:supplier_id].present? ? params[:supplier_id] : @purchase_order.supplier_id
         = f.hidden_field :supplier_id, value: @supplier_id, class: 'form-control'
         - @incidental_quote_id = params[:incidental_quote_id].present? ? params[:incidental_quote_id] : @purchase_order.incidental_quote_id
@@ -12,35 +12,35 @@
     .col-xs-4
       .input-group
         label P.O. Number
-        = f.text_field :purchase_order_number, class: 'form-control', required: "required"
+        = f.text_field :purchase_order_number, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       .input-group
         label Attention
-        = f.text_field :attention, class: 'form-control', required: "required"
+        = f.text_field :attention, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
   br
   .row  
     .col-xs-4
       .input-group
         label Deliver To
-        = f.text_field :deliver_to, class: 'form-control', required: "required"
+        = f.text_field :deliver_to, class: 'form-control', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       .input-group
         label Date Created
-        = f.text_field :date_created, class: 'form-control datepicker', required: "required"
+        = f.text_field :date_created, class: 'form-control datepicker', required: "required", pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       .input-group
         label Delivery Date
-        = f.text_field :delivery_date, class: 'form-control datepicker', required: "required"    
+        = f.text_field :delivery_date, class: 'form-control datepicker', required: "required", pattern: '^(?!\s*$|\s).*$'    
   br
   .row
     .col-xs-4
       .input-group
         label Payment Terms
-        = f.text_field :payment_terms, class: 'form-control'
+        = f.text_field :payment_terms, class: 'form-control', pattern: '^(?!\s*$|\s).*$'
     .col-xs-4
       .input-group
         label Prepared By
-        = f.text_field :user, value: "#{current_user.full_name}", class: 'form-control', readonly: true
+        = f.text_field :user, value: "#{current_user.full_name}", class: 'form-control', readonly: true, pattern: '^(?!\s*$|\s).*$'
         = f.hidden_field :prepared_by, value: current_user.id, class: 'form-control'
   br
   .row

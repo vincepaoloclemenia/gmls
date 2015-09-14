@@ -6,5 +6,5 @@ class Principal < ActiveRecord::Base
 
   #validations
   validates :name, :contact_number, :email, :address, :point_of_contact, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true 
 end

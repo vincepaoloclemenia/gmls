@@ -4,6 +4,7 @@ class Api::SuppliersController < ApplicationController
   def index
     #@suppliers = current_user.department.nil? ? Supplier.all : Supplier.where(department: current_user.department)
     # @suppliers = Supplier.includes(:supplier_category, :location).all
+    category_name_cont
     @q = Supplier.ransack(params[:q])
     @suppliers = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @suppliers
@@ -36,6 +37,14 @@ class Api::SuppliersController < ApplicationController
   def destroy
     @supplier.destroy
     redirect_to api_suppliers_path, notice: 'Entry successfully deleted'
+  end
+ 
+  def category_name_cont
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+      params["q"]["telephone_number_cont_any"].strip!
+      params["q"]["email_cont"].strip!
+    end
   end
 
   private

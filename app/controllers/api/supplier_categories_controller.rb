@@ -42,6 +42,12 @@ class Api::SupplierCategoriesController < ApplicationController
     # head :no_content
   end
 
+  def category_name_cont
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end
+
   private
     def set_supplier_category
       @supplier_category = SupplierCategory.find(params[:id])

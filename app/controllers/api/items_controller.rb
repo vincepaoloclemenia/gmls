@@ -5,6 +5,7 @@ class Api::ItemsController < ApplicationController
   def index
     # @items = current_user.department.nil? ? Item.all : Item.where(department: current_user.department)
     # render json: @items 
+    clear_search_space
     @q = Item.ransack(params[:q])
     @items = @q.result.includes(:category, :sub_category).paginate(:page => params[:page], :per_page => 10)
     # @items = current_user.department.nil? ? Item.all.paginate(:page => params[:page], :per_page => 10) : Item.where(department: current_user.department).paginate(:page => params[:page], :per_page => 10)
@@ -42,6 +43,17 @@ class Api::ItemsController < ApplicationController
 
   def new
     @item = Item.new
+  end
+
+  def clear_search_space
+    unless params["q"].nil?
+      params["q"]["item_type_cont"].strip!
+      params["q"]["name_cont"].strip!
+      params["q"]["service_type_cont"].strip!
+      params["q"]["category_name_cont"].strip!
+      params["q"]["sub_category_name_cont"].strip!
+      params["q"]["unit_price_eq"].strip!
+    end
   end
 
   private

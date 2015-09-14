@@ -3,6 +3,7 @@ class Api::ServicesController < ApplicationController
 
   def index
     # @services = current_user.department.nil? ? Service.all : Service.where(department: current_user.department)
+    category_name_cont
     @q = Service.ransack(params[:q])
     @services = @q.result.paginate(:page => params[:page], :per_page => 10)
     # render json: @services
@@ -33,6 +34,10 @@ class Api::ServicesController < ApplicationController
   def destroy
     @service.destroy
     redirect_to api_services_path, notice: 'Entry successfully deleted'
+  end
+
+  def category_name_cont
+    params["q"]["name_cont"].strip!
   end
 
   private

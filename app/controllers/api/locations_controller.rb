@@ -4,7 +4,7 @@ class Api::LocationsController < ApplicationController
   def index
     # @locations = current_user.department.nil? ? Location.all : Location.where(department: current_user.department)
     #with ransack seraching
-
+    category_name_cont
     @q = Location.ransack(params[:q])
     @locations = @q.result.paginate(:page => params[:page], :per_page => 10)
 
@@ -39,6 +39,12 @@ class Api::LocationsController < ApplicationController
     @location.destroy
     redirect_to api_locations_path, notice: 'Entry was successfully deleted'
   end
+
+  def category_name_cont
+    unless params["q"].nil?
+      params["q"]["name_cont"].strip!
+    end
+  end  
 
   private
 
