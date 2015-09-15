@@ -106,4 +106,5 @@ Rails.application.routes.draw do
   get 'pages/list_supplier_items_per_price', :as => 'list_supplier_items_per_price'
   get 'api/incidental_items/list_supplier_per_items', :as => 'list_supplier_per_items'
   get 'pages/list_principal_info', :as => 'list_principal_info'
+  get 'pages/list_item_service_type', :as => 'list_item_service_type'
 end

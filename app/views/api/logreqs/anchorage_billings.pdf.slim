@@ -64,5 +64,5 @@ table.table.pre-scrollable
     td.bold-text.text-right = number_to_currency(@total_delta_to_both_arr.inject(:+).to_f, unit: "P ")
   tr.small-text11
     td colspan="11"  
-    
+.pull-right.small-textwithmargin = DateTime.now.strftime("Printed on %m/%d/%Y %T")
     
