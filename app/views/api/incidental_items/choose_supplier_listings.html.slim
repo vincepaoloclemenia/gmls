@@ -28,7 +28,7 @@
               td= incidental_quote.company
               td.text-center
                 - if count_incidental_items(incidental_quote.id) != 0
-                  = link_to icon_text('log-in',''), choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), title:"Choose Supplier", class: "btn btn-info btn-xs"
+                  = link_to icon_text('log-in',''), choose_supplier_api_incidental_items_path(incidental_quote_id: incidental_quote.id, step: 3), class: "btn btn-info btn-xs tooltip", data:{tooltip: "Choose Supplier"}
         tfoot
           tr.text-center.small-text.bold-text
             td colspan="6" = will_paginate @incidental_quotes, renderer: BootstrapPagination::Rails

@@ -35,7 +35,7 @@
               td= logreq.date_of_departure.present? ? logreq.date_of_departure.strftime("%B %d, %Y") : ''
               td= logreq.pier
               td.text-center
-                = link_to icon_text('eye-open',''), delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), title:"View Delivery Breakdown", class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Delivery Breakdown"
+                = link_to icon_text('eye-open',''), delivery_lists_api_logreqs_path(logreq_id: logreq.id, step: 5), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails

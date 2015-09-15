@@ -21,9 +21,9 @@
             tr
               td= serv.name
               td
-                = link_to icon_text('pencil', ''), edit_api_service_path(serv), title: 'Edit List', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_service_path(serv), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_service_path(serv), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete List"
+                = link_to icon_text('trash', ''), api_service_path(serv), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="2" = will_paginate @services, renderer: BootstrapPagination::Rails

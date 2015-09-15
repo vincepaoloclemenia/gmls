@@ -28,7 +28,7 @@
               td = logreq.vessel.name
               td = logreq.pier
               td.text-center
-                = link_to icon_text('eye-open',''), anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), title:"View Anchorage Billing", class: 'btn btn-xs btn-info'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "View Anchorage Billing"
+                = link_to icon_text('eye-open',''), anchorage_billings_api_logreqs_path(logreq_id: logreq.id, step: 6), title:"View Anchorage Billing", class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View Anchorage Billing"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @logreqs, renderer: BootstrapPagination::Rails

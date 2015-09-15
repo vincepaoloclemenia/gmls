@@ -21,9 +21,9 @@
             tr
               td= supplier_category.name
               td
-                = link_to icon_text('pencil', ''), edit_api_supplier_category_path(supplier_category), title: 'Edit List', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_supplier_category_path(supplier_category), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_supplier_category_path(supplier_category), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete List"
+                = link_to icon_text('trash', ''), api_supplier_category_path(supplier_category), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @supplier_categories,  renderer: BootstrapPagination::Rails

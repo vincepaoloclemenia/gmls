@@ -21,9 +21,9 @@
             tr
               td= navy_type.name
               td
-                = link_to icon_text('pencil', ''), edit_api_navy_type_path(navy_type), title: 'Edit Navy Type', class: 'btn btn-xs btn-warning'
+                = link_to icon_text('pencil', ''), edit_api_navy_type_path(navy_type), title: 'Edit Navy Type', class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
                 | &nbsp;
-                = link_to icon_text('trash', ''), api_navy_type_path(navy_type), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete Navy Type"
+                = link_to icon_text('trash', ''), api_navy_type_path(navy_type), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="6" = will_paginate @vehicles, renderer: BootstrapPagination::Rails

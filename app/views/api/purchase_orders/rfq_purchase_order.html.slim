@@ -28,8 +28,8 @@
             td
               - if rfq.current_status == 't'
                 | &nbsp;
-                = link_to icon_text('list-alt', ''), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'Build P.O.', class: 'btn btn-xs btn-primary'
+                = link_to icon_text('list-alt', ''), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-primary tooltip', data:{tooltip: "Build P.O."}
                 - if po_listing_per_rfq(rfq.id) == true
                   | &nbsp;
-                  = link_to icon_text('check', ''), list_rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), title: 'View List P.O.', class: 'btn btn-xs btn-info'
+                  = link_to icon_text('check', ''), list_rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View List P.O."}
 
