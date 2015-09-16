@@ -19,4 +19,4 @@ staging:
   <<: *default
   database: gmls_staging
   username: gmlsdbuser
-  password: gmlsadmin2015
+  password: admin2015
