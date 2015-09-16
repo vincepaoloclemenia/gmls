@@ -15,6 +15,9 @@ set :rbenv_roles, :all # default value
 
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 # Default value for :scm is :git
 # set :scm, :git
