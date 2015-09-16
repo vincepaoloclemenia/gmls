@@ -12,7 +12,7 @@ server 'gmls.cloudapp.net', user: 'gmls', roles: %w[web app]
 
 set :ssh_options, {
   #keys: ["/Users/ken/.ssh/erfrsUser.key"],
-  auth_methods: %w[publickey],
+  # auth_methods: %w[publickey],
   forward_agent: true
 }
 

@@ -72,9 +72,9 @@ GEM
     capistrano-rails (1.1.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
+    capistrano-rbenv (2.0.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
     capistrano3-nginx_unicorn (0.0.6)
       capistrano (>= 3.0.0)
     carrierwave (0.10.0)
@@ -251,7 +251,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-rails
-  capistrano-rvm
+  capistrano-rbenv
   capistrano3-nginx_unicorn
   devise
   jbuilder (~> 2.0)
