@@ -22,7 +22,6 @@
               td= category.name
               td
                 = link_to icon_text('pencil', ''), edit_api_category_path(category), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "View"}
-                | &nbsp;
                 = link_to icon_text('trash', ''), api_category_path(category), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
         tfoot
           tr.text-center.small-text11.bold-text

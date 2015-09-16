@@ -41,7 +41,6 @@
                 - if logreq.approved_logreq == 'Approved'
                   = link_to icon_text('eye-open',''), manage_services_api_incidental_quotes_path(li: logreq.id, step: 2), class: 'btn btn-xs btn-success tooltip', data:{tooltip: "View LogReq Quotation"}
                 - if logreq.assigned_user_breakdown_services == current_user.id
-                  | &nbsp;
                   = link_to icon_text('list-alt',''), services_breakdown_api_incidental_quotes_path(li: logreq.id, step: 2), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "Services Breakdown"}
         tfoot
           tr.text-center.small-text11.bold-text

@@ -25,7 +25,6 @@
               td= employer.mobile_no
               td
                 = link_to icon_text('pencil', ''), edit_api_employer_path(employer), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "View"}
-                | &nbsp;
                 = link_to icon_text('trash', ''), api_employer_path(employer), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
         tfoot
           tr.text-center.small-text11.bold-text
