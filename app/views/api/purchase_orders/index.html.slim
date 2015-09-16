@@ -29,11 +29,9 @@
             td = purchase_order.date_created.present? ? purchase_order.date_created.strftime("%B %d, %Y") : ''
             td = purchase_order.delivery_date.present? ? purchase_order.delivery_date.strftime("%B %d, %Y") : ''
             td = full_name(purchase_order.prepared_by)
-            td
+            td.text-left
               = link_to icon_text('pencil', ''), edit_api_purchase_order_path(purchase_order, supplier_id: purchase_order.supplier_id), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
-              | &nbsp;
               = link_to icon_text('trash', ''), api_purchase_order_path(purchase_order), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
-              | &nbsp;
               = link_to icon_text('print', ''), api_purchase_order_path(purchase_order, format: 'pdf'), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "Print PDF Form"}, target: "_blank"
       tfoot
         tr.text-center.small-text11.bold-text

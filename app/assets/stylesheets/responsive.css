@@ -1,0 +1,10 @@
+@media (min-width: 1280px){
+	.login-cont{
+		height: 950px;
+	}
+}
+@media (max-width: 1280px){
+	.login-cont{
+		height: 700px;
+	}
+}
