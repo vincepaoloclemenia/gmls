@@ -23,6 +23,7 @@ gem 'rails4-autocomplete'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
 gem 'paranoia_uniqueness_validator', '1.1.0'
+gem 'sprockets', '2.12.3'
 
 group :development do
   gem 'railroady'
