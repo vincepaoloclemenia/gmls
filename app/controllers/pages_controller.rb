@@ -23,4 +23,8 @@ class PagesController < ApplicationController
   def list_principal_info
     @info = Principal.find params[:principal_id]
   end
+
+  def list_item_service_type
+    @info = Item.find params[:item_id]
+  end
 end

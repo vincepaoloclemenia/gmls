@@ -3,7 +3,7 @@
   .panel-heading
     h3.title-gray-heading
       span.glyphicon.glyphicon-list
-      | &nbsp; Request For Quotation List
+      | &nbsp; Monitoring of Deliveries
   .panel-body
     br
     = search_form_for [:api, @q], url: request.path do |f|
@@ -33,8 +33,7 @@
               td
                 - @rfqs_items = check_rfq_items(rfq.id)
                 - if @rfqs_items != 0 
-                  = link_to icon_text('list', ''), rfq_delivery_lists_api_rfqs_path(rfq_id: rfq.id, step: 1), title: 'View Delivery List', class: 'btn btn-xs btn-info'
+                  = link_to icon_text('list', ''), rfq_delivery_lists_api_rfqs_path(rfq_id: rfq.id, step: 4), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View Delivery List"}
         tfoot
           tr.text-center.small-text11.bold-text
             td colspan="5" = will_paginate @rfqs, renderer: BootstrapPagination::Rails
-              

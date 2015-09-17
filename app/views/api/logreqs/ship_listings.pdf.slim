@@ -17,3 +17,4 @@
           td= ship_listing.date_of_departure.present? ? ship_listing.date_of_departure.strftime("%B %d, %Y") : ''
           td= ship_listing.pier
           td= ship_listing.user.full_name
+  .pull-right.small-textwithmargin = DateTime.now.strftime("Printed on %m/%d/%Y %T")

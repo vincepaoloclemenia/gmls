@@ -36,9 +36,9 @@
         .col-xs-9
           = logreq_response.question.html_safe
         .col-xs-3.btn-icon-hover
-          = link_to icon_text('pencil', ''), edit_api_logreq_response_path(logreq_response, li: @logreq.id, step: 1), title: 'Edit Response', class: 'btn btn-xs btn-warning'
+          = link_to icon_text('pencil', ''), edit_api_logreq_response_path(logreq_response, li: @logreq.id, step: 1), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
           | &nbsp;
-          = link_to icon_text('trash', ''), api_logreq_response_path(logreq_response, li: @logreq.id, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete Response"
+          = link_to icon_text('trash', ''), api_logreq_response_path(logreq_response, li: @logreq.id, step: 1), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}
       .row    
         .col-xs-9 style="color: red;"
           = logreq_response.response.nil? ? '' : logreq_response.response.html_safe

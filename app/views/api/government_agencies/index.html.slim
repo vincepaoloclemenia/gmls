@@ -26,6 +26,5 @@
             td= government_agency.telephone_number
             td= government_agency.email
             td
-              = link_to icon_text('pencil', ''), edit_api_government_agency_path(government_agency), title: 'View', class: 'btn btn-xs btn-warning'
-              | &nbsp;
-              = link_to icon_text('trash', ''), api_government_agency_path(government_agency), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger'," data-toggle"=> "tooltip", "data-placement" => "top", "title" => "Delete"
+              = link_to icon_text('pencil', ''), edit_api_government_agency_path(government_agency), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "View"}
+              = link_to icon_text('trash', ''), api_government_agency_path(government_agency), method: :delete, 'data-confirm' => 'Are you sure you want to delete this record?', class: 'btn btn-xs btn-danger tooltip', data:{tooltip: "Delete"}

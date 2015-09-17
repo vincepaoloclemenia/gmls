@@ -63,6 +63,20 @@ javascript:
         });
       });
       
+      $('#incidental_item_item_id').change(function(){
+        $.ajax({
+          url: "#{list_item_service_type_path}",
+          data: {
+            item_id : $('#incidental_item_item_id').val()
+          },
+          dataType: "script"
+        });
+      });
+
     });
+
+
   });
+
+
 / :incidental_quote_id, :item_id, :area, :price, :remarks, :department, :supplier_pricing_detail_id, :supplier_id, :location_id, :quantity, :unit, :tariff_code, :logreq_id, :service_id
