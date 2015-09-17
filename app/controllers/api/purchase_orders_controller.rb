@@ -1,6 +1,10 @@
 class Api::PurchaseOrdersController < ApplicationController
   before_filter :set_purchase_order, only: [:show, :update, :destroy, :edit]
 
+  def strip_values(resource)
+    resource.values.each { |r| r.strip! if r.present? }
+  end
+
   def index
     if params[:q].nil?
       params[:q] = {}
@@ -75,7 +79,17 @@ class Api::PurchaseOrdersController < ApplicationController
   end
 
   def rfq_purchase_order
-    @list_rfqs = Rfq.all
+    if params[:q].present?
+      if params[:q][:requirements_officer_first_name_or_requirements_officer_last_name_cont].present?
+        params[:q][:requirements_officer_first_name_or_requirements_officer_last_name_cont] = "" if params[:q][:requirements_officer_first_name_or_requirements_officer_last_name_cont].downcase == "unassigned"
+      end
+      if params[:q][:monitoring_officer_first_name_or_monitoring_officer_last_name_cont].present?
+        params[:q][:monitoring_officer_first_name_or_monitoring_officer_last_name_cont] = "" if params[:q][:monitoring_officer_first_name_or_monitoring_officer_last_name_cont].downcase == "unassigned"
+      end
+      strip_values(params[:q])
+    end
+    @q = Rfq.ransack(params[:q])
+    @list_rfqs = @q.result.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create_rfq_po

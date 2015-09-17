@@ -6,23 +6,34 @@
       | &nbsp; Request For Quotation List
   .panel-body
     br
-    table.table.table-hover.table-striped
-      thead
-        tr
-          th RFQ Title
-          th Principal Name
-          th Duns
-          th Cage Code
-          th Action
-      tbody.btn-icon-hover
-        - @rfqs.each do |rfq|
+    = search_form_for [:api, @q], url: request.path do |f|
+      = f.hidden_field :step, value: 5, name: 'step'
+      table.table.table-hover.table-striped
+        thead
           tr
-            td= rfq.title
-            td= rfq.principal.name
-            td= rfq.duns
-            td= rfq.cage_code
-            td
-              - @rfqs_items = check_rfq_items(rfq.id)
-              - if @rfqs_items != 0 
-                = link_to icon_text('list', ''), rfq_anchorage_billings_api_rfqs_path(rfq_id: rfq.id, step: 5), title: 'View Billing', class: 'btn btn-xs btn-info'
-              
+            th = sort_link(@q, :rfq_title, 'RFQ Title', default: :desc)
+            th = sort_link(@q, :principal_name, 'Principal Name', default: :desc)
+            th = sort_link(@q, :duns, 'Duns', default: :desc)
+            th = sort_link(@q, :cage_code, 'Cage Code', default: :desc)
+            th Action
+          tr
+            th = f.text_field :title_cont, class: "form-control"
+            th = f.text_field :principal_name_cont, class: "form-control"
+            th = f.text_field :duns_cont, class: "form-control"
+            th = f.text_field :cage_code_cont, class: "form-control"
+            th
+              input.btn.btn-primary style="width:100%;" type="submit" value="Search" id="mysearch"
+        tbody.btn-icon-hover
+          - @rfqs.each do |rfq|
+            tr
+              td= rfq.title
+              td= rfq.principal.name
+              td= rfq.duns
+              td= rfq.cage_code
+              td
+                - @rfqs_items = check_rfq_items(rfq.id)
+                - if @rfqs_items != 0 
+                  = link_to icon_text('list', ''), rfq_anchorage_billings_api_rfqs_path(rfq_id: rfq.id, step: 5), title: 'View Billing', class: 'btn btn-xs btn-info'
+        tfoot
+          tr.text-center.small-text11.bold-text
+            td colspan="5" = will_paginate @rfqs, renderer: BootstrapPagination::Rails              
