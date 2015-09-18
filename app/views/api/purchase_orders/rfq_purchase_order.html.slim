@@ -8,28 +8,40 @@
 	     /  = link_to "Create", new_api_rfq_path(step: 1), class: "btn btn-primary"
   .panel-body
     br
-    table.table.table-hover.table-striped
-      thead
-        tr
-          th RFQ Title
-          th Principal Name
-          th Requirement Officer
-          th Monitoring Officer
-          th Status
-          th Action
-      tbody.btn-icon-hover
-        - @list_rfqs.each do |rfq|
+    = search_form_for [:api, @q], url: request.path do |f|
+      = f.hidden_field :step, value: 3, name: 'step'
+      table.table.table-hover.table-striped
+        thead
           tr
-            td= rfq.title
-            td= rfq.principal.name
-            td= @rfq_req_officer = rfq_req_officer(rfq.requirements_officer_id)
-            td= @rfq_mon_officer = rfq_mon_officer(rfq.monitoring_officer_id)
-            td= rfq.current_status == 't' ? "Approved" : "Pending"
-            td
-              - if rfq.current_status == 't'
-                | &nbsp;
-                = link_to icon_text('list-alt', ''), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-primary tooltip', data:{tooltip: "Build P.O."}
-                - if po_listing_per_rfq(rfq.id) == true
+            th = sort_link(@q, :rfq_title, 'RFQ Title', default: :desc)
+            th = sort_link(@q, :principal_name, 'Principal Name', default: :desc)
+            th = sort_link(@q, :requirement_offcer, 'Requirement Officer', default: :desc)
+            th = sort_link(@q, :monitoring_officer, 'Monitoring Officer', default: :desc)
+            th = sort_link(@q, :status, 'Status', default: :desc)
+            th Action
+          tr
+            th = f.text_field :title_cont, class: "form-control"
+            th = f.text_field :principal_name_cont, class: "form-control"
+            th = f.text_field :requirements_officer_first_name_or_requirements_officer_last_name_cont, class: "form-control"
+            th = f.text_field :monitoring_officer_first_name_or_monitoring_officer_last_name_cont, class: "form-control"
+            th = f.select :current_status_cont, [['Approved', 't'], ['Pending', 'f']], { include_blank: true }, class: "form-control"
+            th
+              input.btn.btn-primary style="width:100%;" type="submit" value="Search" id="mysearch"
+        tbody.btn-icon-hover
+          - @list_rfqs.each do |rfq|
+            tr
+              td= rfq.title
+              td= rfq.principal.name
+              td= @rfq_req_officer = rfq_req_officer(rfq.requirements_officer_id)
+              td= @rfq_mon_officer = rfq_mon_officer(rfq.monitoring_officer_id)
+              td= rfq.current_status == 't' ? "Approved" : "Pending"
+              td
+                - if rfq.current_status == 't'
                   | &nbsp;
-                  = link_to icon_text('check', ''), list_rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View List P.O."}
-
+                  = link_to icon_text('list-alt', ''), rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-primary tooltip', data:{tooltip: "Build P.O."}
+                  - if po_listing_per_rfq(rfq.id) == true
+                    | &nbsp;
+                    = link_to icon_text('check', ''), list_rfq_build_po_api_purchase_orders_path(rfq_id: rfq.id, step: 3, ds: true), class: 'btn btn-xs btn-info tooltip', data:{tooltip: "View List P.O."}
+        tfoot
+          tr.text-center.small-text11.bold-text
+            td colspan="6" = will_paginate @list_rfqs, renderer: BootstrapPagination::Rails

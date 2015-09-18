@@ -2,6 +2,7 @@ class Api::RfqItemsController < ApplicationController
    before_filter :set_rfq_item, only: [:show, :update, :destroy, :edit]
 
   def index
+    #@q = RfqItem.ransack(params[:q])
     @rfq = Rfq.find params[:rfq_id]
     @add_rfq_item = RfqItem.new
     if params[:rfq_id]

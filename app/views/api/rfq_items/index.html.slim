@@ -26,15 +26,33 @@
       button data-toggle='modal' data-target='#add_rfq_item' class=" btn btn-primary "
         = icon_text('plus', 'Add Item')
     br
+    //= search_form_for [:api, @q] do |f|
     table.table.table-hover.table-striped
       thead
-        th Item
-        th Type
-        th Status
-        th Qty
-        th Unit Price
-        th Total Price
-        th Action
+        tr
+          th Item
+          th Type
+          th Status
+          th Qty
+          th Unit Price
+          th Total Price
+          th Action
+        //  th = sort_link(@q, :item, 'Item', default: :desc)
+        //  th = sort_link(@q, :type, 'Type', default: :desc)
+        //  th = sort_link(@q, :status, 'Status', default: :desc)
+        //  th = sort_link(@q, :qty, 'Qty', default: :desc)
+        //  th = sort_link(@q, :unit_price, 'Unit Price', default: :desc)
+        //  th = sort_link(@q, :total_price, 'Total Price', default: :desc)
+        //  th Action
+        //tr
+        //  th = f.text_field :item_name_cont, class: "form-control"
+        //  th = f.text_field :item_item_type_cont, class: "form-control"
+        //  th = f.text_field :is_approved, class: "form-control"
+        //  th = f.text_field :quantity_cont, class: "form-control"
+        //  th = f.text_field :unit_price_cont, class: "form-control"
+        //  th = f.text_field :total_price_cont, class: "form-control"
+        //  th
+        //    input.btn.btn-primary style="width:100%;" type="submit" value="Search" id="mysearch"
       tbody.btn-icon-hover
         - @rfq_items.each do |rfq_item|
           tr
