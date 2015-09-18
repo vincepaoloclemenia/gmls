@@ -75,6 +75,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-secrets-yml (1.0.0)
+      capistrano (>= 3.1)
+      sshkit (>= 1.2.0)
     capistrano3-nginx_unicorn (0.0.6)
       capistrano (>= 3.0.0)
     carrierwave (0.10.0)
@@ -253,9 +256,10 @@ DEPENDENCIES
   bootstrap-sass
   bootsy
   byebug
-  capistrano
+  capistrano (~> 3.2.1)
   capistrano-rails
   capistrano-rvm
+  capistrano-secrets-yml (~> 1.0.0)
   capistrano3-nginx_unicorn
   devise
   jbuilder (~> 2.0)

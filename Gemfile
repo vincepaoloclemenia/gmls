@@ -34,7 +34,8 @@ group :development do
   gem 'awesome_print'
   gem 'spring'
   gem 'web-console', '~> 2.0'
-  gem 'capistrano', require: false
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-secrets-yml', '~> 1.0.0'
   gem 'capistrano-rvm', require: false
   gem 'capistrano-rails', require: false
   # gem 'capistrano-rbenv', require: false

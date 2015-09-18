@@ -16,14 +16,3 @@ set :ssh_options, {
   forward_agent: true
 }
 
-# gmls/@dminGMLS2015
-
-# DNS Name: gmls.cloudapp.net
-# Public virtual IP (VIP) address: 111.221.102.30
-# Internal IP address: 100.73.124.99
-
-# SSH details
-# gmls.cloudapp.net : 22
-# Size: Basic_A0 (shared core, 768 MB memory)
-# SSH Certificate Thumbprint: 89219369b069fcc5d28d7aa9befaba57
-# Location: Southeast Asia
