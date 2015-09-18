@@ -23,6 +23,7 @@ gem 'rails4-autocomplete'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
 gem 'paranoia_uniqueness_validator', '1.1.0'
+gem 'sprockets', '2.12.3'
 
 group :development do
   gem 'railroady'
@@ -34,11 +35,12 @@ group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
   gem 'capistrano', require: false
+  gem 'capistrano-rvm', require: false
   gem 'capistrano-rails', require: false
-  gem 'capistrano-rbenv', require: false
+  # gem 'capistrano-rbenv', require: false
   gem 'capistrano3-nginx_unicorn', require: false
 end
 
-gem 'unicorn', group: :production
+gem 'unicorn'
 # gem 'newrelic_rpm'
 

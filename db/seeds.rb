@@ -13,7 +13,7 @@ User.create([
    password: 'password', password_confirmation: 'password', gender: 'Female', role_id: 2},
 
   {first_name: 'Approver', last_name: 'Logreq', department: 1, email: 'app_logreq@gmls.com',
-   password: 'password', password_confirmation: 'password', gender: 'Female', role_id: 3}
+   password: 'password', password_confirmation: 'password', gender: 'Female', role_id: 3},
 
    {first_name: 'Encoder', last_name: 'RFQ', department: 1, email: 'enc_rfq@gmls.com',
    password: 'password', password_confirmation: 'password', gender: 'Female', role_id: 4},
