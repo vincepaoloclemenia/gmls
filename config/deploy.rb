@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'gmls'
+set :application, 'gmls-beta'
 set :repo_url, 'git@bitbucket.org:reynan_albaredo/gmls-v2.git'
 
 # Default branch is :master
@@ -34,7 +34,7 @@ set :log_level, :debug
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :unicorn_pid, '/home/gmls/shared/tmp/pids/unicorn.pid'
+set :unicorn_pid, '/home/gmls-beta/shared/tmp/pids/unicorn.pid'
 
 
 namespace :deploy do
