@@ -72,11 +72,12 @@ Rails.application.routes.draw do
       get :update_supplier, on: :collection
       get :choose_supplier_listings, on: :collection
       get :build_purchase_order, on: :collection
-      get :autocomplete_item_name, :on => :collection
-      get :select_incidental_items, :on => :collection
-      get :include_incidental_item, :on => :collection
-      get :exclude_incidental_item, :on => :collection
-      # get :list_supplier_per_items, on: :collection
+      get :autocomplete_item_name, on: :collection
+      get :select_incidental_items, on: :collection
+      get :include_incidental_item, on: :collection
+      get :exclude_incidental_item, on: :collection
+      get :update_price_incidental_item, on: :collection
+      get :update_pricing, on: :collection
     end
     resources :contracts
     resources :contract_items

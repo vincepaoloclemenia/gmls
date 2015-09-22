@@ -55,7 +55,10 @@
             td = incidental_item.location_id.nil? ? '' : incidental_item.location.name
             td = number_to_currency(incidental_item.price, unit: "P ")
             td = incidental_item.remarks
-            td.text-center = link_to icon_text('trash', ''), exclude_incidental_item_api_incidental_items_path(li: params[:li], step: 2, incidental_item_id: incidental_item.id, incidental_quote_id: params[:incidental_quote_id]), class: "btn btn-danger btn-xs"
+            td.text-center
+              = link_to icon_text('plus', ''), update_price_incidental_item_api_incidental_items_path(li: params[:li], step: 2, incidental_item_id: incidental_item.id, incidental_quote_id: params[:incidental_quote_id]), class: 'btn btn-primary btn-xs', title: 'Add Selected Price'
+              | &nbsp;
+              = link_to icon_text('trash', ''), exclude_incidental_item_api_incidental_items_path(li: params[:li], step: 2, incidental_item_id: incidental_item.id, incidental_quote_id: params[:incidental_quote_id]), class: "btn btn-danger btn-xs", title: 'Delete'
 
     table.table.borderless width="100%" 
       tr

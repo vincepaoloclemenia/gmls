@@ -105,6 +105,18 @@ class Api::IncidentalItemsController < ApplicationController
     redirect_to request.referrer, notice: 'The item has been included in the quotation.'
   end
 
+
+  def update_price_incidental_item
+    @incidental_item = IncidentalItem.find(params[:incidental_item_id])
+    @supplier_pricing_details = SupplierPricingDetail.where(item_id: @incidental_item.item_id )
+  end
+
+  def update_pricing
+    @incidental_item = IncidentalItem.find(params[:incidental_item_id])
+    @incidental_item.update_attributes(:price => params[:pr])
+    redirect_to api_incidental_items_path(li: params[:li], step: 2, incidental_quote_id: params[:incidental_quote_id]), notice: 'The price item has been updated.'
+  end
+
   private
 
   def set_incidental_item

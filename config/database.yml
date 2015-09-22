@@ -14,6 +14,8 @@ test:
 production:
   <<: *default
   database: gmls_production
+  username: gmlsdbuser
+  password: admin2015
 
 staging:
   <<: *default

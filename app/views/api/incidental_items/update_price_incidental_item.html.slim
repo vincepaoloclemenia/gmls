@@ -1,0 +1,20 @@
+= render "layouts/upper_menu_logreq"
+.panel.panel-default
+  .panel-heading
+    h3.title-gray-heading
+      span.glyphicon.glyphicon-list
+      | &nbsp; Update Item Pricing
+  .panel-body
+    table.table.table-hover.table-striped width="100%"
+      tr
+        th Supplier Name
+        th Pricing
+        th Action
+      - @supplier_pricing_details.each do |sl|
+        tr
+          td = sl.supplier.name
+          td = sl.price.nil? ? '0.00' : number_to_currency(sl.price, unit: "P ")
+          td = link_to icon_text('', 'Select'), update_pricing_api_incidental_items_path(li: params[:li], step: 2, incidental_item_id: params[:incidental_item_id], incidental_quote_id: params[:incidental_quote_id], pr: sl.price ), class: 'btn btn-info btn-xs', title: 'Add Selected Price'
+
+
+          

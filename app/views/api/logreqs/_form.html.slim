@@ -13,7 +13,7 @@
   br
   .row  
     .col-xs-4
-      label Assigned Employee for Services
+      label Assigned Boarding Officer
       = f.select :assigned_user_breakdown_services, User.where(department: 1).map{ |e| [e.full_name, e.id] }, {include_blank: true },  class: 'form-control'
 
     .col-xs-4
@@ -51,5 +51,5 @@
   = link_to 'Cancel', request.referer, class: 'btn btn-warning'
 javascript:
   $(document).ready(function(){
-    $('.datepicker').datepicker({format: 'dd-mm-yyyy'});
+    $('.datepicker').datepicker({format: 'dd-mm-yyyy', orientation: "top auto", autoclose: true, todayHighlight: true});
   });

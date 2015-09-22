@@ -1,0 +1,56 @@
+.modal.fade#add_pricing_logreq data-backdrop='static' style="width: 1000px; height: auto; top:10%; left:10%;background: transparent;overflow-y: hidden"
+  .modal-content
+    / = form_for @add_rfq_item, :url => {:action => 'create'}, html: { class: 'form-horizontal' } do |f|
+    .modal-header
+      .pull-right
+        button.close-modal.btn.btn-sm.btn-danger type='button' data-dismiss='modal' aria-hidden=true 
+          .glyphicon.glyphicon-remove
+      h4.modal-title Add RFQ Item
+    
+    .modal-body
+      = params[:incidental_item_id]
+      /   .row
+      /     .col-xs-4
+      /       //.input-group
+      /       label Item Name
+      /       = f.select :item_id, Item.all.map{ |e| [e.name, e.id] }, {include_blank: true },  class: 'form-control', required: "required"
+      /     .col-xs-4
+      /       //.input-group
+      /       label Type
+      /       = f.text_field :item_type, class: 'form-control', readonly: true
+      /     .col-xs-4
+      /       //.input-group
+      /       label Quantity
+      /       = f.text_field :quantity, class: 'form-control'
+      /   br      
+      /   .row
+      /     .col-xs-4
+      /       //.input-group
+      /       label U/I
+      /       = f.text_field :ui, class: 'form-control'
+      /     .col-xs-4
+      /       //.input-group
+      /       label Start Date
+      /       = f.text_field :start_date, class: 'form-control datepicker'
+      /     .col-xs-4
+      /       //.input-group
+      /       label End Date
+      /       = f.text_field :end_date, class: 'form-control datepicker'
+      /   br      
+      /   .row
+      /     .col-xs-4
+      /       /.input-group
+      /       label Day/s
+      /       = f.text_field :days, class: 'form-control', readonly: true
+      /     .col-xs-4
+      /       //.input-group
+      /       label Unit Price
+      /       = f.text_field :unit_price, class: 'form-control', readonly: true
+      /     .col-xs-4
+      /       //.input-group
+      /       label Total Price
+      /       = f.text_field :total_price, class: 'form-control', readonly: true
+      / .modal-footer.text-align
+      /   = f.hidden_field :rfq_id, value: params[:rfq_id]
+      /   = f.submit 'Save', class: 'btn btn-primary'
+
