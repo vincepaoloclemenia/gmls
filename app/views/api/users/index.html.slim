@@ -14,7 +14,6 @@
             th.col-xs-2 = sort_link(@q, :department, 'Department', default: :desc)
             th.col-xs-2 = sort_link(@q, :position, 'Position', default: :desc)
             th.col-xs-2 = sort_link(@q, :gender, 'Gender', default: :desc)
-            th.col-xs-1 = sort_link(@q, :age, 'Age', default: :desc)
             th.col-xs-1.text-center Action
         = search_form_for [:api, @q] do |f|
           tr
@@ -23,7 +22,6 @@
             th= f.select :department_eq, [["Military",0],["Ship",1]], {include_blank: true }, class: 'form-control'
             th= f.text_field :position_cont, class: "form-control"
             th= f.text_field :gender_cont, class: "form-control"
-            th= f.text_field :age_eq, class: "form-control"
             th
               input.btn.btn-primary style="width:100%" type="submit" value="Search"
         tbody.btn-icon-hover
@@ -33,7 +31,6 @@
               td= user.department_type
               td= user.position
               td= user.gender
-              td= user.age
               td.text-center
                 = link_to icon_text('pencil', ''), edit_api_user_path(user), class: 'btn btn-xs btn-warning tooltip', data:{tooltip: "Edit"}
                 | &nbsp;

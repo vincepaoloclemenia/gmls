@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :logreqs
 
   validates_uniqueness_of :email, :case_sensitive => false 
-  validates_presence_of :email, :first_name, :last_name, :department, :position, :age, :gender
+  validates_presence_of :email, :first_name, :last_name, :department, :position, :gender
 
   def ensure_authentication_token
     if authentication_token.blank?

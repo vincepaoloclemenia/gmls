@@ -62,7 +62,6 @@ class Api::UsersController < ApplicationController
       params["q"]["department_eq"].strip!
       params["q"]["position_cont"].strip!
       params["q"]["gender_cont"].strip!
-      params["q"]["age_eq"].strip!
     end
   end
 
